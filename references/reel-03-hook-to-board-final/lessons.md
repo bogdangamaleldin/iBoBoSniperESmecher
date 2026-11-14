@@ -18,10 +18,34 @@ Pipeline + edit list: `pipeline/hook-to-board-01/`.
 - Pacing: cut pauses > 0.18s, tight line joins, 1.08x speed. Drop false starts (re-transcribe suspicious stretched words).
 - Export: 2160x3840, 60fps.
 
-## User added by hand (do this automatically next time)
-- Transition at every face <-> board switch: warm light-leak flash, ~0.3s centered on the cut.
-  Golden/white flare blowing out the frame + rainbow prism fringe on the incoming shot. Hard cuts everywhere else.
-- Slightly tighter (~0.1-0.2s) around the transitions.
+## User added by hand in CapCut (do this automatically next time)
+- **Transitions:** CapCut "glare" effect at every face <-> board switch, ~0.3s centred on the cut
+  (warm golden/white flare blowing out the frame + rainbow prism fringe). Hard cuts everywhere else.
+- **Transition SFX:** `brand/sfx/camera-shutter.mp3`, SECOND HALF ONLY (second click: start at 0.66s of the file),
+  placed on each face <-> board transition.
+- **Riser at the start:** `brand/sfx/riser.mp3` under the hook.
+- **Song:** a music bed under the whole reel (chosen per reel; not in the Drive export, so likely added at posting).
+- **Zoom keyframes (face shots only, ease-out, centred on the face).** Measured against our v5:
+  | t (user cut) | line | zoom |
+  |---|---|---|
+  | 0.0 -> 0.2s | "ai can build your miro boards" | punch-in 1.00 -> 1.10, hold |
+  | 2.4 -> 4.1s | "that's exactly why it won't book you a call" | 1.10 -> 1.05, then slow ease-out to 1.00 |
+  | 4.3 -> 4.6s | "the board is 10% of it" | punch-in 1.00 -> 1.05 on the number |
+  | 5.6 -> 5.9s | "the other 90%..." | punch-in 1.05 -> 1.10, hold to the transition |
+  | 8.5 -> 33s | board section | none |
+  | 33.0 -> 33.1s | close, "you still have to decide" | snap 1.00 -> 1.06, hold to end |
+  Rule of thumb: punches of +5% on emphasis words/numbers, 0.2-0.3s ease-out, levels 1.00/1.05/1.10,
+  one zoom-out after the opening beat. Never a slow continuous push-in (rejected).
+- Slightly tighter (~0.1s each) in two places: around the first transition and mid board section.
+
+## SFX library (`brand/sfx/`)
+| file | length | loudness | use |
+|---|---|---|---|
+| camera-shutter.mp3 | 1.23s | -17 LUFS | transitions (2nd click only, from 0.66s) |
+| riser.mp3 | 5.33s | -32 LUFS | under the hook / build into the first cut |
+| camera-switch.wav | 0.79s | -25 LUFS | available (alt. transition) |
+| pop.mp3 | 0.97s | -20 LUFS | available (pills / CTA pop-ins) |
+| pencil-lines.mp3 | 2.14s | -46 LUFS | available (board drawing / highlighting) |
 
 ## Rejected along the way
 - Graphics on the face shots (big numbers, titles, stat cards). Cool/blue-white flash. Zoom-ins anywhere.
