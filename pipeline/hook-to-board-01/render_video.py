@@ -1,55 +1,56 @@
-"""Render the base video for the hook->board reel (v2).
+"""Render the base video for the hook->board reel (v5).
 
-Face layout : full screen, cropped in ~1.33x from the 4K phone original (closer framing);
-              smooth continuous push-in across the hook lines; close is static.
-Board layout (full-bleed, no black margins):
-              webcam  y0-860    1080x860  static crop from the 4K original (no motion)
-              caption band y860-970  #08090A
-              board   y970-1920 1080x950  Miro canvas crop with a slow push-in per line
-Audio       : laptop mic (screen recording) wherever it exists, phone mic (denoised) for the hook;
+Resolution/fps are parameters: S=1 -> 1080x1920, S=2 -> 2160x3840 (4K). FPS env var (default 60).
+Layout geometry is defined on a 1080x1920 grid and multiplied by S.
+
+Face layout : full screen, static ~1.33x crop of the 4K phone original, HLG HDR tone-mapped to SDR.
+Board layout (user's board-only format): two rounded cards on #08090A
+              webcam card x68 y189 945x727 r45 | caption between | board card x30 y1020 1020x621 r36
+Audio       : laptop mic (screen recording) wherever it exists, phone mic (light cleanup) for the hook;
               every line levelled to -18 LUFS before the final loudness pass.
 """
 import json, subprocess, os, re
+from PIL import Image, ImageDraw
 
-W, H = 1080, 1920
-CAM_H, BAND_H = 860, 110
-BOARD = (30, CAM_H + 115, 1020, 621, 36)  # rounded board card: x y w h radius (v1 look)
+S = int(os.environ.get('S', '2'))
+FPS = int(os.environ.get('FPS', '60'))
+W, H = 1080 * S, 1920 * S
+CAM = (68, 189, 945, 727, 45)
+BOARD = (30, 1020, 1020, 621, 36)
 FACE_CROP = (1620, 2880, 280, 650)        # on the 2160x3840 phone original
-CAM_CROP = (1700, 1354, 240, 1058)        # webcam card crop on the phone original
+CAM_CROP = (1700, 1308, 240, 1080)        # webcam card crop on the phone original (945:727 aspect)
 MIRO_Y, MIRO_H = 278, 927                 # Miro canvas rows in the 2560x1440 screen recording
-MIRO_W = round(MIRO_H * BOARD[2] / BOARD[3])  # crop width matching the board card aspect
+MIRO_W = round(MIRO_H * BOARD[2] / BOARD[3])
 MIRO_OVERVIEW = {4: (440, 1520), 10: (800, 1140)}   # zoomed-out lines: (x, width) that fits all content
-MIRO_BG = 'E5F7FC'                        # Miro board background colour (sampled)
+MIRO_BG = 'E5F7FC'
 MIRO_CENTER_DEFAULT = 1280
 TARGET_LUFS = -18.0
-# iPhone records HLG/Dolby Vision HDR: tone-map to SDR or it looks washed-out white
 TONEMAP = ('zscale=tin=arib-std-b67:min=bt2020nc:pin=bt2020:rin=tv:t=linear:npl=203,format=gbrpf32le,'
            'zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,'
            'eq=contrast=1.06:saturation=1.08')
+sc = lambda v: int(round(v * S))
 
-from PIL import Image, ImageDraw
 
-
-def make_card_mask():
-    k = 3
-    bx, by, bw, bh, r = BOARD
-    im = Image.new('RGBA', (W * k, H * k), (0, 0, 0, 0))
+def make_mask():
+    """Background with two rounded holes (+1px border) laid over the cards."""
+    k = 2
+    im = Image.new('RGBA', (W * k, H * k), (8, 9, 10, 255))
     d = ImageDraw.Draw(im)
-    d.rectangle([(bx - 4) * k, (by - 4) * k, (bx + bw + 4) * k, (by + bh + 4) * k], fill=(8, 9, 10, 255))
-    d.rounded_rectangle([(bx - 1) * k, (by - 1) * k, (bx + bw + 1) * k, (by + bh + 1) * k], (r + 1) * k, fill=(31, 33, 37, 255))
-    d.rounded_rectangle([bx * k, by * k, (bx + bw) * k, (by + bh) * k], r * k, fill=(0, 0, 0, 0))
-    im.resize((W, H), Image.LANCZOS).save('card_mask.png')
+    for x, y, w, h, r in (CAM, BOARD):
+        X, Y, Wd, Ht, R = [v * S * k for v in (x, y, w, h, r)]
+        b = S * k
+        d.rounded_rectangle([X - b, Y - b, X + Wd + b, Y + Ht + b], R + b, fill=(31, 33, 37, 255))
+        d.rounded_rectangle([X, Y, X + Wd, Y + Ht], R, fill=(0, 0, 0, 0))
+    im.resize((W, H), Image.LANCZOS).save('board_mask.png')
 
 
-make_card_mask()
+make_mask()
 edl = json.load(open('edl.json'))
 segs = edl['segments']
 os.makedirs('seg', exist_ok=True)
-line_dur = {}
+line_dur, line_t0 = {}, {}
 for s in segs:
     line_dur[s['line']] = line_dur.get(s['line'], 0) + s['out'] - s['in']
-line_t0 = {}
-for s in segs:
     line_t0.setdefault(s['line'], s['t0'])
 
 
@@ -59,19 +60,15 @@ def loudness(src, start, dur):
     return float(re.findall(r'I:\s+(-?[\d.]+) LUFS', r)[-1])
 
 
-# per-line gain (measured over the whole line in its audio source)
 gain = {}
 for li in sorted(line_dur):
     s0 = next(s for s in segs if s['line'] == li)
     s1 = [s for s in segs if s['line'] == li][-1]
-    if s0['audio'] == 'laptop':
-        L = loudness('raw/miro.mp4', s0['audio_in'], s1['out'] - s0['in'])
-    else:
-        L = loudness('me_proxy.mp4', s0['in'], s1['out'] - s0['in'])
+    L = (loudness('raw/miro.mp4', s0['audio_in'], s1['out'] - s0['in']) if s0['audio'] == 'laptop'
+         else loudness('me_proxy.mp4', s0['in'], s1['out'] - s0['in']))
     gain[li] = TARGET_LUFS - L
-    print(f'line {li}: {s0["audio"]} {L:.1f} LUFS -> gain {gain[li]:+.1f} dB')
 
-ENC = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '16', '-pix_fmt', 'yuv420p', '-r', '30',
+ENC = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '15', '-pix_fmt', 'yuv420p', '-r', str(FPS),
        '-c:a', 'pcm_s16le', '-ar', '48000', '-ac', '2']
 files = []
 for i, s in enumerate(segs):
@@ -87,35 +84,34 @@ for i, s in enumerate(segs):
                    f"equalizer=f=3800:t=q:w=1.5:g=2,acompressor=threshold=-24dB:ratio=2.5:attack=8:release=120,"
                    f"volume={gain[s['line']]:.2f}dB,{fade}")
     v_in = ['-ss', f"{s['in']:.3f}", '-t', f'{dur:.3f}', '-i', 'raw/me.mp4']
-    fw, fh, fx, fy = FACE_CROP
     if s['layout'] == 'face':
-        vf = (f"[0:v]fps=30,crop={fw}:{fh}:{fx}:{fy},{TONEMAP},"
-              f"scale={W}:{H}:flags=lanczos,setsar=1[v]")
+        fw, fh, fx, fy = FACE_CROP
+        fc = (f"[0:v]setpts=PTS-STARTPTS,fps={FPS},crop={fw}:{fh}:{fx}:{fy},{TONEMAP},scale={W}:{H}:flags=lanczos,setsar=1[v];"
+              f"[1:a]{a_chain}[au]")
         inputs = v_in + a_in
-        fc = vf + f";[1:a]{a_chain}[au]"
     else:
         cw, ch, cx, cy = CAM_CROP
         bx, by, bw, bh, _ = BOARD
-        if s['line'] in MIRO_OVERVIEW:   # zoomed-out board: fit all content, pad with the board colour
+        if s['line'] in MIRO_OVERVIEW:
             ox, ow = MIRO_OVERVIEW[s['line']]
             board_src = (f"crop={ow}:{MIRO_H}:{ox}:{MIRO_Y},"
-                         f"scale={bw}:{bh}:force_original_aspect_ratio=decrease:flags=lanczos,"
-                         f"crop='min(iw,{bw})':'min(ih,{bh})',"
-                         f"pad={bw}:{bh}:(ow-iw)/2:(oh-ih)/2:color=0x{MIRO_BG}")
+                         f"scale={sc(bw)}:{sc(bh)}:force_original_aspect_ratio=decrease:flags=lanczos,"
+                         f"crop='min(iw,{sc(bw)})':'min(ih,{sc(bh)})',"
+                         f"pad={sc(bw)}:{sc(bh)}:(ow-iw)/2:(oh-ih)/2:color=0x{MIRO_BG}")
         else:
             mx = MIRO_CENTER_DEFAULT - MIRO_W // 2
-            board_src = f"crop={MIRO_W}:{MIRO_H}:{mx}:{MIRO_Y},scale={bw}:{bh}:flags=lanczos"
-        fc = (f"color=c=0x08090A:s={W}x{H}:r=30:d={dur:.3f}[bg];"
-              f"[0:v]fps=30,crop={cw}:{ch}:{cx}:{cy},{TONEMAP},scale={W}:{CAM_H}:flags=lanczos[cam];"
-              f"[1:v]fps=30,{board_src}[brd];"
-              f"[bg][cam]overlay=0:0[a];[a][brd]overlay={bx}:{by}[b];[b][3:v]overlay=0:0,setsar=1[v];"
-              f"[2:a]{a_chain}[au]")
-        inputs = v_in + ['-ss', f"{s['miro_in']:.3f}", '-t', f'{dur:.3f}', '-i', 'raw/miro.mp4'] + a_in + ['-i', 'card_mask.png']
-    cmd = ['ffmpeg', '-v', 'error', '-y', *inputs, '-filter_complex', fc,
-           '-map', '[v]', '-map', '[au]', '-t', f'{dur:.3f}', *ENC, out]
-    subprocess.run(cmd, check=True)
+            board_src = f"crop={MIRO_W}:{MIRO_H}:{mx}:{MIRO_Y},scale={sc(bw)}:{sc(bh)}:flags=lanczos"
+        fc = (f"color=c=0x08090A:s={W}x{H}:r={FPS}:d={dur:.3f}[bg];"
+              f"[0:v]setpts=PTS-STARTPTS,fps={FPS},crop={cw}:{ch}:{cx}:{cy},{TONEMAP},scale={sc(CAM[2])}:{sc(CAM[3])}:flags=lanczos[cam];"
+              f"[1:v]setpts=PTS-STARTPTS,fps={FPS},{board_src}[brd];"
+              f"[bg][cam]overlay={sc(CAM[0])}:{sc(CAM[1])}:eof_action=repeat[a];[a][brd]overlay={sc(bx)}:{sc(by)}:eof_action=repeat[b];"
+              f"[b][3:v]overlay=0:0,setsar=1[v];[2:a]{a_chain}[au]")
+        inputs = (v_in + ['-ss', f"{s['miro_in']:.3f}", '-t', f'{dur:.3f}', '-i', 'raw/miro.mp4']
+                  + a_in + ['-i', 'board_mask.png'])
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', *inputs, '-filter_complex', fc,
+                    '-map', '[v]', '-map', '[au]', '-t', f'{dur:.3f}', *ENC, out], check=True)
     files.append(out)
-    print('ok', out, s['layout'], s['audio'], f'{dur:.2f}s', flush=True)
+    print('ok', out, s['layout'], f'{dur:.2f}s', flush=True)
 
 with open('seg/list.txt', 'w') as f:
     for p in files:

@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const dir = __dirname;
 const edl = JSON.parse(fs.readFileSync(path.join(dir, 'edl.json')));
-const FPS = 30, WORKERS = 4;
+const FPS = +(process.env.FPS || 60), DSF = +(process.env.S || 2), WORKERS = 4;
 const only = process.argv[2] ? process.argv[2].split(',').map(Number) : null;
 const frames = only ? only.map(t => Math.round(t * FPS)) : [...Array(Math.ceil(edl.duration * FPS)).keys()];
 const out = path.join(dir, only ? 'ovl_test' : 'ovl');
@@ -15,7 +15,7 @@ fs.mkdirSync(out, { recursive: true });
   const browser = await chromium.launch({ args: ['--allow-file-access-from-files'] });
   const t0 = Date.now();
   await Promise.all([...Array(WORKERS).keys()].map(async wi => {
-    const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
+    const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: DSF });
     await page.goto('file://' + path.join(dir, 'overlay.html'));
     await page.evaluate(e => window.build(e), edl);
     await page.evaluate(() => document.fonts.ready);

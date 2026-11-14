@@ -46,7 +46,7 @@ def split_pauses(a, b, max_gap=0.18, keep=0.06):
 # (layout, me_in, me_out, caption markup, miro override, hard_out)
 # '|' = group break, *w* = accent key word, **w** = money key word, '~' joins two shown words on one timing
 LINES = [
-    ('face', 90.40, 92.80, "ai can build | your miro board | in *5 minutes.*", None, False),
+    ('face', 90.40, 92.80, "ai can build | your miro boards | in *5 minutes.*", None, False),
     ('face', 99.60, 101.95, "that's exactly why | it *won't* | book you a call.", None, False),
     ('face', 129.25, 130.90, "the board | is *10%* of it.", None, False),
     ('face', 149.90, 153.50, "the other *90%* | is 4 decisions | which ai cannot | make for you.", None, False),
