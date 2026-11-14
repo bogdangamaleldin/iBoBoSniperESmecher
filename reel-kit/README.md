@@ -72,6 +72,7 @@ Segments are cached by their exact ffmpeg command, so after a small change only 
 | `**56 calls.**` | money/win key word(s): serif italic, green |
 | `have~them.`, `*“board”*~down~below.` | ASR heard one token, show several words (each word takes its own `*` markers) |
 | `gonna+` | caption token consumes two ASR tokens |
+| `_` | consume one ASR token without showing it (ASR timing was wrong, e.g. reel 02 'and' after $12,000) |
 
 Token count must equal the ASR tokens in the take (`10` + `%` and `$12` + `,000` merge automatically);
 `build_edl.py` stops with the ASR tokens listed if it doesn't, so fix the markup or the in/out.

@@ -103,7 +103,7 @@ for li, L in enumerate(R['lines']):
     subs = split_pauses(a, b)
     wl = norm_tokens([wd for wd in allwords if wd[0] < b - 0.05 and wd[1] > a + 0.05])
     groups = [g.strip().split() for g in L['caption'].split('|')]
-    need = sum(2 if t.rstrip('*').endswith('+') else 1 for g in groups for t in g)
+    need = sum(2 if t.rstrip('*').endswith('+') else 1 for g in groups for t in g)   # '_' counts as 1
     if need != len(wl):
         raise SystemExit(f"line {li} ({L['caption']!r}): caption needs {need} ASR tokens, found {len(wl)}:\n"
                          f"{[x[2] for x in wl]}\n-> fix the caption markup (~ / +) or the line's in/out")
@@ -124,6 +124,8 @@ for li, L in enumerate(R['lines']):
     k, in_key, words_here = 0, None, []
     for gi, g in enumerate(groups):
         for tok in g:
+            if tok == '_':                             # ASR token with a wrong time: consume it, show nothing
+                k += 1; continue
             t = round(map_t(max(wl[k][0], a)), 3)
             two = tok.rstrip('*').endswith('+')
             # '~' splits one ASR token into several shown words; each word carries its own * markers

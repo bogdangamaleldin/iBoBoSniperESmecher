@@ -29,7 +29,9 @@ and what the user approved/changed: `references/reel-03-hook-to-board-final/less
    - false starts inside an island ("the first... the first decision"): re-window that region with
      `transcribe.py` on a short clip, start the line at the clean attempt;
    - ASR words stretched > 1s hide a pause, a flub or a whole collapsed retake;
-   - a take that runs straight into the next attempt -> `hard_out: true`.
+   - a take that runs straight into the next attempt -> `hard_out: true`. Place hard_out from the LOUDNESS
+     envelope (the dip after the last word), not from ASR word starts - ASR clipped "twelve thousand" to
+     "twelve" on reel 02. Numbers and long last words are the usual victims.
 4. Board footage per SCREEN line: grab stills of the screen recording at `face_time - offset`
    (`ffmpeg -ss T -i raw/screen.mp4 -frames:v 1 ...`) and look at them. If the screen shows another app
    (e.g. the script editor while the CTA was recorded), set `screen_in` to a time where the board is visible.

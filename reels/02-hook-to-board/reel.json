@@ -137,10 +137,10 @@
     {
       "layout": "board",
       "in": 165.4,
-      "out": 167.55,
+      "out": 167.95,
       "hard_out": true,
       "face_x": 786,
-      "caption": "thus, cash collected | close to **$12,000**"
+      "caption": "thus, cash collected | close to **$12,000** _"
     },
     {
       "layout": "board",

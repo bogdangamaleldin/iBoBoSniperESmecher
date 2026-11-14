@@ -62,3 +62,7 @@ Pipeline + edit list: `pipeline/hook-to-board-01/`.
   until the end of the board section (`to_line`), not just its line.
 - Both reels "got cut out too fast" at the end: the last word was trimmed ~0.06s after speech.
   Kit default now keeps 0.9s of footage after the last word (`cut.end_hold`) + 0.35s audio fade-out.
+- Reel 02: "close to twelve thousand" was cut after "twelve" on a `hard_out` line - the ASR put the next word
+  ("and") 0.35s too early. For every hard_out, check the loudness envelope for where the last word really
+  ends (look for the dip before the next word) instead of trusting ASR word starts; `_` in the caption
+  markup absorbs the mistimed ASR token.
