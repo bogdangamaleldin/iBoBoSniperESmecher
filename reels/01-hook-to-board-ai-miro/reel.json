@@ -1,0 +1,53 @@
+{
+  "name": "01-hook-to-board-ai-miro",
+  "format": "hook-to-board",
+  "drive": {
+    "face": "https://drive.google.com/file/d/1JUYLw2jI4roxpbye09qAjPabMMO2P_Y9/view",
+    "screen": "https://drive.google.com/file/d/1uJSVIYrwhl1z07lV027w0Ni0G9T7p2vp/view",
+    "posted": "https://drive.google.com/file/d/1Mi66IGvB_vYv_DrsZZKrf-2VR33Jnr3Z/view"
+  },
+  "sources": {"face": "raw/face.mov", "screen": "raw/screen.mp4"},
+  "screen_offset": 157.18,
+  "screen_duration": 192.0,
+  "speed": 1.08,
+  "export": {"scale": 2, "fps": 60},
+  "face_crop": [1620, 2880, 280, 650],
+  "face_anchor_y": 0.35,
+  "cam": {"source": "face", "crop": [1700, 1308, 240, 1080]},
+  "screen_canvas": {"y": 278, "h": 927, "center_x": 1280, "bg": "E5F7FC"},
+  "lines": [
+    {"layout": "face", "in": 90.40, "out": 92.80, "caption": "ai can build | your miro boards | in *5 minutes.*",
+     "zoom": [{"at": "start", "to": 1.10, "dur": 0.2}]},
+    {"layout": "face", "in": 99.60, "out": 101.95, "caption": "that's exactly why | it *won't* | book you a call.",
+     "zoom": [{"at": "start", "to": 1.05, "dur": 0.3}, {"at": "+0.5", "to": 1.0, "dur": 1.3}]},
+    {"layout": "face", "in": 129.25, "out": 130.90, "caption": "the board | is *10%* of it.",
+     "zoom": [{"at": "10%", "to": 1.05, "dur": 0.25}]},
+    {"layout": "face", "in": 149.90, "out": 153.50, "caption": "the other *90%* | is 4 decisions | which ai cannot | make for you.",
+     "zoom": [{"at": "90%", "to": 1.10, "dur": 0.25}]},
+    {"layout": "board", "in": 181.90, "out": 185.75, "screen_fit": [440, 1520],
+     "caption": "the left side | is what | ai gives you, | the right side | is what booked | **56 calls.**"},
+    {"layout": "board", "in": 226.78, "out": 230.85,
+     "caption": "the~first decision | is making | the miro board | around the *topic* | that your buyer | is actually | ready for."},
+    {"layout": "board", "in": 238.05, "out": 240.58, "hard_out": true,
+     "caption": "the second decision | is the *result* | you actually | lead with"},
+    {"layout": "board", "in": 251.95, "out": 255.50,
+     "caption": "and the number | you start with | in the first | *30 seconds* | to a minute | of your video"},
+    {"layout": "board", "in": 271.65, "out": 277.10,
+     "caption": "then you should | always use | your terms, | your numbers, | your examples | and your wording, | because ai | *doesn't have~them.*"},
+    {"layout": "board", "in": 284.80, "out": 288.30, "hard_out": true,
+     "caption": "and then lastly, | a cta | that your backend | can actually | *close.*"},
+    {"layout": "board", "in": 343.20, "out": 346.40, "screen_in": 155.0, "screen_fit": [800, 1140],
+     "caption": "comment *ai* | and i'll send you | the full breakdown | of the board | that did it."},
+    {"layout": "face", "in": 329.45, "out": 333.30, "caption": "ai builds | the boxes. | you still have | to *decide* | what goes | in them.",
+     "zoom": [{"at": "you", "to": 1.06, "dur": 0.1}]}
+  ],
+  "pills": [
+    {"text": "the topic your buyer is ready for", "from_line": 5, "to_line": 6},
+    {"text": "the result you lead with", "from_line": 6, "to_line": 8},
+    {"text": "your terms + your numbers", "from_line": 8, "to_line": 9},
+    {"text": "a cta your backend can close", "from_line": 9, "to_line": 10}
+  ],
+  "cta": {"text": "comment “ai”", "line": 10, "word": "ai"},
+  "sfx": {},
+  "song": null
+}

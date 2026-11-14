@@ -1,0 +1,123 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Caption + graphics layer, rendered to transparent PNG frames by render_overlay.js.
+     Designed on a 1080x1920 grid; deviceScaleFactor 2 gives 4K. Brand: brand/design-language.md -->
+<style>
+@font-face{font-family:Geist;src:url(../brand/fonts/Geist-Regular.ttf);font-weight:400}
+@font-face{font-family:Geist;src:url(../brand/fonts/Geist-Medium.ttf);font-weight:500}
+@font-face{font-family:Geist;src:url(../brand/fonts/Geist-SemiBold.ttf);font-weight:600}
+@font-face{font-family:'Instrument Serif';src:url(../brand/fonts/InstrumentSerif-Italic.ttf);font-style:italic}
+:root{--text:#F3F4F6;--blue:#3D8BFF;--green:#3FCF8E}
+html,body{margin:0;width:1080px;height:1920px;background:transparent;overflow:hidden}
+body{font-family:Geist;font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased;position:relative}
+.abs{position:absolute}
+/* captions: groups of 1-3 words; the whole group pops in on its first word and holds until the next group */
+.cap{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:baseline;gap:0 .24em;
+     white-space:nowrap;color:var(--text);font-weight:600;letter-spacing:-.02em;transform-origin:50% 60%}
+.cap.face{top:1080px;font-size:64px;text-shadow:0 2px 16px rgba(0,0,0,.6),0 0 2px rgba(0,0,0,.4)}
+.cap.board{top:930px;font-size:54px}
+.cap .k,.cap .m{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-size:1.3em;letter-spacing:-.01em;
+     position:relative;top:-.05em}           /* serif sits low next to Geist: lifted to sit level */
+.cap .k{color:var(--blue)} .cap .m{color:var(--green)}
+/* numbered pill on the board card */
+.pill{left:52px;top:1042px;display:flex;align-items:center;gap:16px;padding:12px 26px 12px 12px;border-radius:999px;
+  background:#0E0F11;border:1px solid #1F2125;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.pill .c{width:46px;height:46px;border-radius:50%;border:2px solid var(--blue);color:var(--blue);display:grid;place-items:center;
+  font-weight:600;font-size:24px;box-sizing:border-box}
+.pill .t{color:var(--green);font-weight:600;font-size:34px;letter-spacing:-.02em}
+/* CTA button on the board card (the frame's one glow) */
+.cta{left:0;right:0;top:1500px;display:flex;justify-content:center}
+.cta span{background:var(--blue);color:#fff;font-weight:600;font-size:40px;letter-spacing:.1em;text-transform:uppercase;
+  padding:24px 48px;border-radius:999px;box-shadow:0 0 50px rgba(61,139,255,.6)}
+/* layout-switch transition: warm glare (matches the CapCut "glare" the user picked) */
+.gl-wash{inset:0;background:#FFF7E8}
+.gl-bloom{left:-30%;top:-20%;width:160%;height:140%;
+  background:radial-gradient(ellipse at 62% 38%,rgba(255,252,240,1) 0%,rgba(255,226,160,.95) 22%,rgba(255,184,96,.75) 45%,rgba(255,150,60,.35) 65%,rgba(255,140,40,0) 82%)}
+.gl-prism{left:-40%;top:-10%;width:180%;height:120%;
+  background:linear-gradient(105deg,transparent 18%,rgba(255,70,70,.45) 30%,rgba(255,200,60,.45) 40%,rgba(90,255,150,.4) 50%,
+  rgba(70,160,255,.45) 60%,rgba(190,90,255,.4) 70%,transparent 82%)}
+</style></head>
+<body>
+<div id="root"></div>
+<script>
+let EL=[];
+const h=html=>{const d=document.createElement('div');d.innerHTML=html.trim();return d.firstChild};
+const clamp=x=>Math.max(0,Math.min(1,x));
+const easeOut=x=>1-Math.pow(1-clamp(x),3);
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+function build(edl){
+  const root=document.getElementById('root');
+  // captions
+  const groups=[];
+  for(const c of edl.captions){
+    let g=groups[groups.length-1];
+    if(!g||g.id!==c.group){g={id:c.group,layout:c.layout,words:[]};groups.push(g)}
+    g.words.push(c);
+  }
+  const lineOf=id=>+id.split('-')[0];
+  groups.forEach((g,i)=>{
+    const line=lineOf(g.id), nxt=groups[i+1];
+    const lineEnd=edl.captions.filter(c=>lineOf(c.group)===line).map(c=>c.line_end).find(x=>x!==undefined);
+    g.t0=g.words[0].t;
+    g.t1=nxt? nxt.words[0].t : lineEnd;
+    const row=h(`<div class="cap ${g.layout}"></div>`);
+    g.words.forEach(w=>row.appendChild(h(`<span class="${w.key==='accent'?'k':w.key==='money'?'m':''}">${esc(w.text)}</span>`)));
+    root.appendChild(row);g.row=row;
+  });
+  EL.push({kind:'captions',groups});
+
+  const add=(html,t0,t1,anim)=>{const el=h(html);el.classList.add('abs');root.appendChild(el);EL.push({el,t0,t1,anim})};
+  for(const p of edl.pills||[])
+    add(`<div class="pill"><div class="c">${p.n}</div><div class="t">${esc(p.text)}</div></div>`,p.t0,p.t1,'slide');
+  if(edl.cta) add(`<div class="cta"><span>${esc(edl.cta.text)}</span></div>`,edl.cta.t0,edl.cta.t1,'pop');
+  // warm glare at every face <-> board switch: ~0.32s centred on the cut
+  for(const T of edl.transitions||[]){
+    add(`<div class="gl-bloom"></div>`,T-0.13,T+0.20,{bloom:T});
+    add(`<div class="gl-wash"></div>`,T-0.07,T+0.12,{wash:T});
+    add(`<div class="gl-prism"></div>`,T-0.02,T+0.24,{prism:T});
+  }
+}
+
+function setTime(t){
+  for(const e of EL){
+    if(e.kind==='captions'){
+      for(const g of e.groups){
+        const on=t>=g.t0-1e-6&&t<g.t1;
+        g.row.style.display=on?'flex':'none';
+        if(!on) continue;
+        const p=easeOut((t-g.t0)/0.10);
+        g.row.style.opacity=p;
+        g.row.style.filter=`blur(${(1-p)*6}px)`;
+        g.row.style.transform=`scale(${0.92+0.08*p})`;
+      }
+      continue;
+    }
+    const {el,t0,t1,anim}=e;
+    const on=t>=t0&&t<t1;
+    el.style.display=on?'':'none';
+    if(!on) continue;
+    if(typeof anim==='object'){
+      const T=anim.bloom??anim.wash??anim.prism;
+      const rise=clamp((t-t0)/(T-t0)), fall=clamp((t-T)/(t1-T));
+      if(anim.bloom!==undefined){
+        el.style.opacity=t<T?Math.pow(rise,1.6):Math.pow(1-fall,1.4);
+        el.style.transform=`translate(${(-8+16*clamp((t-t0)/(t1-t0)))}%,0) scale(${1+0.15*clamp((t-t0)/(t1-t0))})`;
+      }else if(anim.wash!==undefined){
+        el.style.opacity=0.85*(t<T?Math.pow(rise,2):Math.pow(1-fall,2));
+      }else{
+        const p=clamp((t-t0)/(t1-t0));
+        el.style.opacity=0.75*Math.sin(Math.PI*p);
+        el.style.transform=`translateX(${(-25+50*p)}%)`;
+      }
+      continue;
+    }
+    const p=easeOut((t-t0)/0.22), out=clamp((t-(t1-0.08))/0.08);
+    el.style.opacity=p*(1-out);
+    el.style.filter=`blur(${(1-p)*8}px)`;
+    el.style.transform=anim==='slide'?`translateX(${(1-p)*-24}px)`:`scale(${0.9+0.1*p})`;
+  }
+}
+window.build=build;window.setTime=setTime;
+</script>
+</body></html>

@@ -1,0 +1,4 @@
+# footage and renders stay out of git (re-download from the Drive links in each reel.json)
+*/raw/
+*/work/
+*/out/
