@@ -1,0 +1,145 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Geist;src:url(file:///home/user/iBoBoSniperESmecher/brand/fonts/Geist-Regular.ttf);font-weight:400}
+@font-face{font-family:Geist;src:url(file:///home/user/iBoBoSniperESmecher/brand/fonts/Geist-Medium.ttf);font-weight:500}
+@font-face{font-family:Geist;src:url(file:///home/user/iBoBoSniperESmecher/brand/fonts/Geist-SemiBold.ttf);font-weight:600}
+@font-face{font-family:Geist;src:url(file:///home/user/iBoBoSniperESmecher/brand/fonts/Geist-Bold.ttf);font-weight:700}
+@font-face{font-family:'Instrument Serif';src:url(file:///home/user/iBoBoSniperESmecher/brand/fonts/InstrumentSerif-Regular.ttf);font-style:normal}
+@font-face{font-family:'Instrument Serif';src:url(file:///home/user/iBoBoSniperESmecher/brand/fonts/InstrumentSerif-Italic.ttf);font-style:italic}
+:root{
+  --text:#F3F4F6; --muted:#8B9099; --blue:#3D8BFF; --green:#3FCF8E; --red:#F05A5A;
+  --l-text:#0C0D10; --l-grey:#5D636E; --l-blue:#1F6FE5; --l-red:#D93A3A;
+  --cash:linear-gradient(100deg,#9BE8FA,#5CC4FF 45%,#3D8BFF);
+}
+html,body{margin:0;width:1080px;height:1920px;background:transparent;overflow:hidden}
+body{font-family:Geist;font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased;position:relative}
+.abs{position:absolute}
+/* captions */
+.cap{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:baseline;gap:0 .26em;
+     white-space:nowrap;color:var(--text);font-weight:600;letter-spacing:-.02em;transform:translateY(-50%)}
+.cap.face{top:1150px;font-size:58px;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.cap.board{top:966px;font-size:50px}
+.cap .w{display:inline-block;will-change:filter,opacity}
+.cap .k{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-size:1.3em;letter-spacing:-.01em;color:var(--blue)}
+.cap .m{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-size:1.3em;letter-spacing:-.01em;color:var(--green)}
+/* labels */
+.label{font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:26px}
+/* hook / close titles on the light wall (light theme colours) */
+.title{left:0;right:0;text-align:center}
+.title .label{color:var(--l-grey)}
+.title .big{font-family:'Instrument Serif';font-style:italic;font-size:132px;line-height:1;letter-spacing:-.02em;margin-top:6px}
+/* big side numerals (reel-01 chapter numbers) */
+.num{text-align:center}
+.num .n{font-family:'Instrument Serif';font-size:210px;line-height:.9;letter-spacing:-.03em}
+.num .label{margin-top:8px;font-size:22px;color:var(--l-grey)}
+.gradtext{background:linear-gradient(100deg,#5CC4FF,#3D8BFF 50%,#1F6FE5);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* stat card */
+.stat{left:104px;top:226px;padding:22px 28px 20px;border-radius:16px;
+  background:linear-gradient(160deg,#0D1828,#0A0F18 55%,#0E0F11);border:1px solid #1B2A44;
+  box-shadow:inset 0 1px 0 rgba(61,139,255,.35),0 0 44px rgba(61,139,255,.45)}
+.stat .v{font-weight:600;font-size:84px;line-height:1;letter-spacing:-.035em;font-variant-numeric:tabular-nums;
+  background:var(--cash);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .label{color:var(--muted);font-size:20px;margin-top:10px;letter-spacing:.14em}
+/* decision pill */
+.pill{left:56px;top:1044px;display:flex;align-items:center;gap:16px;padding:12px 26px 12px 12px;border-radius:999px;
+  background:#0E0F11;border:1px solid #1F2125;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.pill .c{width:44px;height:44px;border-radius:50%;border:2px solid var(--blue);color:var(--blue);display:grid;place-items:center;
+  font-weight:600;font-size:24px;box-sizing:border-box}
+.pill .t{color:var(--green);font-weight:600;font-size:32px;letter-spacing:-.02em}
+/* cta */
+.cta{left:0;right:0;top:1500px;display:flex;justify-content:center}
+.cta span{background:var(--blue);color:#fff;font-weight:600;font-size:38px;letter-spacing:.1em;text-transform:uppercase;
+  padding:22px 44px;border-radius:999px;box-shadow:0 0 50px rgba(61,139,255,.6)}
+</style></head>
+<body>
+<div id="root"></div>
+<script>
+let EL = [];   // {el, t0, t1, kind}
+function h(html){const d=document.createElement('div');d.innerHTML=html.trim();return d.firstChild}
+
+function build(edl){
+  const root=document.getElementById('root');
+  // ---- line start times
+  const lineT={};
+  for(const s of edl.segments){ if(!(s.line in lineT)) lineT[s.line]=s.t0; }
+  const D=edl.duration;
+  const wordT=(txt,line)=>{const c=edl.captions.find(c=>c.text.replace(/[.,]/g,'')===txt && lineOf(c)===line);return c?c.t:lineT[line]};
+  const lineOf=c=>+c.group.split('-')[0];
+
+  // ---- captions: one row per group; each word blur-fades in on its onset
+  const groups=[];
+  for(const c of edl.captions){
+    let g=groups[groups.length-1];
+    if(!g||g.id!==c.group){g={id:c.group,layout:c.layout,words:[]};groups.push(g)}
+    g.words.push(c);
+  }
+  groups.forEach((g,i)=>{
+    const line=+g.id.split('-')[0];
+    const lineEnd=edl.captions.filter(c=>lineOf(c)===line).map(c=>c.line_end).find(x=>x!==undefined);
+    const nxt=groups[i+1];
+    g.t0=g.words[0].t;
+    g.t1=(nxt && +nxt.id.split('-')[0]===line)? nxt.words[0].t : lineEnd;
+    const row=h(`<div class="cap ${g.layout}"></div>`);
+    g.spans=g.words.map(w=>{const s=h(`<span class="w ${w.key==='accent'?'k':w.key==='money'?'m':''}">${w.text}</span>`);row.appendChild(s);return s});
+    root.appendChild(row);g.row=row;
+  });
+  EL.push({kind:'captions',groups});
+
+  // ---- graphics (light-theme text over the white wall in face shots)
+  const add=(html,t0,t1,anim='blur')=>{const el=h(html);el.classList.add('abs');root.appendChild(el);EL.push({el,t0,t1,anim})};
+
+  add(`<div class="title" style="top:330px"><div class="label">an ai-built miro board</div>
+        <div class="big" style="color:var(--l-red)">= 0 calls.</div></div>`, 0.10, lineT[2]);
+  add(`<div class="num" style="left:70px;top:610px;width:300px"><div class="n" style="color:var(--l-grey)">10%</div>
+        <div class="label">the board</div></div>`, wordT('10%',2), lineT[4], 'rise');
+  add(`<div class="num" style="left:700px;top:610px;width:330px"><div class="n gradtext">90%</div>
+        <div class="label" style="color:var(--l-blue)">4 decisions</div></div>`, wordT('90%',3), lineT[4], 'rise');
+  add(`<div class="stat"><div class="v">$11,885</div><div class="label">56 calls · 1 miro board</div></div>`,
+        wordT('booked',4), lineT[5]);
+  const dec=['the topic your buyer is ready for','the result you lead with','your terms + your numbers','a cta your backend can close'];
+  const decLines=[[5,6],[6,8],[8,9],[9,10]];
+  dec.forEach((t,i)=>add(`<div class="pill"><div class="c">${i+1}</div><div class="t">${t}</div></div>`,
+        lineT[decLines[i][0]]+0.05, lineT[decLines[i][1]], 'slide'));
+  add(`<div class="cta"><span>comment “ai”</span></div>`, wordT('ai',10), lineT[11]);
+  add(`<div class="title" style="top:330px"><div class="label">ai builds the boxes.</div></div>`, lineT[11]+0.05, D+1);
+  add(`<div class="title" style="top:372px"><div class="big" style="color:var(--l-blue)">you decide.</div></div>`, wordT('decide',11), D+1);
+}
+
+const clamp=x=>Math.max(0,Math.min(1,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+function setTime(t){
+  for(const e of EL){
+    if(e.kind==='captions'){
+      for(const g of e.groups){
+        const on=t>=g.t0-1e-6 && t<g.t1;
+        g.row.style.display=on?'flex':'none';
+        if(!on) continue;
+        const out=clamp((t-(g.t1-0.08))/0.08);       // group exit: last 80ms
+        g.words.forEach((w,j)=>{
+          const p=ease((t-w.t)/0.16);                   // word enter: 160ms
+          const s=g.spans[j];
+          const op=(t<w.t?0:p)*(1-out);
+          s.style.opacity=op;
+          s.style.filter=`blur(${(1-p)*8+out*6}px)`;
+          s.style.transform=`translateY(${(1-p)*6}px)`;
+        });
+      }
+      continue;
+    }
+    const {el,t0,t1,anim}=e;
+    const on=t>=t0 && t<t1;
+    el.style.display=on?'':'none';
+    if(!on) continue;
+    const p=ease((t-t0)/(anim==='rise'?0.42:0.24));
+    const out=clamp((t-(t1-0.1))/0.1);
+    el.style.opacity=p*(1-out);
+    el.style.filter=`blur(${(1-p)*10+out*6}px)`;
+    if(anim==='rise'){ el.style.clipPath=`inset(${(1-p)*100}% 0 0 0)`; el.style.transform=`translateY(${(1-p)*30}px)`; }
+    else if(anim==='slide'){ el.style.transform=`translateX(${(1-p)*-24}px)`; }
+    else el.style.transform=`translateY(${(1-p)*10}px)`;
+  }
+}
+window.build=build; window.setTime=setTime;
+</script>
+</body></html>

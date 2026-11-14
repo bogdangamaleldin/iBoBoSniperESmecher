@@ -1,0 +1,1203 @@
+{
+ "duration": 39.36,
+ "segments": [
+  {
+   "layout": "face",
+   "in": 90.5,
+   "out": 92.82,
+   "line": 0,
+   "t0": 0.0
+  },
+  {
+   "layout": "face",
+   "in": 99.78,
+   "out": 101.96,
+   "line": 1,
+   "t0": 2.32
+  },
+  {
+   "layout": "face",
+   "in": 129.36,
+   "out": 130.88,
+   "line": 2,
+   "t0": 4.5
+  },
+  {
+   "layout": "face",
+   "in": 150.0,
+   "out": 153.5,
+   "line": 3,
+   "t0": 6.02
+  },
+  {
+   "layout": "board",
+   "in": 182.02,
+   "out": 185.84,
+   "line": 4,
+   "t0": 9.52,
+   "miro_in": 24.84
+  },
+  {
+   "layout": "board",
+   "in": 225.68,
+   "out": 226.51,
+   "line": 5,
+   "t0": 13.34,
+   "miro_in": 68.5
+  },
+  {
+   "layout": "board",
+   "in": 226.79,
+   "out": 230.92,
+   "line": 5,
+   "t0": 14.17,
+   "miro_in": 69.61
+  },
+  {
+   "layout": "board",
+   "in": 238.18,
+   "out": 240.58,
+   "line": 6,
+   "t0": 18.3,
+   "miro_in": 81.0
+  },
+  {
+   "layout": "board",
+   "in": 252.1,
+   "out": 255.58,
+   "line": 7,
+   "t0": 20.7,
+   "miro_in": 94.92
+  },
+  {
+   "layout": "board",
+   "in": 271.82,
+   "out": 277.18,
+   "line": 8,
+   "t0": 24.18,
+   "miro_in": 114.64
+  },
+  {
+   "layout": "board",
+   "in": 284.94,
+   "out": 288.3,
+   "line": 9,
+   "t0": 29.54,
+   "miro_in": 127.76
+  },
+  {
+   "layout": "board",
+   "in": 343.34,
+   "out": 346.36,
+   "line": 10,
+   "t0": 32.9,
+   "miro_in": 155.0
+  },
+  {
+   "layout": "face",
+   "in": 329.6,
+   "out": 331.03,
+   "line": 11,
+   "t0": 35.92
+  },
+  {
+   "layout": "face",
+   "in": 331.31,
+   "out": 333.32,
+   "line": 11,
+   "t0": 37.35
+  }
+ ],
+ "captions": [
+  {
+   "t": 0.0,
+   "text": "ai",
+   "key": null,
+   "group": "0-0",
+   "layout": "face"
+  },
+  {
+   "t": 0.31,
+   "text": "can",
+   "key": null,
+   "group": "0-0",
+   "layout": "face"
+  },
+  {
+   "t": 0.59,
+   "text": "build",
+   "key": null,
+   "group": "0-0",
+   "layout": "face"
+  },
+  {
+   "t": 0.79,
+   "text": "your",
+   "key": null,
+   "group": "0-1",
+   "layout": "face"
+  },
+  {
+   "t": 0.97,
+   "text": "miro",
+   "key": null,
+   "group": "0-1",
+   "layout": "face"
+  },
+  {
+   "t": 1.11,
+   "text": "board",
+   "key": null,
+   "group": "0-1",
+   "layout": "face"
+  },
+  {
+   "t": 1.39,
+   "text": "in",
+   "key": null,
+   "group": "0-2",
+   "layout": "face"
+  },
+  {
+   "t": 1.59,
+   "text": "5",
+   "key": "accent",
+   "group": "0-2",
+   "layout": "face"
+  },
+  {
+   "t": 1.89,
+   "text": "minutes.",
+   "key": null,
+   "group": "0-2",
+   "layout": "face",
+   "line_end": 2.32
+  },
+  {
+   "t": 2.32,
+   "text": "that's",
+   "key": null,
+   "group": "1-0",
+   "layout": "face"
+  },
+  {
+   "t": 2.66,
+   "text": "exactly",
+   "key": null,
+   "group": "1-0",
+   "layout": "face"
+  },
+  {
+   "t": 2.94,
+   "text": "why",
+   "key": null,
+   "group": "1-0",
+   "layout": "face"
+  },
+  {
+   "t": 3.3,
+   "text": "it",
+   "key": null,
+   "group": "1-1",
+   "layout": "face"
+  },
+  {
+   "t": 3.42,
+   "text": "won't",
+   "key": "accent",
+   "group": "1-1",
+   "layout": "face"
+  },
+  {
+   "t": 3.68,
+   "text": "book",
+   "key": null,
+   "group": "1-1",
+   "layout": "face"
+  },
+  {
+   "t": 3.88,
+   "text": "you",
+   "key": null,
+   "group": "1-1",
+   "layout": "face"
+  },
+  {
+   "t": 4.04,
+   "text": "a",
+   "key": null,
+   "group": "1-2",
+   "layout": "face"
+  },
+  {
+   "t": 4.2,
+   "text": "call.",
+   "key": null,
+   "group": "1-2",
+   "layout": "face",
+   "line_end": 4.5
+  },
+  {
+   "t": 4.5,
+   "text": "the",
+   "key": null,
+   "group": "2-0",
+   "layout": "face"
+  },
+  {
+   "t": 4.66,
+   "text": "board",
+   "key": null,
+   "group": "2-0",
+   "layout": "face"
+  },
+  {
+   "t": 4.92,
+   "text": "is",
+   "key": null,
+   "group": "2-1",
+   "layout": "face"
+  },
+  {
+   "t": 5.12,
+   "text": "10%",
+   "key": "accent",
+   "group": "2-1",
+   "layout": "face"
+  },
+  {
+   "t": 5.58,
+   "text": "of",
+   "key": null,
+   "group": "2-1",
+   "layout": "face"
+  },
+  {
+   "t": 5.78,
+   "text": "it.",
+   "key": null,
+   "group": "2-1",
+   "layout": "face",
+   "line_end": 6.02
+  },
+  {
+   "t": 6.02,
+   "text": "the",
+   "key": null,
+   "group": "3-0",
+   "layout": "face"
+  },
+  {
+   "t": 6.21,
+   "text": "other",
+   "key": null,
+   "group": "3-0",
+   "layout": "face"
+  },
+  {
+   "t": 6.37,
+   "text": "90%",
+   "key": "accent",
+   "group": "3-0",
+   "layout": "face"
+  },
+  {
+   "t": 6.87,
+   "text": "is",
+   "key": null,
+   "group": "3-1",
+   "layout": "face"
+  },
+  {
+   "t": 7.15,
+   "text": "4",
+   "key": null,
+   "group": "3-1",
+   "layout": "face"
+  },
+  {
+   "t": 7.39,
+   "text": "decisions",
+   "key": null,
+   "group": "3-1",
+   "layout": "face"
+  },
+  {
+   "t": 7.75,
+   "text": "which",
+   "key": null,
+   "group": "3-2",
+   "layout": "face"
+  },
+  {
+   "t": 8.09,
+   "text": "ai",
+   "key": null,
+   "group": "3-2",
+   "layout": "face"
+  },
+  {
+   "t": 8.37,
+   "text": "cannot",
+   "key": null,
+   "group": "3-2",
+   "layout": "face"
+  },
+  {
+   "t": 8.73,
+   "text": "make",
+   "key": null,
+   "group": "3-3",
+   "layout": "face"
+  },
+  {
+   "t": 9.07,
+   "text": "for",
+   "key": null,
+   "group": "3-3",
+   "layout": "face"
+  },
+  {
+   "t": 9.25,
+   "text": "you.",
+   "key": null,
+   "group": "3-3",
+   "layout": "face",
+   "line_end": 9.52
+  },
+  {
+   "t": 9.52,
+   "text": "the",
+   "key": null,
+   "group": "4-0",
+   "layout": "board"
+  },
+  {
+   "t": 9.67,
+   "text": "left",
+   "key": null,
+   "group": "4-0",
+   "layout": "board"
+  },
+  {
+   "t": 9.83,
+   "text": "side",
+   "key": null,
+   "group": "4-0",
+   "layout": "board"
+  },
+  {
+   "t": 10.05,
+   "text": "is",
+   "key": null,
+   "group": "4-1",
+   "layout": "board"
+  },
+  {
+   "t": 10.21,
+   "text": "what",
+   "key": null,
+   "group": "4-1",
+   "layout": "board"
+  },
+  {
+   "t": 10.37,
+   "text": "ai",
+   "key": null,
+   "group": "4-1",
+   "layout": "board"
+  },
+  {
+   "t": 10.59,
+   "text": "gives",
+   "key": null,
+   "group": "4-1",
+   "layout": "board"
+  },
+  {
+   "t": 10.83,
+   "text": "you,",
+   "key": null,
+   "group": "4-1",
+   "layout": "board"
+  },
+  {
+   "t": 11.19,
+   "text": "the",
+   "key": null,
+   "group": "4-2",
+   "layout": "board"
+  },
+  {
+   "t": 11.21,
+   "text": "right",
+   "key": null,
+   "group": "4-2",
+   "layout": "board"
+  },
+  {
+   "t": 11.35,
+   "text": "side",
+   "key": null,
+   "group": "4-2",
+   "layout": "board"
+  },
+  {
+   "t": 11.59,
+   "text": "is",
+   "key": null,
+   "group": "4-2",
+   "layout": "board"
+  },
+  {
+   "t": 11.79,
+   "text": "what",
+   "key": null,
+   "group": "4-3",
+   "layout": "board"
+  },
+  {
+   "t": 12.03,
+   "text": "booked",
+   "key": null,
+   "group": "4-3",
+   "layout": "board"
+  },
+  {
+   "t": 12.29,
+   "text": "56",
+   "key": "money",
+   "group": "4-3",
+   "layout": "board"
+  },
+  {
+   "t": 12.79,
+   "text": "calls.",
+   "key": null,
+   "group": "4-3",
+   "layout": "board",
+   "line_end": 13.34
+  },
+  {
+   "t": 13.34,
+   "text": "the",
+   "key": null,
+   "group": "5-0",
+   "layout": "board"
+  },
+  {
+   "t": 13.49,
+   "text": "first",
+   "key": null,
+   "group": "5-0",
+   "layout": "board"
+  },
+  {
+   "t": 14.49,
+   "text": "decision",
+   "key": null,
+   "group": "5-0",
+   "layout": "board"
+  },
+  {
+   "t": 14.77,
+   "text": "is",
+   "key": null,
+   "group": "5-1",
+   "layout": "board"
+  },
+  {
+   "t": 15.05,
+   "text": "making",
+   "key": null,
+   "group": "5-1",
+   "layout": "board"
+  },
+  {
+   "t": 15.23,
+   "text": "the",
+   "key": null,
+   "group": "5-1",
+   "layout": "board"
+  },
+  {
+   "t": 15.45,
+   "text": "miro",
+   "key": null,
+   "group": "5-1",
+   "layout": "board"
+  },
+  {
+   "t": 15.61,
+   "text": "board",
+   "key": null,
+   "group": "5-1",
+   "layout": "board"
+  },
+  {
+   "t": 15.85,
+   "text": "around",
+   "key": null,
+   "group": "5-2",
+   "layout": "board"
+  },
+  {
+   "t": 16.05,
+   "text": "the",
+   "key": null,
+   "group": "5-2",
+   "layout": "board"
+  },
+  {
+   "t": 16.19,
+   "text": "topic",
+   "key": "accent",
+   "group": "5-2",
+   "layout": "board"
+  },
+  {
+   "t": 16.51,
+   "text": "that",
+   "key": null,
+   "group": "5-3",
+   "layout": "board"
+  },
+  {
+   "t": 16.75,
+   "text": "your",
+   "key": null,
+   "group": "5-3",
+   "layout": "board"
+  },
+  {
+   "t": 16.89,
+   "text": "buyer",
+   "key": null,
+   "group": "5-3",
+   "layout": "board"
+  },
+  {
+   "t": 17.09,
+   "text": "is",
+   "key": null,
+   "group": "5-4",
+   "layout": "board"
+  },
+  {
+   "t": 17.31,
+   "text": "actually",
+   "key": null,
+   "group": "5-4",
+   "layout": "board"
+  },
+  {
+   "t": 17.55,
+   "text": "ready",
+   "key": null,
+   "group": "5-4",
+   "layout": "board"
+  },
+  {
+   "t": 17.79,
+   "text": "for.",
+   "key": null,
+   "group": "5-4",
+   "layout": "board",
+   "line_end": 18.3
+  },
+  {
+   "t": 18.3,
+   "text": "the",
+   "key": null,
+   "group": "6-0",
+   "layout": "board"
+  },
+  {
+   "t": 18.43,
+   "text": "second",
+   "key": null,
+   "group": "6-0",
+   "layout": "board"
+  },
+  {
+   "t": 18.65,
+   "text": "decision",
+   "key": null,
+   "group": "6-0",
+   "layout": "board"
+  },
+  {
+   "t": 18.95,
+   "text": "is",
+   "key": null,
+   "group": "6-1",
+   "layout": "board"
+  },
+  {
+   "t": 19.31,
+   "text": "the",
+   "key": null,
+   "group": "6-1",
+   "layout": "board"
+  },
+  {
+   "t": 19.49,
+   "text": "result",
+   "key": "accent",
+   "group": "6-1",
+   "layout": "board"
+  },
+  {
+   "t": 19.79,
+   "text": "you",
+   "key": null,
+   "group": "6-2",
+   "layout": "board"
+  },
+  {
+   "t": 19.97,
+   "text": "actually",
+   "key": null,
+   "group": "6-2",
+   "layout": "board"
+  },
+  {
+   "t": 20.19,
+   "text": "lead",
+   "key": null,
+   "group": "6-2",
+   "layout": "board"
+  },
+  {
+   "t": 20.43,
+   "text": "with",
+   "key": null,
+   "group": "6-2",
+   "layout": "board",
+   "line_end": 20.7
+  },
+  {
+   "t": 20.7,
+   "text": "and",
+   "key": null,
+   "group": "7-0",
+   "layout": "board"
+  },
+  {
+   "t": 20.91,
+   "text": "the",
+   "key": null,
+   "group": "7-0",
+   "layout": "board"
+  },
+  {
+   "t": 21.05,
+   "text": "number",
+   "key": null,
+   "group": "7-0",
+   "layout": "board"
+  },
+  {
+   "t": 21.19,
+   "text": "you",
+   "key": null,
+   "group": "7-1",
+   "layout": "board"
+  },
+  {
+   "t": 21.37,
+   "text": "start",
+   "key": null,
+   "group": "7-1",
+   "layout": "board"
+  },
+  {
+   "t": 21.59,
+   "text": "with",
+   "key": null,
+   "group": "7-1",
+   "layout": "board"
+  },
+  {
+   "t": 21.81,
+   "text": "in",
+   "key": null,
+   "group": "7-2",
+   "layout": "board"
+  },
+  {
+   "t": 21.97,
+   "text": "the",
+   "key": null,
+   "group": "7-2",
+   "layout": "board"
+  },
+  {
+   "t": 22.07,
+   "text": "first",
+   "key": null,
+   "group": "7-2",
+   "layout": "board"
+  },
+  {
+   "t": 22.21,
+   "text": "30",
+   "key": "accent",
+   "group": "7-2",
+   "layout": "board"
+  },
+  {
+   "t": 22.57,
+   "text": "seconds",
+   "key": null,
+   "group": "7-2",
+   "layout": "board"
+  },
+  {
+   "t": 22.85,
+   "text": "to",
+   "key": null,
+   "group": "7-3",
+   "layout": "board"
+  },
+  {
+   "t": 23.05,
+   "text": "a",
+   "key": null,
+   "group": "7-3",
+   "layout": "board"
+  },
+  {
+   "t": 23.17,
+   "text": "minute",
+   "key": null,
+   "group": "7-3",
+   "layout": "board"
+  },
+  {
+   "t": 23.31,
+   "text": "of",
+   "key": null,
+   "group": "7-3",
+   "layout": "board"
+  },
+  {
+   "t": 23.57,
+   "text": "your",
+   "key": null,
+   "group": "7-3",
+   "layout": "board"
+  },
+  {
+   "t": 23.69,
+   "text": "video",
+   "key": null,
+   "group": "7-3",
+   "layout": "board",
+   "line_end": 24.18
+  },
+  {
+   "t": 24.18,
+   "text": "then",
+   "key": null,
+   "group": "8-0",
+   "layout": "board"
+  },
+  {
+   "t": 24.33,
+   "text": "you",
+   "key": null,
+   "group": "8-0",
+   "layout": "board"
+  },
+  {
+   "t": 24.45,
+   "text": "should",
+   "key": null,
+   "group": "8-0",
+   "layout": "board"
+  },
+  {
+   "t": 24.57,
+   "text": "always",
+   "key": null,
+   "group": "8-0",
+   "layout": "board"
+  },
+  {
+   "t": 24.91,
+   "text": "use",
+   "key": null,
+   "group": "8-0",
+   "layout": "board"
+  },
+  {
+   "t": 25.15,
+   "text": "your",
+   "key": null,
+   "group": "8-1",
+   "layout": "board"
+  },
+  {
+   "t": 25.41,
+   "text": "terms,",
+   "key": null,
+   "group": "8-1",
+   "layout": "board"
+  },
+  {
+   "t": 25.97,
+   "text": "your",
+   "key": null,
+   "group": "8-2",
+   "layout": "board"
+  },
+  {
+   "t": 26.01,
+   "text": "numbers,",
+   "key": null,
+   "group": "8-2",
+   "layout": "board"
+  },
+  {
+   "t": 26.55,
+   "text": "your",
+   "key": null,
+   "group": "8-3",
+   "layout": "board"
+  },
+  {
+   "t": 26.57,
+   "text": "examples",
+   "key": null,
+   "group": "8-3",
+   "layout": "board"
+  },
+  {
+   "t": 26.99,
+   "text": "and",
+   "key": null,
+   "group": "8-4",
+   "layout": "board"
+  },
+  {
+   "t": 27.37,
+   "text": "your",
+   "key": null,
+   "group": "8-4",
+   "layout": "board"
+  },
+  {
+   "t": 27.55,
+   "text": "wording,",
+   "key": null,
+   "group": "8-4",
+   "layout": "board"
+  },
+  {
+   "t": 28.11,
+   "text": "because",
+   "key": null,
+   "group": "8-5",
+   "layout": "board"
+  },
+  {
+   "t": 28.33,
+   "text": "ai",
+   "key": null,
+   "group": "8-5",
+   "layout": "board"
+  },
+  {
+   "t": 28.61,
+   "text": "doesn't",
+   "key": "accent",
+   "group": "8-5",
+   "layout": "board"
+  },
+  {
+   "t": 28.99,
+   "text": "have them.",
+   "key": "accent",
+   "group": "8-5",
+   "layout": "board",
+   "line_end": 29.54
+  },
+  {
+   "t": 29.54,
+   "text": "and",
+   "key": null,
+   "group": "9-0",
+   "layout": "board"
+  },
+  {
+   "t": 29.72,
+   "text": "then",
+   "key": null,
+   "group": "9-0",
+   "layout": "board"
+  },
+  {
+   "t": 29.8,
+   "text": "lastly,",
+   "key": null,
+   "group": "9-0",
+   "layout": "board"
+  },
+  {
+   "t": 30.4,
+   "text": "a",
+   "key": null,
+   "group": "9-1",
+   "layout": "board"
+  },
+  {
+   "t": 30.46,
+   "text": "cta",
+   "key": null,
+   "group": "9-1",
+   "layout": "board"
+  },
+  {
+   "t": 30.98,
+   "text": "that",
+   "key": null,
+   "group": "9-1",
+   "layout": "board"
+  },
+  {
+   "t": 31.32,
+   "text": "your",
+   "key": null,
+   "group": "9-1",
+   "layout": "board"
+  },
+  {
+   "t": 31.48,
+   "text": "backend",
+   "key": null,
+   "group": "9-1",
+   "layout": "board"
+  },
+  {
+   "t": 31.86,
+   "text": "can",
+   "key": null,
+   "group": "9-2",
+   "layout": "board"
+  },
+  {
+   "t": 32.06,
+   "text": "actually",
+   "key": null,
+   "group": "9-2",
+   "layout": "board"
+  },
+  {
+   "t": 32.44,
+   "text": "close.",
+   "key": "accent",
+   "group": "9-2",
+   "layout": "board",
+   "line_end": 32.9
+  },
+  {
+   "t": 32.9,
+   "text": "comment",
+   "key": null,
+   "group": "10-0",
+   "layout": "board"
+  },
+  {
+   "t": 33.18,
+   "text": "ai",
+   "key": "accent",
+   "group": "10-0",
+   "layout": "board"
+  },
+  {
+   "t": 33.48,
+   "text": "and",
+   "key": null,
+   "group": "10-1",
+   "layout": "board"
+  },
+  {
+   "t": 33.7,
+   "text": "i'll",
+   "key": null,
+   "group": "10-1",
+   "layout": "board"
+  },
+  {
+   "t": 33.82,
+   "text": "send",
+   "key": null,
+   "group": "10-1",
+   "layout": "board"
+  },
+  {
+   "t": 33.96,
+   "text": "you",
+   "key": null,
+   "group": "10-1",
+   "layout": "board"
+  },
+  {
+   "t": 34.1,
+   "text": "the",
+   "key": null,
+   "group": "10-2",
+   "layout": "board"
+  },
+  {
+   "t": 34.2,
+   "text": "full",
+   "key": null,
+   "group": "10-2",
+   "layout": "board"
+  },
+  {
+   "t": 34.44,
+   "text": "breakdown",
+   "key": null,
+   "group": "10-2",
+   "layout": "board"
+  },
+  {
+   "t": 34.74,
+   "text": "of",
+   "key": null,
+   "group": "10-3",
+   "layout": "board"
+  },
+  {
+   "t": 35.04,
+   "text": "the",
+   "key": null,
+   "group": "10-3",
+   "layout": "board"
+  },
+  {
+   "t": 35.16,
+   "text": "board",
+   "key": null,
+   "group": "10-3",
+   "layout": "board"
+  },
+  {
+   "t": 35.36,
+   "text": "that",
+   "key": null,
+   "group": "10-3",
+   "layout": "board"
+  },
+  {
+   "t": 35.52,
+   "text": "did",
+   "key": null,
+   "group": "10-3",
+   "layout": "board"
+  },
+  {
+   "t": 35.7,
+   "text": "it.",
+   "key": null,
+   "group": "10-3",
+   "layout": "board",
+   "line_end": 35.92
+  },
+  {
+   "t": 35.92,
+   "text": "ai",
+   "key": null,
+   "group": "11-0",
+   "layout": "face"
+  },
+  {
+   "t": 36.23,
+   "text": "builds",
+   "key": null,
+   "group": "11-0",
+   "layout": "face"
+  },
+  {
+   "t": 36.53,
+   "text": "the",
+   "key": null,
+   "group": "11-0",
+   "layout": "face"
+  },
+  {
+   "t": 36.71,
+   "text": "boxes.",
+   "key": null,
+   "group": "11-0",
+   "layout": "face"
+  },
+  {
+   "t": 37.39,
+   "text": "you",
+   "key": null,
+   "group": "11-1",
+   "layout": "face"
+  },
+  {
+   "t": 37.49,
+   "text": "still",
+   "key": null,
+   "group": "11-1",
+   "layout": "face"
+  },
+  {
+   "t": 37.67,
+   "text": "have",
+   "key": null,
+   "group": "11-1",
+   "layout": "face"
+  },
+  {
+   "t": 37.89,
+   "text": "to",
+   "key": null,
+   "group": "11-1",
+   "layout": "face"
+  },
+  {
+   "t": 38.05,
+   "text": "decide",
+   "key": "accent",
+   "group": "11-1",
+   "layout": "face"
+  },
+  {
+   "t": 38.35,
+   "text": "what",
+   "key": null,
+   "group": "11-2",
+   "layout": "face"
+  },
+  {
+   "t": 38.59,
+   "text": "goes",
+   "key": null,
+   "group": "11-2",
+   "layout": "face"
+  },
+  {
+   "t": 38.85,
+   "text": "in",
+   "key": null,
+   "group": "11-2",
+   "layout": "face"
+  },
+  {
+   "t": 39.07,
+   "text": "them.",
+   "key": null,
+   "group": "11-2",
+   "layout": "face",
+   "line_end": 39.36
+  }
+ ]
+}
