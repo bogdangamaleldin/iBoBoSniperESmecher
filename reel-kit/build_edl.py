@@ -136,6 +136,8 @@ for li, L in enumerate(R['lines']):
 
     for x, y in subs:
         seg = {'layout': layout, 'in': x, 'out': y, 'line': li, 't0': round(T, 3)}
+        if 'face_x' in L:                              # face centre (source px) for this take: re-centres the crops
+            seg['face_x'] = L['face_x']
         on_screen_rec = OFFSET is not None and (x - OFFSET) > 0.3 and (y - OFFSET) < R.get('screen_duration', 1e9)
         audio = R.get('audio', 'auto')
         seg['audio'] = 'screen' if (audio == 'screen' or (audio == 'auto' and on_screen_rec)) else 'face'

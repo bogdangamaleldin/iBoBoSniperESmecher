@@ -81,3 +81,8 @@ Token count must equal the ASR tokens in the take (`10` + `%` and `$12` + `,000`
 - Each line levelled to -18 LUFS, final -14 LUFS, limiter at -0.5 dBFS.
 - Warm glare (~0.32s) at every face<->board switch + camera-shutter second click; riser under the hook.
 - Caption, pill, CTA styling in `overlay.html` (brand tokens from brand/design-language.md).
+
+### Off-centre footage
+Add `"face_x": <px>` to a line (face centre in source pixels, measure with `reel-kit/face_x.py`) to re-centre
+both the full-screen crop and the webcam card crop for that take. Use it when the camera wasn't centred
+or the user moved between takes.

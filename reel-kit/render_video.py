@@ -54,6 +54,7 @@ def tonemap_for(path):
 
 
 TM_FACE = tonemap_for(FACE_SRC)
+FACE_W = int(probe(FACE_SRC)['width'])
 TM_CAM = TM_FACE if CAM_SRC == 'face' else tonemap_for(SCREEN_SRC)
 if SCREEN_SRC:
     sp = probe(SCREEN_SRC)
@@ -131,15 +132,19 @@ for i, s in enumerate(segs):
                    f"equalizer=f=3800:t=q:w=1.5:g=2,acompressor=threshold=-24dB:ratio=2.5:attack=8:release=120,"
                    f"volume={gain[s['line']]:.2f}dB,{fade}")
     v_in = ['-ss', f"{s['in']:.3f}", '-t', f'{dur:.3f}', '-i', FACE_SRC]
+    fw, fh, fx, fy = FACE_CROP
+    cw, ch, cx, cy = CAM_CROP
+    if 'face_x' in s:                              # per-take face tracking (camera not centred / user moved)
+        fx = int(min(max(s['face_x'] - fw / 2, 0), FACE_W - fw))
+        if CAM_SRC == 'face':
+            cx = int(min(max(s['face_x'] - cw / 2, 0), FACE_W - cw))
     if s['layout'] == 'face':
-        fw, fh, fx, fy = FACE_CROP
         z = zoom_expr(s['t0'], s['t0'] + dur)
         fc = (f"[0:v]setpts=PTS-STARTPTS,fps={FPS},crop={fw}:{fh}:{fx}:{fy},{TM_FACE},"
               f"scale=w='trunc({W}*{z}/2)*2':h='trunc({H}*{z}/2)*2':eval=frame:flags=bicubic,"
               f"crop={W}:{H}:(iw-{W})/2:(ih-{H})*{FACE_ANCHOR_Y},setsar=1[v];[1:a]{a_chain}[au]")
         inputs = v_in + a_in
     else:
-        cw, ch, cx, cy = CAM_CROP
         bx, by, bw, bh, _ = BOARD
         if 'screen_fit' in s:                    # zoomed-out board: fit all content, pad with the board colour
             ox, ow = s['screen_fit']
