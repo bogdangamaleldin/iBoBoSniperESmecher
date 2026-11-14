@@ -1,0 +1,201 @@
+{
+  "name": "03-hook-to-board-four-questions",
+  "format": "hook-to-board",
+  "drive": {
+    "face": "https://drive.google.com/file/d/1_OAJurqLRKoMfTDcKmUFfhXpdA8ngl3x/view",
+    "screen": "https://drive.google.com/file/d/1xXc7O66Ds8TZQsfD_7XMeHpEpwQ-L2Yg/view"
+  },
+  "sources": {
+    "face": "raw/face.mov",
+    "screen": "raw/screen.mp4"
+  },
+  "screen_offset": [
+    [
+      0.0,
+      12.19
+    ],
+    [
+      250.81,
+      14.81
+    ]
+  ],
+  "screen_duration": 300.57,
+  "speed": 1.08,
+  "export": {
+    "scale": 2,
+    "fps": 60
+  },
+  "face_crop": [
+    1720,
+    3058,
+    220,
+    390
+  ],
+  "face_anchor_y": 0.35,
+  "cam": {
+    "source": "face",
+    "crop": [
+      1900,
+      1462,
+      130,
+      760
+    ]
+  },
+  "screen_canvas": {
+    "y": 230,
+    "h": 980,
+    "center_x": 1300,
+    "bg": "E5F7FC"
+  },
+  "lines": [
+    {
+      "layout": "face",
+      "in": 45.1,
+      "out": 49.5,
+      "face_x": 954,
+      "caption": "your student interviews | get *views,* | but still don't sell. | you're asking | the *wrong questions.*"
+    },
+    {
+      "layout": "face",
+      "in": 62.6,
+      "out": 65.7,
+      "face_x": 1084,
+      "caption": "*four questions,* | one of them | does the *selling* | for you."
+    },
+    {
+      "layout": "face",
+      "in": 81.1,
+      "out": 85.2,
+      "face_x": 1030,
+      "caption": "six interviews | with these | booked **84 calls** | and cash collected | **$31k.**"
+    },
+    {
+      "layout": "board",
+      "in": 121.58,
+      "out": 123.6,
+      "hard_out": true,
+      "face_x": 1008,
+      "caption": "the first one is, | what were you *before?*"
+    },
+    {
+      "layout": "board",
+      "in": 135.05,
+      "out": 137.55,
+      "hard_out": true,
+      "face_x": 954,
+      "caption": "get the *real numbers,* | income, | results,"
+    },
+    {
+      "layout": "board",
+      "in": 140.35,
+      "out": 142.2,
+      "face_x": 976,
+      "caption": "and for how long | they have been *stuck.*"
+    },
+    {
+      "layout": "board",
+      "in": 143.0,
+      "out": 147.9,
+      "face_x": 1006,
+      "caption": "the second one is | what almost *stopped you* | from joining, | this one is | the one that *sells.*"
+    },
+    {
+      "layout": "board",
+      "in": 169.8,
+      "out": 173.05,
+      "hard_out": true,
+      "face_x": 964,
+      "caption": "this is like asking | your student | to *pre-handle+* | an objection,"
+    },
+    {
+      "layout": "board",
+      "in": 189.85,
+      "out": 192.15,
+      "hard_out": true,
+      "face_x": 944,
+      "caption": "this one answers | the next *buyer's objection*"
+    },
+    {
+      "layout": "board",
+      "in": 194.4,
+      "out": 196.8,
+      "face_x": 982,
+      "caption": "in your *student's voice,* | not yours."
+    },
+    {
+      "layout": "board",
+      "in": 206.7,
+      "out": 210.3,
+      "face_x": 1064,
+      "caption": "the third one is | what *changed* exactly | and what | actually *clicked.*"
+    },
+    {
+      "layout": "board",
+      "in": 218.15,
+      "out": 222.95,
+      "face_x": 1060,
+      "caption": "and the fourth one is | where are you *now,* | the exact numbers | and screenshots | to back it up."
+    },
+    {
+      "layout": "board",
+      "in": 266.7,
+      "out": 272.5,
+      "hard_out": true,
+      "face_x": 1026,
+      "caption": "don't open the video | on question *number 1,* | open it on the answer | from the question | *number 4* _"
+    },
+    {
+      "layout": "board",
+      "in": 288.65,
+      "out": 290.45,
+      "face_x": 970,
+      "caption": "then go back | to the *start.*"
+    },
+    {
+      "layout": "board",
+      "in": 309.95,
+      "out": 312.8,
+      "face_x": 954,
+      "screen_in": 274.0,
+      "caption": "comment *“interview”* | and i'll send you | the full *question bank.*"
+    },
+    {
+      "layout": "face",
+      "in": 295.75,
+      "out": 299.4,
+      "face_x": 944,
+      "caption": "your buyers | don't trust | *you* selling, | they trust | someone *like them.*"
+    }
+  ],
+  "pills": [
+    {
+      "text": "the real numbers",
+      "from_line": 3,
+      "to_line": 6
+    },
+    {
+      "text": "the objection",
+      "from_line": 6,
+      "to_line": 10
+    },
+    {
+      "text": "the turning point",
+      "from_line": 10,
+      "to_line": 11
+    },
+    {
+      "text": "the proof",
+      "from_line": 11,
+      "to_line": 12
+    }
+  ],
+  "cta": {
+    "text": "comment “interview”",
+    "line": 14,
+    "word": "comment"
+  },
+  "sfx": {
+    "riser": null
+  },
+  "song": null
+}

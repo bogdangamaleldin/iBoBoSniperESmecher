@@ -96,6 +96,12 @@ for li, L in enumerate(R['lines']):
     hard = L.get('hard_out', False)
     a, b0 = speech_bounds(a, b)
     a = a - PAD_IN
+    if hard:   # a hard cut inside a word clips it ("twelve thousand" -> "twelve"): warn + suggest the next dip
+        io = int(b * 50)
+        if RMS[io - 1:io + 2].max() > THR + 6:
+            dip = next((k / 50 for k in range(io, io + 40) if RMS[k] < THR - 2), None)
+            print(f"WARNING line {li}: hard_out {b} cuts through sound ({RMS[io]:.0f} dB); "
+                  f"quiet dip at {dip} - check the last word isn't clipped", file=sys.stderr)
     b = b if hard else b0 + PAD_OUT
     if li == len(R['lines']) - 1 and not hard:     # let the last word land: hold on the speaker
         later = [isl['s'] for isl in islands if isl['s'] > b0 + 0.1]
