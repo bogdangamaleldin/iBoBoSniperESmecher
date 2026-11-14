@@ -1,111 +1,139 @@
 {
- "duration": 39.36,
+ "duration": 38.52,
  "segments": [
   {
    "layout": "face",
-   "in": 90.5,
-   "out": 92.82,
+   "in": 90.53,
+   "out": 92.78,
    "line": 0,
-   "t0": 0.0
+   "t0": 0.0,
+   "audio": "phone",
+   "audio_in": -66.65
   },
   {
    "layout": "face",
-   "in": 99.78,
-   "out": 101.96,
+   "in": 99.81,
+   "out": 101.92,
    "line": 1,
-   "t0": 2.32
+   "t0": 2.25,
+   "audio": "phone",
+   "audio_in": -57.37
   },
   {
    "layout": "face",
-   "in": 129.36,
-   "out": 130.88,
+   "in": 129.39,
+   "out": 130.84,
    "line": 2,
-   "t0": 4.5
+   "t0": 4.36,
+   "audio": "phone",
+   "audio_in": -27.79
   },
   {
    "layout": "face",
-   "in": 150.0,
-   "out": 153.5,
+   "in": 150.03,
+   "out": 153.46,
    "line": 3,
-   "t0": 6.02
+   "t0": 5.81,
+   "audio": "phone",
+   "audio_in": -7.15
   },
   {
    "layout": "board",
-   "in": 182.02,
-   "out": 185.84,
+   "in": 182.05,
+   "out": 185.8,
    "line": 4,
-   "t0": 9.52,
-   "miro_in": 24.84
+   "t0": 9.24,
+   "audio": "laptop",
+   "audio_in": 24.87,
+   "miro_in": 24.87
   },
   {
    "layout": "board",
-   "in": 225.68,
-   "out": 226.51,
+   "in": 225.71,
+   "out": 226.5,
    "line": 5,
-   "t0": 13.34,
-   "miro_in": 68.5
+   "t0": 12.99,
+   "audio": "laptop",
+   "audio_in": 68.53,
+   "miro_in": 68.53
   },
   {
    "layout": "board",
-   "in": 226.79,
-   "out": 230.92,
+   "in": 226.82,
+   "out": 230.88,
    "line": 5,
-   "t0": 14.17,
-   "miro_in": 69.61
+   "t0": 13.78,
+   "audio": "laptop",
+   "audio_in": 69.64,
+   "miro_in": 69.64
   },
   {
    "layout": "board",
-   "in": 238.18,
+   "in": 238.21,
    "out": 240.58,
    "line": 6,
-   "t0": 18.3,
-   "miro_in": 81.0
+   "t0": 17.84,
+   "audio": "laptop",
+   "audio_in": 81.03,
+   "miro_in": 81.03
   },
   {
    "layout": "board",
-   "in": 252.1,
-   "out": 255.58,
+   "in": 252.13,
+   "out": 255.54,
    "line": 7,
-   "t0": 20.7,
-   "miro_in": 94.92
+   "t0": 20.21,
+   "audio": "laptop",
+   "audio_in": 94.95,
+   "miro_in": 94.95
   },
   {
    "layout": "board",
-   "in": 271.82,
-   "out": 277.18,
+   "in": 271.85,
+   "out": 277.14,
    "line": 8,
-   "t0": 24.18,
-   "miro_in": 114.64
+   "t0": 23.62,
+   "audio": "laptop",
+   "audio_in": 114.67,
+   "miro_in": 114.67
   },
   {
    "layout": "board",
-   "in": 284.94,
+   "in": 284.97,
    "out": 288.3,
    "line": 9,
-   "t0": 29.54,
-   "miro_in": 127.76
+   "t0": 28.91,
+   "audio": "laptop",
+   "audio_in": 127.79,
+   "miro_in": 127.79
   },
   {
    "layout": "board",
-   "in": 343.34,
-   "out": 346.36,
+   "in": 343.37,
+   "out": 346.32,
    "line": 10,
-   "t0": 32.9,
+   "t0": 32.24,
+   "audio": "laptop",
+   "audio_in": 186.19,
    "miro_in": 155.0
   },
   {
    "layout": "face",
-   "in": 329.6,
-   "out": 331.03,
+   "in": 329.63,
+   "out": 331.02,
    "line": 11,
-   "t0": 35.92
+   "t0": 35.19,
+   "audio": "laptop",
+   "audio_in": 172.45
   },
   {
    "layout": "face",
-   "in": 331.31,
-   "out": 333.32,
+   "in": 331.34,
+   "out": 333.28,
    "line": 11,
-   "t0": 37.35
+   "t0": 36.58,
+   "audio": "laptop",
+   "audio_in": 174.16
   }
  ],
  "captions": [
@@ -117,1087 +145,1087 @@
    "layout": "face"
   },
   {
-   "t": 0.31,
+   "t": 0.28,
    "text": "can",
    "key": null,
    "group": "0-0",
    "layout": "face"
   },
   {
-   "t": 0.59,
+   "t": 0.56,
    "text": "build",
    "key": null,
    "group": "0-0",
    "layout": "face"
   },
   {
-   "t": 0.79,
+   "t": 0.76,
    "text": "your",
    "key": null,
    "group": "0-1",
    "layout": "face"
   },
   {
-   "t": 0.97,
+   "t": 0.94,
    "text": "miro",
    "key": null,
    "group": "0-1",
    "layout": "face"
   },
   {
-   "t": 1.11,
+   "t": 1.08,
    "text": "board",
    "key": null,
    "group": "0-1",
    "layout": "face"
   },
   {
-   "t": 1.39,
+   "t": 1.36,
    "text": "in",
    "key": null,
    "group": "0-2",
    "layout": "face"
   },
   {
-   "t": 1.59,
+   "t": 1.56,
    "text": "5",
    "key": "accent",
    "group": "0-2",
    "layout": "face"
   },
   {
-   "t": 1.89,
+   "t": 1.86,
    "text": "minutes.",
    "key": null,
    "group": "0-2",
    "layout": "face",
-   "line_end": 2.32
+   "line_end": 2.25
   },
   {
-   "t": 2.32,
+   "t": 2.25,
    "text": "that's",
    "key": null,
    "group": "1-0",
    "layout": "face"
   },
   {
-   "t": 2.66,
+   "t": 2.56,
    "text": "exactly",
    "key": null,
    "group": "1-0",
    "layout": "face"
   },
   {
-   "t": 2.94,
+   "t": 2.84,
    "text": "why",
    "key": null,
    "group": "1-0",
    "layout": "face"
   },
   {
-   "t": 3.3,
+   "t": 3.2,
    "text": "it",
    "key": null,
    "group": "1-1",
    "layout": "face"
   },
   {
-   "t": 3.42,
+   "t": 3.32,
    "text": "won't",
    "key": "accent",
    "group": "1-1",
    "layout": "face"
   },
   {
-   "t": 3.68,
+   "t": 3.58,
    "text": "book",
    "key": null,
-   "group": "1-1",
+   "group": "1-2",
    "layout": "face"
   },
   {
-   "t": 3.88,
+   "t": 3.78,
    "text": "you",
    "key": null,
-   "group": "1-1",
+   "group": "1-2",
    "layout": "face"
   },
   {
-   "t": 4.04,
+   "t": 3.94,
    "text": "a",
    "key": null,
    "group": "1-2",
    "layout": "face"
   },
   {
-   "t": 4.2,
+   "t": 4.1,
    "text": "call.",
    "key": null,
    "group": "1-2",
    "layout": "face",
-   "line_end": 4.5
+   "line_end": 4.36
   },
   {
-   "t": 4.5,
+   "t": 4.36,
    "text": "the",
    "key": null,
    "group": "2-0",
    "layout": "face"
   },
   {
-   "t": 4.66,
+   "t": 4.49,
    "text": "board",
    "key": null,
    "group": "2-0",
    "layout": "face"
   },
   {
-   "t": 4.92,
+   "t": 4.75,
    "text": "is",
    "key": null,
    "group": "2-1",
    "layout": "face"
   },
   {
-   "t": 5.12,
+   "t": 4.95,
    "text": "10%",
    "key": "accent",
    "group": "2-1",
    "layout": "face"
   },
   {
-   "t": 5.58,
+   "t": 5.41,
    "text": "of",
    "key": null,
    "group": "2-1",
    "layout": "face"
   },
   {
-   "t": 5.78,
+   "t": 5.61,
    "text": "it.",
    "key": null,
    "group": "2-1",
    "layout": "face",
-   "line_end": 6.02
+   "line_end": 5.81
   },
   {
-   "t": 6.02,
+   "t": 5.81,
    "text": "the",
    "key": null,
    "group": "3-0",
    "layout": "face"
   },
   {
-   "t": 6.21,
+   "t": 5.97,
    "text": "other",
    "key": null,
    "group": "3-0",
    "layout": "face"
   },
   {
-   "t": 6.37,
+   "t": 6.13,
    "text": "90%",
    "key": "accent",
    "group": "3-0",
    "layout": "face"
   },
   {
-   "t": 6.87,
+   "t": 6.63,
    "text": "is",
    "key": null,
    "group": "3-1",
    "layout": "face"
   },
   {
-   "t": 7.15,
+   "t": 6.91,
    "text": "4",
    "key": null,
    "group": "3-1",
    "layout": "face"
   },
   {
-   "t": 7.39,
+   "t": 7.15,
    "text": "decisions",
    "key": null,
    "group": "3-1",
    "layout": "face"
   },
   {
-   "t": 7.75,
+   "t": 7.51,
    "text": "which",
    "key": null,
    "group": "3-2",
    "layout": "face"
   },
   {
-   "t": 8.09,
+   "t": 7.85,
    "text": "ai",
    "key": null,
    "group": "3-2",
    "layout": "face"
   },
   {
-   "t": 8.37,
+   "t": 8.13,
    "text": "cannot",
    "key": null,
    "group": "3-2",
    "layout": "face"
   },
   {
-   "t": 8.73,
+   "t": 8.49,
    "text": "make",
    "key": null,
    "group": "3-3",
    "layout": "face"
   },
   {
-   "t": 9.07,
+   "t": 8.83,
    "text": "for",
    "key": null,
    "group": "3-3",
    "layout": "face"
   },
   {
-   "t": 9.25,
+   "t": 9.01,
    "text": "you.",
    "key": null,
    "group": "3-3",
    "layout": "face",
-   "line_end": 9.52
+   "line_end": 9.24
   },
   {
-   "t": 9.52,
+   "t": 9.24,
    "text": "the",
    "key": null,
    "group": "4-0",
    "layout": "board"
   },
   {
-   "t": 9.67,
+   "t": 9.36,
    "text": "left",
    "key": null,
    "group": "4-0",
    "layout": "board"
   },
   {
-   "t": 9.83,
+   "t": 9.52,
    "text": "side",
    "key": null,
    "group": "4-0",
    "layout": "board"
   },
   {
-   "t": 10.05,
+   "t": 9.74,
    "text": "is",
    "key": null,
    "group": "4-1",
    "layout": "board"
   },
   {
-   "t": 10.21,
+   "t": 9.9,
    "text": "what",
    "key": null,
    "group": "4-1",
    "layout": "board"
   },
   {
-   "t": 10.37,
+   "t": 10.06,
    "text": "ai",
    "key": null,
-   "group": "4-1",
+   "group": "4-2",
    "layout": "board"
   },
   {
-   "t": 10.59,
+   "t": 10.28,
    "text": "gives",
    "key": null,
-   "group": "4-1",
+   "group": "4-2",
    "layout": "board"
   },
   {
-   "t": 10.83,
+   "t": 10.52,
    "text": "you,",
    "key": null,
-   "group": "4-1",
+   "group": "4-2",
    "layout": "board"
   },
   {
-   "t": 11.19,
+   "t": 10.88,
    "text": "the",
    "key": null,
-   "group": "4-2",
+   "group": "4-3",
    "layout": "board"
   },
   {
-   "t": 11.21,
+   "t": 10.9,
    "text": "right",
    "key": null,
-   "group": "4-2",
+   "group": "4-3",
    "layout": "board"
   },
   {
-   "t": 11.35,
+   "t": 11.04,
    "text": "side",
    "key": null,
-   "group": "4-2",
+   "group": "4-3",
    "layout": "board"
   },
   {
-   "t": 11.59,
+   "t": 11.28,
    "text": "is",
    "key": null,
-   "group": "4-2",
+   "group": "4-4",
    "layout": "board"
   },
   {
-   "t": 11.79,
+   "t": 11.48,
    "text": "what",
    "key": null,
-   "group": "4-3",
+   "group": "4-4",
    "layout": "board"
   },
   {
-   "t": 12.03,
+   "t": 11.72,
    "text": "booked",
    "key": null,
-   "group": "4-3",
+   "group": "4-4",
    "layout": "board"
   },
   {
-   "t": 12.29,
+   "t": 11.98,
    "text": "56",
    "key": "money",
-   "group": "4-3",
+   "group": "4-5",
    "layout": "board"
   },
   {
-   "t": 12.79,
+   "t": 12.48,
    "text": "calls.",
    "key": null,
-   "group": "4-3",
+   "group": "4-5",
    "layout": "board",
-   "line_end": 13.34
+   "line_end": 12.99
   },
   {
-   "t": 13.34,
+   "t": 12.99,
    "text": "the",
    "key": null,
    "group": "5-0",
    "layout": "board"
   },
   {
-   "t": 13.49,
+   "t": 13.11,
    "text": "first",
    "key": null,
    "group": "5-0",
    "layout": "board"
   },
   {
-   "t": 14.49,
+   "t": 14.07,
    "text": "decision",
    "key": null,
    "group": "5-0",
    "layout": "board"
   },
   {
-   "t": 14.77,
+   "t": 14.35,
    "text": "is",
    "key": null,
    "group": "5-1",
    "layout": "board"
   },
   {
-   "t": 15.05,
+   "t": 14.63,
    "text": "making",
    "key": null,
    "group": "5-1",
    "layout": "board"
   },
   {
-   "t": 15.23,
+   "t": 14.81,
    "text": "the",
    "key": null,
-   "group": "5-1",
+   "group": "5-2",
    "layout": "board"
   },
   {
-   "t": 15.45,
+   "t": 15.03,
    "text": "miro",
    "key": null,
-   "group": "5-1",
+   "group": "5-2",
    "layout": "board"
   },
   {
-   "t": 15.61,
+   "t": 15.19,
    "text": "board",
    "key": null,
-   "group": "5-1",
+   "group": "5-2",
    "layout": "board"
   },
   {
-   "t": 15.85,
+   "t": 15.43,
    "text": "around",
    "key": null,
-   "group": "5-2",
+   "group": "5-3",
    "layout": "board"
   },
   {
-   "t": 16.05,
+   "t": 15.63,
    "text": "the",
    "key": null,
-   "group": "5-2",
+   "group": "5-3",
    "layout": "board"
   },
   {
-   "t": 16.19,
+   "t": 15.77,
    "text": "topic",
    "key": "accent",
-   "group": "5-2",
+   "group": "5-3",
    "layout": "board"
   },
   {
-   "t": 16.51,
+   "t": 16.09,
    "text": "that",
    "key": null,
-   "group": "5-3",
+   "group": "5-4",
    "layout": "board"
   },
   {
-   "t": 16.75,
+   "t": 16.33,
    "text": "your",
    "key": null,
-   "group": "5-3",
+   "group": "5-4",
+   "layout": "board"
+  },
+  {
+   "t": 16.47,
+   "text": "buyer",
+   "key": null,
+   "group": "5-4",
+   "layout": "board"
+  },
+  {
+   "t": 16.67,
+   "text": "is",
+   "key": null,
+   "group": "5-5",
    "layout": "board"
   },
   {
    "t": 16.89,
-   "text": "buyer",
-   "key": null,
-   "group": "5-3",
-   "layout": "board"
-  },
-  {
-   "t": 17.09,
-   "text": "is",
-   "key": null,
-   "group": "5-4",
-   "layout": "board"
-  },
-  {
-   "t": 17.31,
    "text": "actually",
    "key": null,
-   "group": "5-4",
+   "group": "5-5",
    "layout": "board"
   },
   {
-   "t": 17.55,
+   "t": 17.13,
    "text": "ready",
    "key": null,
-   "group": "5-4",
+   "group": "5-6",
    "layout": "board"
   },
   {
-   "t": 17.79,
+   "t": 17.37,
    "text": "for.",
    "key": null,
-   "group": "5-4",
+   "group": "5-6",
    "layout": "board",
-   "line_end": 18.3
+   "line_end": 17.84
   },
   {
-   "t": 18.3,
+   "t": 17.84,
    "text": "the",
    "key": null,
    "group": "6-0",
    "layout": "board"
   },
   {
-   "t": 18.43,
+   "t": 17.94,
    "text": "second",
    "key": null,
    "group": "6-0",
    "layout": "board"
   },
   {
-   "t": 18.65,
+   "t": 18.16,
    "text": "decision",
    "key": null,
    "group": "6-0",
    "layout": "board"
   },
   {
-   "t": 18.95,
+   "t": 18.46,
    "text": "is",
    "key": null,
    "group": "6-1",
    "layout": "board"
   },
   {
-   "t": 19.31,
+   "t": 18.82,
    "text": "the",
    "key": null,
    "group": "6-1",
    "layout": "board"
   },
   {
-   "t": 19.49,
+   "t": 19.0,
    "text": "result",
    "key": "accent",
    "group": "6-1",
    "layout": "board"
   },
   {
-   "t": 19.79,
+   "t": 19.3,
    "text": "you",
    "key": null,
    "group": "6-2",
    "layout": "board"
   },
   {
-   "t": 19.97,
+   "t": 19.48,
    "text": "actually",
    "key": null,
    "group": "6-2",
    "layout": "board"
   },
   {
-   "t": 20.19,
+   "t": 19.7,
    "text": "lead",
    "key": null,
-   "group": "6-2",
+   "group": "6-3",
    "layout": "board"
   },
   {
-   "t": 20.43,
+   "t": 19.94,
    "text": "with",
    "key": null,
-   "group": "6-2",
+   "group": "6-3",
    "layout": "board",
-   "line_end": 20.7
+   "line_end": 20.21
   },
   {
-   "t": 20.7,
+   "t": 20.21,
    "text": "and",
    "key": null,
    "group": "7-0",
    "layout": "board"
   },
   {
-   "t": 20.91,
+   "t": 20.39,
    "text": "the",
    "key": null,
    "group": "7-0",
    "layout": "board"
   },
   {
-   "t": 21.05,
+   "t": 20.53,
    "text": "number",
    "key": null,
    "group": "7-0",
    "layout": "board"
   },
   {
-   "t": 21.19,
+   "t": 20.67,
    "text": "you",
    "key": null,
    "group": "7-1",
    "layout": "board"
   },
   {
-   "t": 21.37,
+   "t": 20.85,
    "text": "start",
    "key": null,
    "group": "7-1",
    "layout": "board"
   },
   {
-   "t": 21.59,
+   "t": 21.07,
    "text": "with",
    "key": null,
    "group": "7-1",
    "layout": "board"
   },
   {
-   "t": 21.81,
+   "t": 21.29,
    "text": "in",
    "key": null,
    "group": "7-2",
    "layout": "board"
   },
   {
-   "t": 21.97,
+   "t": 21.45,
    "text": "the",
    "key": null,
    "group": "7-2",
    "layout": "board"
   },
   {
-   "t": 22.07,
+   "t": 21.55,
    "text": "first",
    "key": null,
    "group": "7-2",
    "layout": "board"
   },
   {
-   "t": 22.21,
+   "t": 21.69,
    "text": "30",
    "key": "accent",
-   "group": "7-2",
+   "group": "7-3",
    "layout": "board"
   },
   {
-   "t": 22.57,
+   "t": 22.05,
    "text": "seconds",
    "key": null,
-   "group": "7-2",
+   "group": "7-3",
    "layout": "board"
   },
   {
-   "t": 22.85,
+   "t": 22.33,
    "text": "to",
    "key": null,
-   "group": "7-3",
+   "group": "7-4",
+   "layout": "board"
+  },
+  {
+   "t": 22.53,
+   "text": "a",
+   "key": null,
+   "group": "7-4",
+   "layout": "board"
+  },
+  {
+   "t": 22.65,
+   "text": "minute",
+   "key": null,
+   "group": "7-4",
+   "layout": "board"
+  },
+  {
+   "t": 22.79,
+   "text": "of",
+   "key": null,
+   "group": "7-5",
    "layout": "board"
   },
   {
    "t": 23.05,
-   "text": "a",
+   "text": "your",
    "key": null,
-   "group": "7-3",
+   "group": "7-5",
    "layout": "board"
   },
   {
    "t": 23.17,
-   "text": "minute",
-   "key": null,
-   "group": "7-3",
-   "layout": "board"
-  },
-  {
-   "t": 23.31,
-   "text": "of",
-   "key": null,
-   "group": "7-3",
-   "layout": "board"
-  },
-  {
-   "t": 23.57,
-   "text": "your",
-   "key": null,
-   "group": "7-3",
-   "layout": "board"
-  },
-  {
-   "t": 23.69,
    "text": "video",
    "key": null,
-   "group": "7-3",
+   "group": "7-5",
    "layout": "board",
-   "line_end": 24.18
+   "line_end": 23.62
   },
   {
-   "t": 24.18,
+   "t": 23.62,
    "text": "then",
    "key": null,
    "group": "8-0",
    "layout": "board"
   },
   {
-   "t": 24.33,
+   "t": 23.74,
    "text": "you",
    "key": null,
    "group": "8-0",
    "layout": "board"
   },
   {
-   "t": 24.45,
+   "t": 23.86,
    "text": "should",
    "key": null,
    "group": "8-0",
    "layout": "board"
   },
   {
-   "t": 24.57,
+   "t": 23.98,
    "text": "always",
    "key": null,
-   "group": "8-0",
+   "group": "8-1",
    "layout": "board"
   },
   {
-   "t": 24.91,
+   "t": 24.32,
    "text": "use",
    "key": null,
-   "group": "8-0",
-   "layout": "board"
-  },
-  {
-   "t": 25.15,
-   "text": "your",
-   "key": null,
    "group": "8-1",
    "layout": "board"
   },
   {
-   "t": 25.41,
+   "t": 24.56,
+   "text": "your",
+   "key": null,
+   "group": "8-2",
+   "layout": "board"
+  },
+  {
+   "t": 24.82,
    "text": "terms,",
    "key": null,
-   "group": "8-1",
-   "layout": "board"
-  },
-  {
-   "t": 25.97,
-   "text": "your",
-   "key": null,
    "group": "8-2",
    "layout": "board"
   },
   {
-   "t": 26.01,
+   "t": 25.38,
+   "text": "your",
+   "key": null,
+   "group": "8-3",
+   "layout": "board"
+  },
+  {
+   "t": 25.42,
    "text": "numbers,",
    "key": null,
-   "group": "8-2",
-   "layout": "board"
-  },
-  {
-   "t": 26.55,
-   "text": "your",
-   "key": null,
    "group": "8-3",
    "layout": "board"
   },
   {
-   "t": 26.57,
+   "t": 25.96,
+   "text": "your",
+   "key": null,
+   "group": "8-4",
+   "layout": "board"
+  },
+  {
+   "t": 25.98,
    "text": "examples",
    "key": null,
-   "group": "8-3",
+   "group": "8-4",
    "layout": "board"
   },
   {
-   "t": 26.99,
+   "t": 26.4,
    "text": "and",
    "key": null,
-   "group": "8-4",
+   "group": "8-5",
    "layout": "board"
   },
   {
-   "t": 27.37,
+   "t": 26.78,
    "text": "your",
    "key": null,
-   "group": "8-4",
+   "group": "8-5",
    "layout": "board"
   },
   {
-   "t": 27.55,
+   "t": 26.96,
    "text": "wording,",
    "key": null,
-   "group": "8-4",
+   "group": "8-5",
    "layout": "board"
   },
   {
-   "t": 28.11,
+   "t": 27.52,
    "text": "because",
    "key": null,
-   "group": "8-5",
+   "group": "8-6",
    "layout": "board"
   },
   {
-   "t": 28.33,
+   "t": 27.74,
    "text": "ai",
    "key": null,
-   "group": "8-5",
+   "group": "8-6",
    "layout": "board"
   },
   {
-   "t": 28.61,
+   "t": 28.02,
    "text": "doesn't",
    "key": "accent",
-   "group": "8-5",
+   "group": "8-7",
    "layout": "board"
   },
   {
-   "t": 28.99,
+   "t": 28.4,
    "text": "have them.",
    "key": "accent",
-   "group": "8-5",
+   "group": "8-7",
    "layout": "board",
-   "line_end": 29.54
+   "line_end": 28.91
   },
   {
-   "t": 29.54,
+   "t": 28.91,
    "text": "and",
    "key": null,
    "group": "9-0",
    "layout": "board"
   },
   {
-   "t": 29.72,
+   "t": 29.06,
    "text": "then",
    "key": null,
    "group": "9-0",
    "layout": "board"
   },
   {
-   "t": 29.8,
+   "t": 29.14,
    "text": "lastly,",
    "key": null,
    "group": "9-0",
    "layout": "board"
   },
   {
-   "t": 30.4,
+   "t": 29.74,
    "text": "a",
    "key": null,
    "group": "9-1",
    "layout": "board"
   },
   {
-   "t": 30.46,
+   "t": 29.8,
    "text": "cta",
    "key": null,
    "group": "9-1",
    "layout": "board"
   },
   {
-   "t": 30.98,
+   "t": 30.32,
    "text": "that",
    "key": null,
-   "group": "9-1",
+   "group": "9-2",
    "layout": "board"
   },
   {
-   "t": 31.32,
+   "t": 30.66,
    "text": "your",
    "key": null,
-   "group": "9-1",
+   "group": "9-2",
    "layout": "board"
   },
   {
-   "t": 31.48,
+   "t": 30.82,
    "text": "backend",
    "key": null,
-   "group": "9-1",
+   "group": "9-2",
    "layout": "board"
   },
   {
-   "t": 31.86,
+   "t": 31.2,
    "text": "can",
    "key": null,
-   "group": "9-2",
+   "group": "9-3",
    "layout": "board"
   },
   {
-   "t": 32.06,
+   "t": 31.4,
    "text": "actually",
    "key": null,
-   "group": "9-2",
+   "group": "9-3",
    "layout": "board"
   },
   {
-   "t": 32.44,
+   "t": 31.78,
    "text": "close.",
    "key": "accent",
-   "group": "9-2",
+   "group": "9-4",
    "layout": "board",
-   "line_end": 32.9
+   "line_end": 32.24
   },
   {
-   "t": 32.9,
+   "t": 32.24,
    "text": "comment",
    "key": null,
    "group": "10-0",
    "layout": "board"
   },
   {
-   "t": 33.18,
+   "t": 32.49,
    "text": "ai",
    "key": "accent",
    "group": "10-0",
    "layout": "board"
   },
   {
-   "t": 33.48,
+   "t": 32.79,
    "text": "and",
    "key": null,
    "group": "10-1",
    "layout": "board"
   },
   {
-   "t": 33.7,
+   "t": 33.01,
    "text": "i'll",
    "key": null,
    "group": "10-1",
    "layout": "board"
   },
   {
-   "t": 33.82,
+   "t": 33.13,
    "text": "send",
    "key": null,
    "group": "10-1",
    "layout": "board"
   },
   {
-   "t": 33.96,
+   "t": 33.27,
    "text": "you",
    "key": null,
    "group": "10-1",
    "layout": "board"
   },
   {
-   "t": 34.1,
+   "t": 33.41,
    "text": "the",
    "key": null,
    "group": "10-2",
    "layout": "board"
   },
   {
-   "t": 34.2,
+   "t": 33.51,
    "text": "full",
    "key": null,
    "group": "10-2",
    "layout": "board"
   },
   {
-   "t": 34.44,
+   "t": 33.75,
    "text": "breakdown",
    "key": null,
    "group": "10-2",
    "layout": "board"
   },
   {
-   "t": 34.74,
+   "t": 34.05,
    "text": "of",
    "key": null,
    "group": "10-3",
    "layout": "board"
   },
   {
-   "t": 35.04,
+   "t": 34.35,
    "text": "the",
    "key": null,
    "group": "10-3",
    "layout": "board"
   },
   {
-   "t": 35.16,
+   "t": 34.47,
    "text": "board",
    "key": null,
    "group": "10-3",
    "layout": "board"
   },
   {
-   "t": 35.36,
+   "t": 34.67,
    "text": "that",
    "key": null,
-   "group": "10-3",
+   "group": "10-4",
    "layout": "board"
   },
   {
-   "t": 35.52,
+   "t": 34.83,
    "text": "did",
    "key": null,
-   "group": "10-3",
+   "group": "10-4",
    "layout": "board"
   },
   {
-   "t": 35.7,
+   "t": 35.01,
    "text": "it.",
    "key": null,
-   "group": "10-3",
+   "group": "10-4",
    "layout": "board",
-   "line_end": 35.92
+   "line_end": 35.19
   },
   {
-   "t": 35.92,
+   "t": 35.19,
    "text": "ai",
    "key": null,
    "group": "11-0",
    "layout": "face"
   },
   {
-   "t": 36.23,
+   "t": 35.47,
    "text": "builds",
    "key": null,
    "group": "11-0",
    "layout": "face"
   },
   {
-   "t": 36.53,
+   "t": 35.77,
    "text": "the",
    "key": null,
-   "group": "11-0",
+   "group": "11-1",
    "layout": "face"
   },
   {
-   "t": 36.71,
+   "t": 35.95,
    "text": "boxes.",
    "key": null,
-   "group": "11-0",
+   "group": "11-1",
    "layout": "face"
   },
   {
-   "t": 37.39,
+   "t": 36.59,
    "text": "you",
    "key": null,
-   "group": "11-1",
+   "group": "11-2",
    "layout": "face"
   },
   {
-   "t": 37.49,
+   "t": 36.69,
    "text": "still",
    "key": null,
-   "group": "11-1",
+   "group": "11-2",
    "layout": "face"
   },
   {
-   "t": 37.67,
+   "t": 36.87,
    "text": "have",
    "key": null,
-   "group": "11-1",
+   "group": "11-2",
    "layout": "face"
   },
   {
-   "t": 37.89,
+   "t": 37.09,
    "text": "to",
    "key": null,
-   "group": "11-1",
+   "group": "11-3",
+   "layout": "face"
+  },
+  {
+   "t": 37.25,
+   "text": "decide",
+   "key": "accent",
+   "group": "11-3",
+   "layout": "face"
+  },
+  {
+   "t": 37.55,
+   "text": "what",
+   "key": null,
+   "group": "11-4",
+   "layout": "face"
+  },
+  {
+   "t": 37.79,
+   "text": "goes",
+   "key": null,
+   "group": "11-4",
    "layout": "face"
   },
   {
    "t": 38.05,
-   "text": "decide",
-   "key": "accent",
-   "group": "11-1",
-   "layout": "face"
-  },
-  {
-   "t": 38.35,
-   "text": "what",
-   "key": null,
-   "group": "11-2",
-   "layout": "face"
-  },
-  {
-   "t": 38.59,
-   "text": "goes",
-   "key": null,
-   "group": "11-2",
-   "layout": "face"
-  },
-  {
-   "t": 38.85,
    "text": "in",
    "key": null,
-   "group": "11-2",
+   "group": "11-5",
    "layout": "face"
   },
   {
-   "t": 39.07,
+   "t": 38.27,
    "text": "them.",
    "key": null,
-   "group": "11-2",
+   "group": "11-5",
    "layout": "face",
-   "line_end": 39.36
+   "line_end": 38.52
   }
  ]
 }
