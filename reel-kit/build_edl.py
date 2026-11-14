@@ -120,18 +120,21 @@ for li, L in enumerate(R['lines']):
     k, in_key, words_here = 0, None, []
     for gi, g in enumerate(groups):
         for tok in g:
-            if tok.startswith('**'):
-                in_key = 'money'
-            elif tok.startswith('*'):
-                in_key = 'accent'
-            key = in_key
-            if tok.endswith('*'):
-                in_key = None
             t = round(map_t(max(wl[k][0], a)), 3)
-            text = tok.strip('*').rstrip('+').replace('~', ' ')
-            captions.append({'t': t, 'text': text, 'key': key, 'group': f'{li}-{gi}', 'layout': layout})
-            words_here.append((clean(tok.rstrip('+')), t))
-            k += 2 if tok.rstrip('*').endswith('+') else 1
+            two = tok.rstrip('*').endswith('+')
+            # '~' splits one ASR token into several shown words; each word carries its own * markers
+            for sub in tok.replace('+', '').split('~'):
+                if sub.startswith('**'):
+                    in_key = 'money'
+                elif sub.startswith('*'):
+                    in_key = 'accent'
+                key = in_key
+                if sub.endswith('*'):
+                    in_key = None
+                text = sub.strip('*')
+                captions.append({'t': t, 'text': text, 'key': key, 'group': f'{li}-{gi}', 'layout': layout})
+                words_here.append((clean(text), t))
+            k += 2 if two else 1
 
     # zoom keyframes (face layout only): {"at": "start" | "<word>" | "+0.4", "to": 1.05, "dur": 0.25}
     if layout == 'face':
@@ -193,7 +196,7 @@ cta = None
 if R.get('cta'):
     c = R['cta']
     cta = {'text': c['text'], 't0': word_t(c['line'], c['word']) if c.get('word') else lt(c['line']),
-           't1': line_end[c['line']]}
+           't1': lt(c['to_line']) if 'to_line' in c else line_end[c['line']]}
 
 edl = {'duration': round(T, 3), 'segments': segments, 'captions': captions, 'zooms': zooms,
        'transitions': transitions, 'pills': pills, 'cta': cta, 'line_t': line_t}

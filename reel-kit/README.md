@@ -42,7 +42,7 @@ Render times on this machine (35s reel): preview ~6 min, final ~12 min (most of 
 | `audio` | `auto` (screen mic wherever it exists, else phone), `face` or `screen` |
 | `lines[]` | the script, in output order (below) |
 | `pills[]` | `{"text","from_line","to_line"}` numbered pills on the board card (to_line exclusive) |
-| `cta` | `{"text","line","word"}` CTA button on the board card, appears on that word |
+| `cta` | `{"text","line","word","to_line"?}` CTA button on the board card, appears on that word, stays until `to_line` (default: end of its line) |
 | `sfx` | override defaults: `{"riser": {...}|null, "transition": {...}|null}` |
 | `song` | `{"file","start","gain_db"}` music bed, ducked under the voice; null = none |
 
@@ -69,7 +69,7 @@ Render times on this machine (35s reel): preview ~6 min, final ~12 min (most of 
 | `\|` | group break (1-3 words per group) |
 | `*word*`, `*two words*` | accent key word(s): Instrument Serif Italic, blue |
 | `**56 calls.**` | money/win key word(s): serif italic, green |
-| `have~them.` | ASR heard one token, show two words |
+| `have~them.`, `*“board”*~down~below.` | ASR heard one token, show several words (each word takes its own `*` markers) |
 | `gonna+` | caption token consumes two ASR tokens |
 
 Token count must equal the ASR tokens in the take (`10` + `%` and `$12` + `,000` merge automatically);

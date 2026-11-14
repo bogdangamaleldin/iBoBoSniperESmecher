@@ -54,7 +54,7 @@
       "out": 22.5,
       "hard_out": true,
       "face_x": 687,
-      "caption": "you're getting views | and nobody's booking | your *calls.*",
+      "caption": "you're getting views | and nobody's booking | a *call.*",
       "zoom": [
         {
           "at": "start",
@@ -168,7 +168,7 @@
       "in": 156.95,
       "out": 164.2,
       "face_x": 695,
-      "caption": "this video did | the *selling* | before the~call, | using a structure | which i broke down | in my most recent | youtube video, | which i'm gonna | send to you | if you *comment* below."
+      "caption": "this video did | the *selling* | before the~call, | using a structure | which i broke down | in my most recent | youtube video, | which i'm gonna | send to you | if you comment | *“board”*~down~below."
     },
     {
       "layout": "board",
@@ -223,9 +223,10 @@
     }
   ],
   "cta": {
-    "text": "comment below",
+    "text": "comment “board”",
     "line": 11,
-    "word": "comment"
+    "word": "comment",
+    "to_line": 14
   },
   "sfx": {},
   "song": null
