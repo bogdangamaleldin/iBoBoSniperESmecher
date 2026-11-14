@@ -1,0 +1,162 @@
+{
+  "name": "04-hook-to-board-cash-not-views",
+  "format": "hook-to-board",
+  "drive": {
+    "face": "https://drive.google.com/file/d/18nCwNuSEM2p_HjPjQO7jeGLtoGuCFA-8/view",
+    "screen": "https://drive.google.com/file/d/1H7Pr5hKDNFpRo-ImzhZrsxZa_PvKT9ud/view"
+  },
+  "sources": {
+    "face": "raw/face.mov",
+    "screen": "raw/screen.mp4"
+  },
+  "screen_offset": [
+    [
+      0.0,
+      11.21
+    ],
+    [
+      73.92,
+      17.92
+    ]
+  ],
+  "screen_duration": 194.65,
+  "speed": 1.08,
+  "export": {
+    "scale": 2,
+    "fps": 60
+  },
+  "face_x": 1090,
+  "face_crop": [
+    1720,
+    3058,
+    230,
+    390
+  ],
+  "face_anchor_y": 0.35,
+  "cam": {
+    "source": "face",
+    "crop": [
+      1900,
+      1462,
+      140,
+      760
+    ]
+  },
+  "screen_canvas": {
+    "y": 290,
+    "h": 914,
+    "center_x": 1280,
+    "bg": "E5F7FC"
+  },
+  "captions": {
+    "face_top": 960
+  },
+  "lines": [
+    {
+      "layout": "face",
+      "in": 12.7,
+      "out": 16.3,
+      "caption": "stop asking | what to *post next.* | your numbers | have *already* told you."
+    },
+    {
+      "layout": "face",
+      "in": 21.0,
+      "out": 26.4,
+      "caption": "one sheet, | *four columns,* | *ten minutes* a week. | that's all it takes | to make your full | content *schedule.*"
+    },
+    {
+      "layout": "board",
+      "in": 86.74,
+      "out": 91.8,
+      "hard_out": true,
+      "caption": "_ base it and look at it | from every single *video,* | look at | how many *clicks* it got, | how many *calls* it booked _"
+    },
+    {
+      "layout": "board",
+      "in": 95.0,
+      "out": 96.78,
+      "hard_out": true,
+      "caption": "and how much | it *cash collected.*"
+    },
+    {
+      "layout": "board",
+      "in": 99.0,
+      "out": 105.4,
+      "caption": "the step one is that | you should have | a *tracked link* | for every single video | that you post, | otherwise you're | just *guessing.*"
+    },
+    {
+      "layout": "board",
+      "in": 109.95,
+      "out": 113.5,
+      "caption": "the second step is | sorting by *cash,* | not by views."
+    },
+    {
+      "layout": "board",
+      "in": 131.35,
+      "out": 135.5,
+      "caption": "for the top 3, | you should make more | of this *similar format* | and topic."
+    },
+    {
+      "layout": "board",
+      "in": 152.85,
+      "out": 156.0,
+      "hard_out": true,
+      "caption": "for the bottom 3 | *least+* performing, | just *stop* making them,"
+    },
+    {
+      "layout": "board",
+      "in": 157.4,
+      "out": 159.2,
+      "caption": "no matter how many | *views* they got."
+    },
+    {
+      "layout": "board",
+      "in": 164.05,
+      "out": 169.0,
+      "hard_out": true,
+      "caption": "if you were to sort them | by *views,* | this 8k video | which cash collected | almost **$14k** _"
+    },
+    {
+      "layout": "board",
+      "in": 170.85,
+      "out": 172.95,
+      "caption": "will never even | cross your mind | to *recreate.*"
+    },
+    {
+      "layout": "face",
+      "in": 206.8,
+      "out": 210.55,
+      "caption": "views tell you | what people *watch.* | cash tells you | what to *post.*"
+    }
+  ],
+  "pills": [
+    {
+      "text": "track every video",
+      "from_line": 4,
+      "to_line": 5
+    },
+    {
+      "text": "sort by cash",
+      "from_line": 5,
+      "to_line": 6
+    },
+    {
+      "text": "top 3 → make more",
+      "from_line": 6,
+      "to_line": 7
+    },
+    {
+      "text": "bottom 3 → stop",
+      "from_line": 7,
+      "to_line": 9
+    }
+  ],
+  "cta": null,
+  "sfx": {
+    "riser": null
+  },
+  "song": null,
+  "cut": {
+    "max_pause_face": 0.7
+  }
+}

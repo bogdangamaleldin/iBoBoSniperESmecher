@@ -26,7 +26,7 @@ THR = float(min(max(np.percentile(RMS, 10) + 20, -48), -35))   # ~20 dB over roo
 
 CUT = R.get('cut', {})
 MAX_GAP = CUT.get('max_pause', 0.18)       # pauses longer than this inside a line get cut ...
-MAX_GAP_FACE = CUT.get('max_pause_face', 0.4)  # face shots: only cut real pauses (a cut = visible jump)
+MAX_GAP_FACE = CUT.get('max_pause_face', 0.7)  # face shots: only cut real pauses (a cut = visible jump)
 KEEP_GAP = CUT.get('keep_pause', 0.06)     # ... down to this
 PAD_IN, PAD_OUT = CUT.get('pad_in', 0.03), CUT.get('pad_out', 0.06)
 END_HOLD = CUT.get('end_hold', 0.9)        # keep this much footage after the LAST word (ending felt cut off)

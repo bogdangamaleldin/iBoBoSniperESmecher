@@ -93,4 +93,4 @@ Token count must equal the ASR tokens in the take (`10` + `%` and `$12` + `,000`
 Set a reel-level `"face_x": <px>` (median face centre in source pixels from `reel-kit/face_x.py`) to re-centre
 the full-screen crop and the webcam card crop. Keep ONE value for the whole reel so the frame doesn't jump
 at cuts; a per-line `face_x` overrides it only when the user moved a lot.
-Face lines only cut pauses longer than `cut.max_pause_face` (0.4s): every face cut is a visible jump.
+Face lines only cut pauses longer than `cut.max_pause_face` (0.7s): every face cut is a visible jump.
