@@ -28,7 +28,23 @@ CUT = R.get('cut', {})
 MAX_GAP = CUT.get('max_pause', 0.18)       # pauses longer than this inside a line get cut ...
 KEEP_GAP = CUT.get('keep_pause', 0.06)     # ... down to this
 PAD_IN, PAD_OUT = CUT.get('pad_in', 0.03), CUT.get('pad_out', 0.06)
-OFFSET = R.get('screen_offset')            # face_time = screen_time + OFFSET (None: no screen recording)
+OFFSET_SPEC = R.get('screen_offset')       # face_time = screen_time + offset (None: no screen recording)
+# a number, or [[face_time_from, offset], ...] when the screen recorder skipped (sync.py prints the map)
+OFFSETS = (None if OFFSET_SPEC is None else
+           [[0.0, float(OFFSET_SPEC)]] if isinstance(OFFSET_SPEC, (int, float)) else sorted(OFFSET_SPEC))
+
+
+def offset_at(t):
+    if OFFSETS is None:
+        return None
+    o = OFFSETS[0][1]
+    for t0, v in OFFSETS:
+        if t >= t0:
+            o = v
+    return o
+
+
+OFFSET = OFFSETS[0][1] if OFFSETS else None
 
 
 def speech_bounds(a, b):
@@ -138,16 +154,17 @@ for li, L in enumerate(R['lines']):
         seg = {'layout': layout, 'in': x, 'out': y, 'line': li, 't0': round(T, 3)}
         if 'face_x' in L:                              # face centre (source px) for this take: re-centres the crops
             seg['face_x'] = L['face_x']
-        on_screen_rec = OFFSET is not None and (x - OFFSET) > 0.3 and (y - OFFSET) < R.get('screen_duration', 1e9)
+        off = offset_at(x)
+        on_screen_rec = off is not None and (x - off) > 0.3 and (y - off) < R.get('screen_duration', 1e9)
         audio = R.get('audio', 'auto')
         seg['audio'] = 'screen' if (audio == 'screen' or (audio == 'auto' and on_screen_rec)) else 'face'
-        if OFFSET is not None:
-            seg['audio_in'] = round(x - OFFSET, 3)
+        if off is not None:
+            seg['audio_in'] = round(x - off, 3)
         if layout == 'board':
             if 'screen_in' in L:                       # board footage from elsewhere (e.g. screen showed another app)
                 seg['screen_in'] = round(L['screen_in'] + (x - subs[0][0]), 3)
             else:
-                seg['screen_in'] = round(x - OFFSET, 3)
+                seg['screen_in'] = round(x - off, 3)
             if 'screen_fit' in L:
                 seg['screen_fit'] = L['screen_fit']
         segments.append(seg)

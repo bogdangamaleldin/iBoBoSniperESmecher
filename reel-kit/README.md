@@ -30,7 +30,7 @@ Render times on this machine (35s reel): preview ~6 min, final ~12 min (most of 
 | `format` | `hook-to-board`, `board-only` or `talking-head` (informational; layout comes from each line) |
 | `drive` | Drive links of the raw files (download: `https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t`) |
 | `sources.face` / `sources.screen` | paths relative to the reel dir (phone footage / screen recording) |
-| `screen_offset` | `face_time = screen_time + offset`, from `prep` (sync.py) |
+| `screen_offset` | `face_time = screen_time + offset`, from `prep` (sync.py). If the screen recorder skipped time, sync.py prints a map `[[face_time_from, offset], ...]` - use that (reel 02 had a 3.2s jump) |
 | `screen_duration` | length of the screen recording (lines after it fall back to phone audio) |
 | `speed` | final speed-up (user liked 1.08) |
 | `export` | `{"scale": 2, "fps": 60}` = 2160x3840 @60 |
