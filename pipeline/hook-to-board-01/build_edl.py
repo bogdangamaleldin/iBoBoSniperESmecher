@@ -51,7 +51,7 @@ LINES = [
     ('face', 129.25, 130.90, "the board | is *10%* of it.", None, False),
     ('face', 149.90, 153.50, "the other *90%* | is 4 decisions | which ai cannot | make for you.", None, False),
     ('board', 181.90, 185.75, "the left side | is what | ai gives you, | the right side | is what booked | **56 calls.**", None, False),
-    ('board', 225.55, 230.85, "the first decision | is making | the miro board | around the *topic* | that your buyer | is actually | ready for.", None, False),
+    ('board', 226.78, 230.85, "the~first decision | is making | the miro board | around the *topic* | that your buyer | is actually | ready for.", None, False),
     ('board', 238.05, 240.58, "the second decision | is the *result* | you actually | lead with", None, True),
     ('board', 251.95, 255.50, "and the number | you start with | in the first | *30 seconds* | to a minute | of your video", None, False),
     ('board', 271.65, 277.10, "then you should | always use | your terms, | your numbers, | your examples | and your wording, | because ai | *doesn't* *have~them.*", None, False),

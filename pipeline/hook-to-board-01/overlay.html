@@ -73,16 +73,6 @@ function build(edl){
       lineT[decLines[i][0]], lineT[decLines[i][1]], 'slide'));
   add(`<div class="cta"><span>comment “ai”</span></div>`, wordT('ai',10), lineT[11], 'pop');
 
-  // flash + glare at every face <-> board switch
-  let prev=null;
-  for(const s of edl.segments){
-    if(prev && prev.layout!==s.layout){
-      const T=s.t0;
-      add(`<div class="flash"></div>`, T-0.10, T+0.28, {flash:T});
-      add(`<div class="glare"></div>`, T-0.16, T+0.30, {glare:T});
-    }
-    prev=s;
-  }
 }
 
 function setTime(t){

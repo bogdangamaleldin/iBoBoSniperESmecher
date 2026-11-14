@@ -22,8 +22,12 @@ MIRO_OVERVIEW = {4: (440, 1520), 10: (800, 1140)}   # zoomed-out lines: (x, widt
 MIRO_BG = 'E5F7FC'                        # Miro board background colour (sampled)
 MIRO_CENTER_DEFAULT = 1280
 HOOK_ZOOM = 0.10                          # +10% push-in over the whole hook
-BOARD_ZOOM = 0.06                         # +6% push-in per board line
+BOARD_ZOOM = 0.0                          # no motion inside the board (user preference)
 TARGET_LUFS = -18.0
+# iPhone records HLG/Dolby Vision HDR: tone-map to SDR or it looks washed-out white
+TONEMAP = ('zscale=tin=arib-std-b67:min=bt2020nc:pin=bt2020:rin=tv:t=linear:npl=203,format=gbrpf32le,'
+           'zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,'
+           'eq=contrast=1.06:saturation=1.08')
 
 edl = json.load(open('edl.json'))
 segs = edl['segments']
@@ -67,7 +71,9 @@ for i, s in enumerate(segs):
         a_chain = f"highpass=f=80,afftdn=nr=8:nf=-50,volume={gain[s['line']]:.2f}dB,{fade}"
     else:
         a_in = ['-ss', f"{s['in']:.3f}", '-t', f'{dur:.3f}', '-i', 'me_proxy.mp4']
-        a_chain = f"highpass=f=80,afftdn=nr=12:nf=-45,volume={gain[s['line']]:.2f}dB,{fade}"
+        a_chain = (f"highpass=f=90,afftdn=nr=4:nf=-55,equalizer=f=280:t=q:w=1.2:g=-3,"
+                   f"equalizer=f=3800:t=q:w=1.5:g=2,acompressor=threshold=-24dB:ratio=2.5:attack=8:release=120,"
+                   f"volume={gain[s['line']]:.2f}dB,{fade}")
     v_in = ['-ss', f"{s['in']:.3f}", '-t', f'{dur:.3f}', '-i', 'raw/me.mp4']
     fw, fh, fx, fy = FACE_CROP
     if s['layout'] == 'face':
@@ -75,7 +81,7 @@ for i, s in enumerate(segs):
             z = f"(1+{HOOK_ZOOM}*({s['t0']:.3f}+t)/{hook_end:.3f})"
         else:               # close: barely-moving hold
             z = f"(1+0.02*({s['t0'] - line_t0[s['line']]:.3f}+t)/{line_dur[s['line']]:.3f})"
-        vf = (f"[0:v]fps=30,crop={fw}:{fh}:{fx}:{fy},"
+        vf = (f"[0:v]fps=30,crop={fw}:{fh}:{fx}:{fy},{TONEMAP},"
               f"scale=w='trunc({W}*{z}/2)*2':h='trunc({H}*{z}/2)*2':eval=frame:flags=bicubic,"
               f"crop={W}:{H}:(iw-{W})/2:(ih-{H})*0.35,setsar=1[v]")
         inputs = v_in + a_in
@@ -91,7 +97,7 @@ for i, s in enumerate(segs):
             mx = MIRO_CENTER_DEFAULT - MIRO_W // 2
             board_src = f"crop={MIRO_W}:{MIRO_H}:{mx}:{MIRO_Y},"
         fc = (f"color=c=0x08090A:s={W}x{H}:r=30:d={dur:.3f}[bg];"
-              f"[0:v]fps=30,crop={cw}:{ch}:{cx}:{cy},scale={W}:{CAM_H}:flags=lanczos[cam];"
+              f"[0:v]fps=30,crop={cw}:{ch}:{cx}:{cy},{TONEMAP},scale={W}:{CAM_H}:flags=lanczos[cam];"
               f"[1:v]fps=30,{board_src}"
               f"scale=w='trunc({W}*{z}/2)*2':h='trunc({BOARD_H}*{z}/2)*2':eval=frame:flags=lanczos,"
               f"crop={W}:{BOARD_H}:(iw-{W})/2:(ih-{BOARD_H})/2[brd];"
