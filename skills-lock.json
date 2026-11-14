@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "skills": {
+    "cut-video": {
+      "source": "louisedesadeleer/cut-video",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "6ce4900f7804b9328372e2b6f348c0f4ee86780e2b697c66269a07ebdf76c5aa"
+    }
+  }
+}
