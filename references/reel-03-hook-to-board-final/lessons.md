@@ -71,3 +71,5 @@ Pipeline + edit list: `pipeline/hook-to-board-01/`.
   set-up line. CTA board must FREEZE on the last board frame, not replay (`screen_freeze: "prev"`).
 - Reel 03: per-take re-centring made the frame jump at every hook cut -> one fixed framing per reel;
   don't cut short (<0.4s) pauses on face shots.
+- Reel 04: the last face caption leaked into the board section (held until the board's first word).
+  Captions now end exactly on every face<->board cut (overlay.html). Reels 02/03 exports had this too.

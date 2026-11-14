@@ -64,7 +64,8 @@ function build(edl){
     const line=lineOf(g.id), nxt=groups[i+1];
     const lineEnd=edl.captions.filter(c=>lineOf(c.group)===line).map(c=>c.line_end).find(x=>x!==undefined);
     g.t0=g.words[0].t;
-    g.t1=nxt? nxt.words[0].t : lineEnd;
+    // hold until the next group (no gaps), but never across a face<->board switch: end on the cut
+    g.t1=(nxt && nxt.layout===g.layout)? nxt.words[0].t : lineEnd;
     const row=h(`<div class="cap ${g.layout}"></div>`);
     g.words.forEach(w=>row.appendChild(h(`<span class="${w.key==='accent'?'k':w.key==='money'?'m':''}">${esc(w.text)}</span>`)));
     root.appendChild(row);g.row=row;
