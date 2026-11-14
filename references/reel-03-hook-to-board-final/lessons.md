@@ -60,3 +60,5 @@ Pipeline + edit list: `pipeline/hook-to-board-01/`.
   first preview; caught by the render-transcript QA. sync.py now prints a jump map.
 - CTA keyword spoken mid-phrase ("comment board down below") -> CTA button 'comment "board"', kept on screen
   until the end of the board section (`to_line`), not just its line.
+- Both reels "got cut out too fast" at the end: the last word was trimmed ~0.06s after speech.
+  Kit default now keeps 0.9s of footage after the last word (`cut.end_hold`) + 0.35s audio fade-out.

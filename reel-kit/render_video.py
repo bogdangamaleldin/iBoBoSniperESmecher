@@ -8,7 +8,7 @@ Board layout: two rounded cards on #08090A (the user's board format):
               webcam card x68 y189 945x727 r45 | caption band | board card x30 y1020 1020x621 r36
 HDR (iPhone HLG / Dolby Vision, or PQ) is detected per source and tone-mapped to SDR (otherwise: washed-out white).
 """
-import json, subprocess, os, re, sys
+import json, subprocess, os, re, sys, hashlib
 from PIL import Image, ImageDraw
 
 D = sys.argv[1]
@@ -120,7 +120,6 @@ ENC = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '15' if S > 1 else '17', '-
 os.makedirs(f'{WK}/seg', exist_ok=True)
 files = []
 for i, s in enumerate(segs):
-    out = f'{WK}/seg/{i:02d}.mov'
     dur = s['out'] - s['in']
     fade = f"afade=t=in:d=0.008,afade=t=out:st={max(0, dur - 0.012):.3f}:d=0.012"
     if s['audio'] == 'screen':
@@ -163,10 +162,16 @@ for i, s in enumerate(segs):
               f"[2:a]{a_chain}[au]")
         inputs = (cam_in + ['-ss', f"{s['screen_in']:.3f}", '-t', f'{dur:.3f}', '-i', SCREEN_SRC]
                   + a_in + ['-i', f'{WK}/board_mask.png'])
-    subprocess.run(['ffmpeg', '-v', 'error', '-y', *inputs, '-filter_complex', fc,
-                    '-map', '[v]', '-map', '[au]', '-t', f'{dur:.3f}', *ENC, out], check=True)
+    cmd = [*inputs, '-filter_complex', fc, '-map', '[v]', '-map', '[au]', '-t', f'{dur:.3f}', *ENC]
+    key = hashlib.sha1(json.dumps(cmd).encode()).hexdigest()[:10]
+    out = f'{WK}/seg/{MODE}_{i:02d}_{key}.mov'          # cache: unchanged segments are reused
+    if os.path.exists(out):
+        print(f'seg {i:02d} {s["layout"]:5s} {dur:5.2f}s cached', flush=True)
+    else:
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', *cmd, out + '.part.mov'], check=True)
+        os.replace(out + '.part.mov', out)
+        print(f'seg {i:02d} {s["layout"]:5s} {dur:5.2f}s ok', flush=True)
     files.append(out)
-    print(f'seg {i:02d} {s["layout"]:5s} {dur:5.2f}s ok', flush=True)
 
 with open(f'{WK}/seg/list.txt', 'w') as f:
     f.writelines(f"file '{os.path.basename(p)}'\n" for p in files)

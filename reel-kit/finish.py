@@ -60,7 +60,8 @@ if song:
               f"afade=t=in:d=0.3,afade=t=out:st={dur_out - 0.8:.3f}:d=0.8[song0];"
               f"[song0][key]sidechaincompress=threshold=0.04:ratio=4:attack=15:release=350[song]")
     mix.append('[song]'); idx += 1
-fc.append(f"{''.join(mix)}amix=inputs={len(mix)}:normalize=0:duration=first,alimiter=limit=0.94[a]")
+fc.append(f"{''.join(mix)}amix=inputs={len(mix)}:normalize=0:duration=first,alimiter=limit=0.94,"
+          f"afade=t=out:st={max(0, dur_out - 0.35):.3f}:d=0.35[a]")
 
 enc = (['-c:v', 'libx264', '-preset', 'medium', '-crf', '16', '-profile:v', 'high', '-level', '5.2']
        if MODE == 'final' else ['-c:v', 'libx264', '-preset', 'fast', '-crf', '19'])

@@ -21,7 +21,8 @@ reel-kit/make.sh reels/<NN-name> preview   # 1080x1920 @30 + QA  -> send to the 
 reel-kit/make.sh reels/<NN-name> final     # 2160x3840 @60 + QA -> deliver
 ```
 
-Render times on this machine (35s reel): preview ~6 min, final ~12 min (most of it is HDR tone-mapping 4K).
+Render times on this machine: preview ~3-5 min, final ~12-20 min (most of it is HDR tone-mapping 4K).
+Segments are cached by their exact ffmpeg command, so after a small change only the touched segments re-render.
 
 ## reel.json
 
@@ -38,7 +39,7 @@ Render times on this machine (35s reel): preview ~6 min, final ~12 min (most of 
 | `face_anchor_y` | vertical anchor for zooms (0.35 = face) |
 | `cam` | `{"source": "face"|"screen", "crop": [w,h,x,y]}` webcam card crop (945:727 aspect) |
 | `screen_canvas` | `{"y","h","center_x","bg"}` board area in the screen recording (exclude browser chrome + dock) |
-| `cut` | optional `{"max_pause":0.18,"keep_pause":0.06,"pad_in":0.03,"pad_out":0.06}` |
+| `cut` | optional `{"max_pause":0.18,"keep_pause":0.06,"pad_in":0.03,"pad_out":0.06,"end_hold":0.9}` (end_hold = footage kept after the last word; the user found endings cut too fast) |
 | `audio` | `auto` (screen mic wherever it exists, else phone), `face` or `screen` |
 | `lines[]` | the script, in output order (below) |
 | `pills[]` | `{"text","from_line","to_line"}` numbered pills on the board card (to_line exclusive) |

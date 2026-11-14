@@ -28,6 +28,7 @@ CUT = R.get('cut', {})
 MAX_GAP = CUT.get('max_pause', 0.18)       # pauses longer than this inside a line get cut ...
 KEEP_GAP = CUT.get('keep_pause', 0.06)     # ... down to this
 PAD_IN, PAD_OUT = CUT.get('pad_in', 0.03), CUT.get('pad_out', 0.06)
+END_HOLD = CUT.get('end_hold', 0.9)        # keep this much footage after the LAST word (ending felt cut off)
 OFFSET_SPEC = R.get('screen_offset')       # face_time = screen_time + offset (None: no screen recording)
 # a number, or [[face_time_from, offset], ...] when the screen recorder skipped (sync.py prints the map)
 OFFSETS = (None if OFFSET_SPEC is None else
@@ -96,6 +97,9 @@ for li, L in enumerate(R['lines']):
     a, b0 = speech_bounds(a, b)
     a = a - PAD_IN
     b = b if hard else b0 + PAD_OUT
+    if li == len(R['lines']) - 1 and not hard:     # let the last word land: hold on the speaker
+        later = [isl['s'] for isl in islands if isl['s'] > b0 + 0.1]
+        b = min(b0 + END_HOLD, (later[0] - 0.25) if later else 1e9)
     subs = split_pauses(a, b)
     wl = norm_tokens([wd for wd in allwords if wd[0] < b - 0.05 and wd[1] > a + 0.05])
     groups = [g.strip().split() for g in L['caption'].split('|')]
