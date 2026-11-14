@@ -50,3 +50,13 @@ Pipeline + edit list: `pipeline/hook-to-board-01/`.
 ## Rejected along the way
 - Graphics on the face shots (big numbers, titles, stat cards). Cool/blue-white flash. Zoom-ins anywhere.
 - Full-bleed split with no card margins (v2-v3) - user prefers the rounded-card board format.
+
+## Reel 02 (four gaps) - what changed
+- User: rendered zoom-ins/outs "aren't really clean" -> removed; he adds zooms, riser and sound in CapCut.
+  Default for future exports: no zoom keys, no riser. Keep the glare + shutter transitions ("i like the transitions").
+- No script outline sent: structured like reel 01 and the user approved the structure as is.
+- Phone wasn't centred and the user moved between takes: per-take `face_x` re-centring (face_x.py) worked.
+- Screen recorder skipped 3.2s between the hook and the board section -> hook audio was misaligned in the
+  first preview; caught by the render-transcript QA. sync.py now prints a jump map.
+- CTA keyword spoken mid-phrase ("comment board down below") -> CTA button 'comment "board"', kept on screen
+  until the end of the board section (`to_line`), not just its line.

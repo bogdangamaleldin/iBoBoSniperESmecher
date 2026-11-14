@@ -54,57 +54,21 @@
       "out": 22.5,
       "hard_out": true,
       "face_x": 687,
-      "caption": "you're getting views | and nobody's booking | a *call.*",
-      "zoom": [
-        {
-          "at": "start",
-          "to": 1.08,
-          "dur": 0.2
-        }
-      ]
+      "caption": "you're getting views | and nobody's booking | a *call.*"
     },
     {
       "layout": "face",
       "in": 35.8,
       "out": 40.3,
       "face_x": 703,
-      "caption": "it's not | your content. | it's one of | these *four gaps* | which i'm going to | show you right now | between the views | and the cash.",
-      "zoom": [
-        {
-          "at": "start",
-          "to": 1.04,
-          "dur": 0.3
-        },
-        {
-          "at": "+0.6",
-          "to": 1.0,
-          "dur": 1.2
-        },
-        {
-          "at": "four",
-          "to": 1.04,
-          "dur": 0.25
-        }
-      ]
+      "caption": "it's not | your content. | it's one of | these *four gaps* | which i'm going to | show you right now | between the views | and the cash."
     },
     {
       "layout": "face",
       "in": 48.7,
       "out": 54.2,
       "face_x": 781,
-      "caption": "one video we made | for a trading educator | who took | this exact path, | cash collected | close to | **$12,000.**",
-      "zoom": [
-        {
-          "at": "start",
-          "to": 1.0,
-          "dur": 0.2
-        },
-        {
-          "at": "$12,000",
-          "to": 1.08,
-          "dur": 0.25
-        }
-      ]
+      "caption": "one video we made | for a trading educator | who took | this exact path, | cash collected | close to | **$12,000.**"
     },
     {
       "layout": "board",
@@ -190,14 +154,7 @@
       "in": 178.7,
       "out": 182.7,
       "face_x": 657,
-      "caption": "remember, | instead of trying | to post more videos, | *fix* where | you're *leaking.*",
-      "zoom": [
-        {
-          "at": "fix",
-          "to": 1.06,
-          "dur": 0.1
-        }
-      ]
+      "caption": "remember, | instead of trying | to post more videos, | *fix* where | you're *leaking.*"
     }
   ],
   "pills": [
@@ -228,6 +185,8 @@
     "word": "comment",
     "to_line": 14
   },
-  "sfx": {},
+  "sfx": {
+    "riser": null
+  },
   "song": null
 }

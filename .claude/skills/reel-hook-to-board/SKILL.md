@@ -20,8 +20,12 @@ and what the user approved/changed: `references/reel-03-hook-to-board-final/less
 1. `mkdir -p reels/<NN-name>/raw`, download, `ffprobe` both files (expect iPhone 4K60 HLG + 1440p screen rec).
 2. Write a minimal `reel.json` (sources) and run `reel-kit/make.sh reels/<NN-name> prep`.
    It prints every speech island (each take separately) and the screen sync OFFSET -> put it in `screen_offset`.
-   The laptop mic hears the same voice; if sync windows disagree by > 0.05s, look for a silent/bad window.
-3. Pick takes per script line: by default the LAST complete clean take. Watch for:
+   The laptop mic hears the same voice. If sync.py reports JUMPS (the screen recorder skipped time - reel 02
+   lost 3.2s), paste the printed `[[face_time_from, offset], ...]` map as `screen_offset`.
+   Phone not centred / user moved: measure `face_x` per take with `reel-kit/face_x.py` and set it per line.
+3. If no script outline came with the footage, structure it like reel 01 (hook = problem + proof on FACE,
+   board = numbers + each point with its follow-up, close = one-line takeaway on FACE) and say so.
+   Pick takes per script line: by default the LAST complete clean take. Watch for:
    - false starts inside an island ("the first... the first decision"): re-window that region with
      `transcribe.py` on a short clip, start the line at the clean attempt;
    - ASR words stretched > 1s hide a pause, a flub or a whole collapsed retake;
@@ -34,10 +38,10 @@ and what the user approved/changed: `references/reel-03-hook-to-board-final/less
 5. Framing: `face_crop` ~1.33x punch-in centred on the face (the raw phone framing reads "too wide");
    `cam.crop` 945:727 on the face source for the webcam card.
 6. Captions per line (see reel-captions), pills for numbered points, `cta` on the CTA word.
-7. Zoom keyframes on FACE lines only, the way the user does it in CapCut:
-   ease-out punch-ins of +5% on emphasis words/numbers (levels 1.00 / 1.05 / 1.10, `dur` 0.2-0.3),
-   first line punches in at `start`, one zoom-out after the opening beat, close snaps in on its key phrase.
-   Never a slow continuous push-in. No zoom/motion on the board section (webcam static, board static).
+7. Zooms and riser: DON'T add them by default. On reel 02 the user found the rendered zoom-ins/outs
+   "not really clean" and adds zooms + riser + music himself in CapCut after export. Export with
+   `"sfx": {"riser": null}` and no `zoom` keys. (The `zoom` keyframe support stays in the kit for when
+   he asks for it: ease-out +4-5% punches on emphasis words, never a slow push-in.)
 8. `make.sh ... edl` -> check the printed cut, then `make.sh ... preview`. Review the QA output:
    transcript of the render vs script (every word, no doubled starts, plural/singular as spoken),
    loudness -14, 0 black webcam frames, and LOOK at `work/check_sheet.jpg`. Send the preview with SendUserFile.
@@ -53,5 +57,6 @@ and what the user approved/changed: `references/reel-03-hook-to-board-final/less
 - Colour: always tone-map the iPhone HDR (automatic in render_video.py) - otherwise "way too white".
 - Audio: laptop mic wherever it exists; phone mic only for lines recorded before the screen recording started.
 - Pacing: pauses > 0.18s cut, 1.08x speed, tight line joins.
-- Transitions: warm glare + camera-shutter second click at face<->board switches only; riser under the hook.
+- Transitions: warm glare + camera-shutter second click at face<->board switches only (user: "i like the transitions").
+- Zooms, riser and song: the user adds these in CapCut after our export - leave them out unless asked.
 - Song: user picks it; add via reel.json `song` if they send the file, otherwise they add it at posting.
