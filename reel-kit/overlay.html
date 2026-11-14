@@ -48,6 +48,10 @@ const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 
 function build(edl){
   const root=document.getElementById('root');
+  const st=edl.style||{};                   // per-reel caption placement, e.g. {"face_top": 940}
+  const css=document.createElement('style');
+  css.textContent=(st.face_top?`.cap.face{top:${st.face_top}px}`:'')+(st.board_top?`.cap.board{top:${st.board_top}px}`:'');
+  document.head.appendChild(css);
   // captions
   const groups=[];
   for(const c of edl.captions){

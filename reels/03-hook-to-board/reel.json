@@ -101,14 +101,6 @@
     },
     {
       "layout": "board",
-      "in": 169.8,
-      "out": 173.05,
-      "hard_out": true,
-      "face_x": 964,
-      "caption": "this is like asking | your student | to *pre-handle+* | an objection,"
-    },
-    {
-      "layout": "board",
       "in": 189.85,
       "out": 192.15,
       "hard_out": true,
@@ -156,8 +148,8 @@
       "in": 309.95,
       "out": 312.8,
       "face_x": 954,
-      "screen_in": 274.0,
-      "caption": "comment *“interview”* | and i'll send you | the full *question bank.*"
+      "caption": "comment *“interview”* | and i'll send you | the full *question bank.*",
+      "screen_freeze": "prev"
     },
     {
       "layout": "face",
@@ -176,26 +168,29 @@
     {
       "text": "the objection",
       "from_line": 6,
-      "to_line": 10
+      "to_line": 9
     },
     {
       "text": "the turning point",
-      "from_line": 10,
-      "to_line": 11
+      "from_line": 9,
+      "to_line": 10
     },
     {
       "text": "the proof",
-      "from_line": 11,
-      "to_line": 12
+      "from_line": 10,
+      "to_line": 11
     }
   ],
   "cta": {
     "text": "comment “interview”",
-    "line": 14,
+    "line": 13,
     "word": "comment"
   },
   "sfx": {
     "riser": null
   },
-  "song": null
+  "song": null,
+  "captions": {
+    "face_top": 960
+  }
 }

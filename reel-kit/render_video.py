@@ -156,15 +156,19 @@ for i, s in enumerate(segs):
         fc = (f"color=c=0x{BG}:s={W}x{H}:r={FPS}:d={dur:.3f}[bg];"
               f"[0:v]setpts=PTS-STARTPTS,fps={FPS},crop={cw}:{ch}:{cx}:{cy},{TM_CAM},"
               f"scale={sc(CAM[2])}:{sc(CAM[3])}:flags=lanczos[cam];"
-              f"[1:v]setpts=PTS-STARTPTS,fps={FPS},{board}[brd];"
+              + (f"[1:v]trim=end_frame=1,setpts=PTS-STARTPTS,{board},"
+                 f"tpad=stop_mode=clone:stop_duration={dur + 0.1:.3f},fps={FPS}[brd];"
+                 if 'screen_freeze' in s else f"[1:v]setpts=PTS-STARTPTS,fps={FPS},{board}[brd];") +
               f"[bg][cam]overlay={sc(CAM[0])}:{sc(CAM[1])}:eof_action=repeat[a];"
               f"[a][brd]overlay={sc(bx)}:{sc(by)}:eof_action=repeat[b];[b][3:v]overlay=0:0,setsar=1[v];"
               f"[2:a]{a_chain}[au]")
-        inputs = (cam_in + ['-ss', f"{s['screen_in']:.3f}", '-t', f'{dur:.3f}', '-i', SCREEN_SRC]
+        scr_in = (['-ss', f"{s['screen_freeze']:.3f}", '-i', SCREEN_SRC] if 'screen_freeze' in s
+                  else ['-ss', f"{s['screen_in']:.3f}", '-t', f'{dur:.3f}', '-i', SCREEN_SRC])
+        inputs = (cam_in + scr_in
                   + a_in + ['-i', f'{WK}/board_mask.png'])
     cmd = [*inputs, '-filter_complex', fc, '-map', '[v]', '-map', '[au]', '-t', f'{dur:.3f}', *ENC]
     key = hashlib.sha1(json.dumps(cmd).encode()).hexdigest()[:10]
-    out = f'{WK}/seg/{MODE}_{i:02d}_{key}.mov'          # cache: unchanged segments are reused
+    out = f'{WK}/seg/{MODE}_{key}.mov'                  # cache by content: unchanged segments are reused
     if os.path.exists(out):
         print(f'seg {i:02d} {s["layout"]:5s} {dur:5.2f}s cached', flush=True)
     else:

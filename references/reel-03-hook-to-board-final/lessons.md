@@ -66,3 +66,6 @@ Pipeline + edit list: `pipeline/hook-to-board-01/`.
   ("and") 0.35s too early. For every hard_out, check the loudness envelope for where the last word really
   ends (look for the dip before the next word) instead of trusting ASR word starts; `_` in the caption
   markup absorbs the mistimed ASR token.
+- Reel 03 notes: face captions overlapped the laptop -> `captions.face_top` 960. Last syllables clipped on
+  non-hard lines ("ques(tions)", "31(k)") -> lines now auto-extend to the real end of speech. Cut a redundant
+  set-up line. CTA board must FREEZE on the last board frame, not replay (`screen_freeze: "prev"`).

@@ -46,6 +46,7 @@ Segments are cached by their exact ffmpeg command, so after a small change only 
 | `cta` | `{"text","line","word","to_line"?}` CTA button on the board card, appears on that word, stays until `to_line` (default: end of its line) |
 | `sfx` | override defaults: `{"riser": {...}|null, "transition": {...}|null}` |
 | `song` | `{"file","start","gain_db"}` music bed, ducked under the voice; null = none |
+| `captions` | `{"face_top": 960}` caption height on face shots (1080 default; raise it when the laptop sits high in frame) |
 
 ### lines[]
 
@@ -60,6 +61,10 @@ Segments are cached by their exact ffmpeg command, so after a small change only 
 - `hard_out: true`: cut exactly at `out` (use when the next word follows with no pause, e.g. a retake starts).
 - `screen_in`: take board footage from this screen-recording time instead (when the screen showed something else).
 - `screen_fit: [x, w]`: zoomed-out board, fit `w` px of the canvas starting at `x`, pad with the board colour.
+- `screen_freeze: "prev"`: hold the last board frame of the previous board line (user wants this for the CTA
+  when the screen showed something else / the board would replay).
+- Non-hard lines automatically run on past `out` to the real end of speech (up to the next take), so a rough
+  `out` no longer clips the last syllable ("ques-tions", "31-k").
 - `zoom` (face only): ease-out keyframes. `at` = `start`, `+0.5` (seconds after line start) or a caption word.
   Zoom resets to 1.0 when a face section starts after a board section.
 

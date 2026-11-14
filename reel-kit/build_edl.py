@@ -94,7 +94,11 @@ for li, L in enumerate(R['lines']):
     layout = L['layout']
     a, b = L['in'], L['out']
     hard = L.get('hard_out', False)
-    a, b0 = speech_bounds(a, b)
+    if not hard:   # the take may run past the rough 'out' (last syllable clipped: "ques-tions", "31-k"):
+        nxt = [isl['s'] for isl in islands if isl['s'] > b]          # search on, up to the next take
+        a, b0 = speech_bounds(a, min(b + 0.6, nxt[0] - 0.1 if nxt else b + 0.6))
+    else:
+        a, b0 = speech_bounds(a, b)
     a = a - PAD_IN
     if hard:   # a hard cut inside a word clips it ("twelve thousand" -> "twelve"): warn + suggest the next dip
         io = int(b * 50)
@@ -182,6 +186,13 @@ for li, L in enumerate(R['lines']):
                 seg['screen_in'] = round(x - off, 3)
             if 'screen_fit' in L:
                 seg['screen_fit'] = L['screen_fit']
+            if L.get('screen_freeze') == 'prev':         # hold the last board frame before this line
+                pb = [g for g in segments if g['layout'] == 'board']
+                if pb:
+                    seg['screen_freeze'] = round(pb[-1]['screen_in'] + pb[-1]['out'] - pb[-1]['in'] - 0.05, 3)
+                    seg['screen_fit'] = pb[-1].get('screen_fit', seg.get('screen_fit'))
+                    if seg['screen_fit'] is None:
+                        seg.pop('screen_fit')
         segments.append(seg)
         T += y - x
     line_end[li] = round(T, 3)
@@ -211,7 +222,8 @@ if R.get('cta'):
            't1': lt(c['to_line']) if 'to_line' in c else line_end[c['line']]}
 
 edl = {'duration': round(T, 3), 'segments': segments, 'captions': captions, 'zooms': zooms,
-       'transitions': transitions, 'pills': pills, 'cta': cta, 'line_t': line_t}
+       'transitions': transitions, 'pills': pills, 'cta': cta, 'line_t': line_t,
+       'style': R.get('captions', {})}
 json.dump(edl, open(f'{W}/edl.json', 'w'), indent=1)
 print(f'edit: {T:.2f}s before speed-up ({T / R.get("speed", 1.0):.2f}s final), {len(segments)} segments, '
       f'{len(transitions)} transitions, {len(zooms)} zoom keys, speech threshold {THR:.0f} dB')

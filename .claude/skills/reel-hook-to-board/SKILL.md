@@ -36,12 +36,17 @@ and what the user approved/changed: `references/reel-03-hook-to-board-final/less
      move the out to the dip (and absorb a mistimed ASR token with `_` if the count check then fails).
 4. Board footage per SCREEN line: grab stills of the screen recording at `face_time - offset`
    (`ffmpeg -ss T -i raw/screen.mp4 -frames:v 1 ...`) and look at them. If the screen shows another app
-   (e.g. the script editor while the CTA was recorded), set `screen_in` to a time where the board is visible.
+   (e.g. the script editor while the CTA was recorded): default to `"screen_freeze": "prev"` (hold the last
+   board frame - the user asked for this on reel 03), or `screen_in` to a time where the board is visible.
    Zoomed-out board -> `screen_fit` so the whole board fits the card. Measure `screen_canvas` (rows/cols of
    the Miro canvas, no browser bar/dock/toolbar) once per recording.
 5. Framing: `face_crop` ~1.33x punch-in centred on the face (the raw phone framing reads "too wide");
    `cam.crop` 945:727 on the face source for the webcam card.
 6. Captions per line (see reel-captions), pills for numbered points, `cta` on the CTA word.
+   Face-shot captions must not overlap the laptop: check a face frame and set `captions.face_top`
+   (reel 03 needed 960; the default 1080 sat on the laptop).
+   Drop lines that only restate the next one (user cut "this is like asking your student to pre-handle
+   an objection" and went straight to "this one answers the next buyer's objection").
 7. Zooms and riser: DON'T add them by default. On reel 02 the user found the rendered zoom-ins/outs
    "not really clean" and adds zooms + riser + music himself in CapCut after export. Export with
    `"sfx": {"riser": null}` and no `zoom` keys. (The `zoom` keyframe support stays in the kit for when
