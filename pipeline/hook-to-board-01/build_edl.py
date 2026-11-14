@@ -54,7 +54,7 @@ LINES = [
     ('board', 226.78, 230.85, "the~first decision | is making | the miro board | around the *topic* | that your buyer | is actually | ready for.", None, False),
     ('board', 238.05, 240.58, "the second decision | is the *result* | you actually | lead with", None, True),
     ('board', 251.95, 255.50, "and the number | you start with | in the first | *30 seconds* | to a minute | of your video", None, False),
-    ('board', 271.65, 277.10, "then you should | always use | your terms, | your numbers, | your examples | and your wording, | because ai | *doesn't* *have~them.*", None, False),
+    ('board', 271.65, 277.10, "then you should | always use | your terms, | your numbers, | your examples | and your wording, | because ai | *doesn't have~them.*", None, False),
     ('board', 284.80, 288.30, "and then lastly, | a cta | that your backend | can actually | *close.*", None, True),
     ('board', 343.20, 346.40, "comment *ai* | and i'll send you | the full breakdown | of the board | that did it.", 155.0, False),
     ('face', 329.45, 333.30, "ai builds | the boxes. | you still have | to *decide* | what goes | in them.", None, False),
@@ -95,10 +95,17 @@ for li, (layout, a, b, cap, miro_override, hard) in enumerate(LINES):
         return acc
 
     k = 0
+    in_key = None   # key phrases can span several words: *5 minutes.*
     for gi, g in enumerate(groups):
         for tok in g:
             s = max(wl[k][0], a)
-            key = 'money' if tok.startswith('**') else ('accent' if tok.startswith('*') else None)
+            if tok.startswith('**'):
+                in_key = 'money'
+            elif tok.startswith('*'):
+                in_key = 'accent'
+            key = in_key
+            if tok.endswith('*'):
+                in_key = None
             captions.append({'t': round(map_t(s), 3), 'text': tok.strip('*').replace('~', ' '), 'key': key,
                              'group': f'{li}-{gi}', 'layout': layout})
             k += 1

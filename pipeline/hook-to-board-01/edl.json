@@ -186,7 +186,7 @@
   {
    "t": 1.86,
    "text": "minutes.",
-   "key": null,
+   "key": "accent",
    "group": "0-2",
    "layout": "face",
    "line_end": 2.25
@@ -491,7 +491,7 @@
   {
    "t": 12.48,
    "text": "calls.",
-   "key": null,
+   "key": "money",
    "group": "4-5",
    "layout": "board",
    "line_end": 12.99
@@ -760,7 +760,7 @@
   {
    "t": 21.27,
    "text": "seconds",
-   "key": null,
+   "key": "accent",
    "group": "7-3",
    "layout": "board"
   },

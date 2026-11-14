@@ -13,26 +13,38 @@ import json, subprocess, os, re
 
 W, H = 1080, 1920
 CAM_H, BAND_H = 860, 110
-BOARD_Y, BOARD_H = CAM_H + BAND_H, H - CAM_H - BAND_H        # 970, 950
+BOARD = (30, CAM_H + 115, 1020, 621, 36)  # rounded board card: x y w h radius (v1 look)
 FACE_CROP = (1620, 2880, 280, 650)        # on the 2160x3840 phone original
 CAM_CROP = (1700, 1354, 240, 1058)        # webcam card crop on the phone original
 MIRO_Y, MIRO_H = 278, 927                 # Miro canvas rows in the 2560x1440 screen recording
-MIRO_W = round(MIRO_H * W / BOARD_H)      # crop width matching the board card aspect
+MIRO_W = round(MIRO_H * BOARD[2] / BOARD[3])  # crop width matching the board card aspect
 MIRO_OVERVIEW = {4: (440, 1520), 10: (800, 1140)}   # zoomed-out lines: (x, width) that fits all content
 MIRO_BG = 'E5F7FC'                        # Miro board background colour (sampled)
 MIRO_CENTER_DEFAULT = 1280
-HOOK_ZOOM = 0.10                          # +10% push-in over the whole hook
-BOARD_ZOOM = 0.0                          # no motion inside the board (user preference)
 TARGET_LUFS = -18.0
 # iPhone records HLG/Dolby Vision HDR: tone-map to SDR or it looks washed-out white
 TONEMAP = ('zscale=tin=arib-std-b67:min=bt2020nc:pin=bt2020:rin=tv:t=linear:npl=203,format=gbrpf32le,'
            'zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,'
            'eq=contrast=1.06:saturation=1.08')
 
+from PIL import Image, ImageDraw
+
+
+def make_card_mask():
+    k = 3
+    bx, by, bw, bh, r = BOARD
+    im = Image.new('RGBA', (W * k, H * k), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.rectangle([(bx - 4) * k, (by - 4) * k, (bx + bw + 4) * k, (by + bh + 4) * k], fill=(8, 9, 10, 255))
+    d.rounded_rectangle([(bx - 1) * k, (by - 1) * k, (bx + bw + 1) * k, (by + bh + 1) * k], (r + 1) * k, fill=(31, 33, 37, 255))
+    d.rounded_rectangle([bx * k, by * k, (bx + bw) * k, (by + bh) * k], r * k, fill=(0, 0, 0, 0))
+    im.resize((W, H), Image.LANCZOS).save('card_mask.png')
+
+
+make_card_mask()
 edl = json.load(open('edl.json'))
 segs = edl['segments']
 os.makedirs('seg', exist_ok=True)
-hook_end = max(s['t0'] + s['out'] - s['in'] for s in segs if s['layout'] == 'face' and s['line'] < 4)
 line_dur = {}
 for s in segs:
     line_dur[s['line']] = line_dur.get(s['line'], 0) + s['out'] - s['in']
@@ -77,33 +89,28 @@ for i, s in enumerate(segs):
     v_in = ['-ss', f"{s['in']:.3f}", '-t', f'{dur:.3f}', '-i', 'raw/me.mp4']
     fw, fh, fx, fy = FACE_CROP
     if s['layout'] == 'face':
-        if s['line'] < 4:   # hook: continuous push-in across all hook cuts
-            z = f"(1+{HOOK_ZOOM}*({s['t0']:.3f}+t)/{hook_end:.3f})"
-        else:               # close: barely-moving hold
-            z = f"(1+0.02*({s['t0'] - line_t0[s['line']]:.3f}+t)/{line_dur[s['line']]:.3f})"
         vf = (f"[0:v]fps=30,crop={fw}:{fh}:{fx}:{fy},{TONEMAP},"
-              f"scale=w='trunc({W}*{z}/2)*2':h='trunc({H}*{z}/2)*2':eval=frame:flags=bicubic,"
-              f"crop={W}:{H}:(iw-{W})/2:(ih-{H})*0.35,setsar=1[v]")
+              f"scale={W}:{H}:flags=lanczos,setsar=1[v]")
         inputs = v_in + a_in
         fc = vf + f";[1:a]{a_chain}[au]"
     else:
         cw, ch, cx, cy = CAM_CROP
-        z = f"(1+{BOARD_ZOOM}*({s['t0'] - line_t0[s['line']]:.3f}+t)/{line_dur[s['line']]:.3f})"
-        if s['line'] in MIRO_OVERVIEW:   # zoomed-out board: fit full width, pad with the board colour
+        bx, by, bw, bh, _ = BOARD
+        if s['line'] in MIRO_OVERVIEW:   # zoomed-out board: fit all content, pad with the board colour
             ox, ow = MIRO_OVERVIEW[s['line']]
-            board_src = (f"crop={ow}:{MIRO_H}:{ox}:{MIRO_Y},scale={W}:-2:flags=lanczos,"
-                         f"pad={W}:{BOARD_H}:0:(oh-ih)/2:color=0x{MIRO_BG},")
+            board_src = (f"crop={ow}:{MIRO_H}:{ox}:{MIRO_Y},"
+                         f"scale={bw}:{bh}:force_original_aspect_ratio=decrease:flags=lanczos,"
+                         f"crop='min(iw,{bw})':'min(ih,{bh})',"
+                         f"pad={bw}:{bh}:(ow-iw)/2:(oh-ih)/2:color=0x{MIRO_BG}")
         else:
             mx = MIRO_CENTER_DEFAULT - MIRO_W // 2
-            board_src = f"crop={MIRO_W}:{MIRO_H}:{mx}:{MIRO_Y},"
+            board_src = f"crop={MIRO_W}:{MIRO_H}:{mx}:{MIRO_Y},scale={bw}:{bh}:flags=lanczos"
         fc = (f"color=c=0x08090A:s={W}x{H}:r=30:d={dur:.3f}[bg];"
               f"[0:v]fps=30,crop={cw}:{ch}:{cx}:{cy},{TONEMAP},scale={W}:{CAM_H}:flags=lanczos[cam];"
-              f"[1:v]fps=30,{board_src}"
-              f"scale=w='trunc({W}*{z}/2)*2':h='trunc({BOARD_H}*{z}/2)*2':eval=frame:flags=lanczos,"
-              f"crop={W}:{BOARD_H}:(iw-{W})/2:(ih-{BOARD_H})/2[brd];"
-              f"[bg][cam]overlay=0:0[a];[a][brd]overlay=0:{BOARD_Y},setsar=1[v];"
+              f"[1:v]fps=30,{board_src}[brd];"
+              f"[bg][cam]overlay=0:0[a];[a][brd]overlay={bx}:{by}[b];[b][3:v]overlay=0:0,setsar=1[v];"
               f"[2:a]{a_chain}[au]")
-        inputs = v_in + ['-ss', f"{s['miro_in']:.3f}", '-t', f'{dur:.3f}', '-i', 'raw/miro.mp4'] + a_in
+        inputs = v_in + ['-ss', f"{s['miro_in']:.3f}", '-t', f'{dur:.3f}', '-i', 'raw/miro.mp4'] + a_in + ['-i', 'card_mask.png']
     cmd = ['ffmpeg', '-v', 'error', '-y', *inputs, '-filter_complex', fc,
            '-map', '[v]', '-map', '[au]', '-t', f'{dur:.3f}', *ENC, out]
     subprocess.run(cmd, check=True)
