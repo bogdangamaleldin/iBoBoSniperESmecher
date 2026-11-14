@@ -69,3 +69,5 @@ Pipeline + edit list: `pipeline/hook-to-board-01/`.
 - Reel 03 notes: face captions overlapped the laptop -> `captions.face_top` 960. Last syllables clipped on
   non-hard lines ("ques(tions)", "31(k)") -> lines now auto-extend to the real end of speech. Cut a redundant
   set-up line. CTA board must FREEZE on the last board frame, not replay (`screen_freeze: "prev"`).
+- Reel 03: per-take re-centring made the frame jump at every hook cut -> one fixed framing per reel;
+  don't cut short (<0.4s) pauses on face shots.

@@ -22,7 +22,9 @@ and what the user approved/changed: `references/reel-03-hook-to-board-final/less
    It prints every speech island (each take separately) and the screen sync OFFSET -> put it in `screen_offset`.
    The laptop mic hears the same voice. If sync.py reports JUMPS (the screen recorder skipped time - reel 02
    lost 3.2s), paste the printed `[[face_time_from, offset], ...]` map as `screen_offset`.
-   Phone not centred / user moved: measure `face_x` per take with `reel-kit/face_x.py` and set it per line.
+   Phone not centred: measure the face with `reel-kit/face_x.py` on several takes and set ONE reel-level
+   `face_x` (the median). Never re-centre per take - the background jumps at every cut (user flagged it on
+   reel 03). Per-line `face_x` only if the user moved a lot within the reel.
 3. If no script outline came with the footage, structure it like reel 01 (hook = problem + proof on FACE,
    board = numbers + each point with its follow-up, close = one-line takeaway on FACE) and say so.
    Pick takes per script line: by default the LAST complete clean take. Watch for:

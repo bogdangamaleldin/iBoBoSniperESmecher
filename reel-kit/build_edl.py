@@ -26,6 +26,7 @@ THR = float(min(max(np.percentile(RMS, 10) + 20, -48), -35))   # ~20 dB over roo
 
 CUT = R.get('cut', {})
 MAX_GAP = CUT.get('max_pause', 0.18)       # pauses longer than this inside a line get cut ...
+MAX_GAP_FACE = CUT.get('max_pause_face', 0.4)  # face shots: only cut real pauses (a cut = visible jump)
 KEEP_GAP = CUT.get('keep_pause', 0.06)     # ... down to this
 PAD_IN, PAD_OUT = CUT.get('pad_in', 0.03), CUT.get('pad_out', 0.06)
 END_HOLD = CUT.get('end_hold', 0.9)        # keep this much footage after the LAST word (ending felt cut off)
@@ -56,7 +57,8 @@ def speech_bounds(a, b):
     return (i0 + v[0]) / 50, (i0 + v[-1] + 1) / 50
 
 
-def split_pauses(a, b):
+def split_pauses(a, b, max_gap=None):
+    max_gap = MAX_GAP if max_gap is None else max_gap
     i0, i1 = int(a * 50), int(b * 50)
     voiced = RMS[i0:i1] > THR
     out, start, j, n = [], a, 0, len(voiced)
@@ -66,7 +68,7 @@ def split_pauses(a, b):
             while k < n and not voiced[k]:
                 k += 1
             gs, ge = a + j / 50, a + k / 50
-            if 0 < j and k < n and ge - gs > MAX_GAP:
+            if 0 < j and k < n and ge - gs > max_gap:
                 out.append([start, gs + KEEP_GAP / 2]); start = ge - KEEP_GAP / 2
             j = k
         else:
@@ -110,7 +112,7 @@ for li, L in enumerate(R['lines']):
     if li == len(R['lines']) - 1 and not hard:     # let the last word land: hold on the speaker
         later = [isl['s'] for isl in islands if isl['s'] > b0 + 0.1]
         b = min(b0 + END_HOLD, (later[0] - 0.25) if later else 1e9)
-    subs = split_pauses(a, b)
+    subs = split_pauses(a, b, L.get('max_pause', MAX_GAP_FACE if layout == 'face' else MAX_GAP))
     wl = norm_tokens([wd for wd in allwords if wd[0] < b - 0.05 and wd[1] > a + 0.05])
     groups = [g.strip().split() for g in L['caption'].split('|')]
     need = sum(2 if t.rstrip('*').endswith('+') else 1 for g in groups for t in g)   # '_' counts as 1
@@ -171,8 +173,9 @@ for li, L in enumerate(R['lines']):
 
     for x, y in subs:
         seg = {'layout': layout, 'in': x, 'out': y, 'line': li, 't0': round(T, 3)}
-        if 'face_x' in L:                              # face centre (source px) for this take: re-centres the crops
-            seg['face_x'] = L['face_x']
+        fx_ = L.get('face_x', R.get('face_x'))           # ONE framing per reel (R.face_x); per-line only if needed
+        if fx_ is not None:
+            seg['face_x'] = fx_
         off = offset_at(x)
         on_screen_rec = off is not None and (x - off) > 0.3 and (y - off) < R.get('screen_duration', 1e9)
         audio = R.get('audio', 'auto')
