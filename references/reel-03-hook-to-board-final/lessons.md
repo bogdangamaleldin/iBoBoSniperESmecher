@@ -92,3 +92,5 @@ Conclusions:
 - End hold 0.9s was too long: he trims to ~0.15-0.25s -> end_hold default 0.3s.
 - The "square board" he saw on reel 03 was his 1.10 hook zoom still active into the first board frames.
 - Music bed sits ~9 dB under the voice; final ~-13.5 LUFS.
+- LF #1 clip 1: frame 0 had no caption/hook (they popped in over 4 frames) -> looked like a cut at the very
+  start and a bare thumbnail. Elements that start at t=0 are now fully on screen from frame 0.

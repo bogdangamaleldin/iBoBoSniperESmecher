@@ -71,7 +71,7 @@ function build(edl){
   groups.forEach((g,i)=>{
     const line=lineOf(g.id), nxt=groups[i+1];
     const lineEnd=edl.captions.filter(c=>lineOf(c.group)===line).map(c=>c.line_end).find(x=>x!==undefined);
-    g.t0=g.words[0].t;
+    g.t0=i===0&&g.words[0].t<0.12?0:g.words[0].t;   // first caption is on screen from frame 0
     // hold until the next group (no gaps), but never across a face<->board switch: end on the cut
     g.t1=(nxt && nxt.layout===g.layout)? nxt.words[0].t : lineEnd;
     const row=h(`<div class="cap ${g.layout}"></div>`);
@@ -104,7 +104,7 @@ function setTime(t){
         const on=t>=g.t0-1e-6&&t<g.t1;
         g.row.style.display=on?'flex':'none';
         if(!on) continue;
-        const p=easeOut((t-g.t0)/0.10);
+        const p=g.t0<=0.12?1:easeOut((t-g.t0)/0.10);   // already on screen at frame 0: no pop-in (read as a cut)
         g.row.style.opacity=p;
         g.row.style.filter=`blur(${(1-p)*6}px)`;
         g.row.style.transform=`scale(${0.92+0.08*p})`;
@@ -130,7 +130,7 @@ function setTime(t){
       }
       continue;
     }
-    const p=easeOut((t-t0)/0.22), out=clamp((t-(t1-0.08))/0.08);
+    const p=t0<=0.12?1:easeOut((t-t0)/0.22), out=clamp((t-(t1-0.08))/0.08);
     el.style.opacity=p*(1-out);
     el.style.filter=`blur(${(1-p)*8}px)`;
     el.style.transform=anim==='slide'?`translateX(${(1-p)*-24}px)`:`scale(${0.9+0.1*p})`;
