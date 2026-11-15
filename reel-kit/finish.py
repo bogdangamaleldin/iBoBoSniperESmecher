@@ -21,6 +21,10 @@ name = R.get('name', os.path.basename(os.path.abspath(D)))
 OUT = sys.argv[3] if len(sys.argv) > 3 else f"{D}/out/{name}_{'preview' if MODE == 'preview' else '4k60'}.mp4"
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 dur_out = edl['duration'] / SP
+# a clip that ends on a hard cut (last word right at the end) gets a short frozen tail, so the final
+# audio fade happens in silence instead of eating the last word ("creator" got clipped on LF #1)
+TAIL = 0.35 if R['lines'][-1].get('hard_out') else 0.0
+dur_out += TAIL
 
 sfx = {'riser': {'file': 'riser.mp3', 'at': 0.0, 'gain_db': 4},
        'transition': {'file': 'camera-shutter.mp3', 'trim_start': 0.66, 'hit': 0.03, 'gain_db': -2}}
@@ -31,8 +35,9 @@ for k, v in (R.get('sfx') or {}).items():
         sfx[k] = {**sfx.get(k, {}), **v}
 
 inputs = ['-i', f'{WK}/base_{MODE}.mov', '-framerate', str(FPS), '-i', f'{WK}/ovl_{MODE}/%05d.png']
-fc = [f"[0:v][1:v]overlay=format=auto:eof_action=pass,setpts=PTS/{SP},fps={FPS},format=yuv420p[v]",
-      f"[0:a]atempo={SP},loudnorm=I=-14:TP=-1.5:LRA=9,aresample=48000[voice]"]
+fc = [f"[0:v][1:v]overlay=format=auto:eof_action=pass,setpts=PTS/{SP},fps={FPS},"
+      f"tpad=stop_mode=clone:stop_duration={TAIL + 0.05:.2f},format=yuv420p[v]",
+      f"[0:a]atempo={SP},loudnorm=I=-14:TP=-1.5:LRA=9,aresample=48000,apad[voice]"]
 mix = ['[voice]']
 idx = 2
 song = R.get('song')
@@ -55,10 +60,11 @@ if 'transition' in sfx and trans:
         fc.append(f"[tr{i}]adelay={ms}|{ms}[trd{i}]"); mix.append(f'[trd{i}]')
     idx += 1
 if song:
-    inputs += ['-stream_loop', '-1', '-ss', str(song.get('start', 0)), '-i', f"{D}/{song['file']}"]
+    sf = song['file'] if song['file'].startswith('/') else os.path.normpath(os.path.join(D, song['file']))
+    inputs += ['-stream_loop', '-1', '-ss', str(song.get('start', 0)), '-i', sf]
     fc.append(f"[{idx}:a]aresample=48000,atrim=0:{dur_out:.3f},volume={song.get('gain_db', -20)}dB,"
               f"afade=t=in:d=0.3,afade=t=out:st={dur_out - 0.8:.3f}:d=0.8[song0];"
-              f"[song0][key]sidechaincompress=threshold=0.04:ratio=4:attack=15:release=350[song]")
+              f"[song0][key]sidechaincompress=threshold=0.1:ratio=2:attack=20:release=300[song]")
     mix.append('[song]'); idx += 1
 fc.append(f"{''.join(mix)}amix=inputs={len(mix)}:normalize=0:duration=first,alimiter=limit=0.94,"
           f"afade=t=out:st={max(0, dur_out - 0.35):.3f}:d=0.35[a]")

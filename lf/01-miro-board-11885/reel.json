@@ -33,18 +33,18 @@
     ]
   },
   "layout": {
-    "board_card": [
-      30,
-      230,
-      1020,
-      850,
-      36
-    ],
     "cam_card": [
       30,
-      1200,
+      140,
       1020,
       574,
+      36
+    ],
+    "board_card": [
+      30,
+      830,
+      1020,
+      800,
       36
     ]
   },
@@ -63,9 +63,9 @@
     ]
   },
   "captions": {
-    "board_top": 1103,
-    "hook_top": 300,
-    "cta_top": 930
+    "board_top": 735,
+    "hook_top": 870,
+    "cta_top": 1500
   },
   "hook": {
     "text": "this video was *65 minutes* long. / it booked **56 calls.**",
@@ -78,43 +78,32 @@
       "out": 21.05,
       "hard_out": true,
       "screen_fit": [
-        1040,
-        1716
+        1000,
+        1823
       ],
       "caption": "you might be _ thinking, | *65 minutes* long. | that's like | one hour | and five minutes. | why so *long?* | this is exactly | one of the main reasons | why we actually | *cash collected* | this much."
     },
     {
       "layout": "board",
       "in": 21.08,
-      "out": 28.98,
-      "hard_out": true,
-      "screen_fit": [
-        1040,
-        1716
-      ],
-      "caption": "i'm gonna break down | why the *length* | actually worked | really well. | it's because that | before actually buying | your info product | or whatever _ product, | community, _"
-    },
-    {
-      "layout": "board",
-      "in": 29.45,
       "out": 47.0,
       "hard_out": true,
       "screen_fit": [
-        1040,
-        1716
+        1000,
+        1823
       ],
-      "caption": "_ people need to watch | *hours* of your content | in order to | buy from you. | why, | you might ask, | is~because~that | in those hours | of content, | those are the hours | of content | that the _ layers | should be *broken,* | right, | the belief of your | *credibility,* authority, | in order to | make it way easier | and make it for them | to have the *intent* | and actually want | to work with~you, | _"
+      "caption": "i'm gonna break down | why the *length* | actually worked | really well. | it's because that | before actually buying | your info product | or whatever | an~algorithm product, | community, | you have | people need to watch | *hours* of your content | in order to | buy from you. | why, | you might ask, | is~because~that | in those hours | of content, | those are the hours | of content | that the *whole layers* | should be *broken,* | right, | the layer of your | *credibility,* authority, | in order to | make it way easier | and make it for them | to have the *intent* | and actually want | to work with~you, | _"
     },
     {
       "layout": "board",
       "in": 47.32,
-      "out": 65.95,
+      "out": 65.97,
       "hard_out": true,
       "screen_fit": [
         700,
         2500
       ],
-      "caption": "so every single | *cold lead* | that you get | inside of the business, | like every single | *cold traffic,* | after they watch | *two to seven hours* | of content, | they're gonna get out | as a *ready to buy* lead. | and so *65* | in one sitting | basically completes | this run | and makes them break | all of the | *trust layers* | in order for them | to be able | and actually want | to buy | from the *creator.* _"
+      "caption": "so every single | *cold lead* | that you get | inside of the business, | like every single | *cold traffic,* | after they watch | *two to seven hours* | of content, | they're gonna get out | as a *ready to buy* lead. | and so *65* | in one sitting | basically completes | this *role* | and makes them break | all of the | *trust layers* | in order for them | to be able | and actually want | to buy | from the *creator.* _"
     }
   ],
   "cta": {
@@ -122,10 +111,14 @@
     "last": 2.0
   },
   "sfx": {
-    "riser": null,
+    "riser": {},
     "transition": null
   },
-  "song": null,
+  "song": {
+    "file": "../../brand/music/les-instrumental-slowed.mp3",
+    "start": 0,
+    "gain_db": -2
+  },
   "cut": {
     "threshold": -49
   }
