@@ -1,0 +1,169 @@
+{
+  "name": "lf01-clip1-short",
+  "format": "lf-clip",
+  "drive": {
+    "source": "https://drive.google.com/file/d/1iOZlY76L5uDRGs3cCXKePkuhiEceYBi7/view"
+  },
+  "source_window": "raw/clip.mov = source 9:00 (540s) to 10:12 (612s), stream-copied",
+  "sources": {
+    "face": "raw/clip.mov",
+    "screen": "raw/clip.mov"
+  },
+  "screen_offset": 0.0,
+  "screen_duration": 72.4,
+  "audio": "screen",
+  "speed": 1.12,
+  "export": {
+    "scale": 2,
+    "fps": 60
+  },
+  "face_crop": [
+    1215,
+    2160,
+    1312,
+    0
+  ],
+  "cam": {
+    "source": "screen",
+    "crop": [
+      1050,
+      591,
+      165,
+      1480
+    ]
+  },
+  "layout": {
+    "cam_card": [
+      30,
+      140,
+      1020,
+      574,
+      36
+    ],
+    "board_card": [
+      30,
+      830,
+      1020,
+      800,
+      36
+    ]
+  },
+  "screen_canvas": {
+    "y": 300,
+    "h": 1430,
+    "center_x": 2150,
+    "bg": "E5F7FC",
+    "mask": [
+      [
+        0,
+        1400,
+        1300,
+        760
+      ]
+    ]
+  },
+  "captions": {
+    "board_top": 735,
+    "hook_top": 870,
+    "cta_top": 1500
+  },
+  "hook": {
+    "text": "this video was *65 minutes* long. / it booked **56 calls.**",
+    "dur": 2.0
+  },
+  "lines": [
+    {
+      "layout": "board",
+      "in": 11.85,
+      "out": 14.42,
+      "hard_out": true,
+      "screen_fit": [
+        1000,
+        1823
+      ],
+      "caption": "you might be _ thinking, | *65 minutes* long."
+    },
+    {
+      "layout": "board",
+      "in": 15.95,
+      "out": 21.05,
+      "hard_out": true,
+      "screen_fit": [
+        1000,
+        1823
+      ],
+      "caption": "why so *long?* | this is exactly | one of the main reasons | why we actually | *cash collected* | this much."
+    },
+    {
+      "layout": "board",
+      "in": 24.47,
+      "out": 27.15,
+      "hard_out": true,
+      "screen_fit": [
+        1000,
+        1823
+      ],
+      "caption": "_ before actually buying | your *info product,*"
+    },
+    {
+      "layout": "board",
+      "in": 29.53,
+      "out": 32.95,
+      "hard_out": true,
+      "screen_fit": [
+        1000,
+        1823
+      ],
+      "caption": "people need to watch | *hours* of your content | in order to | buy from you."
+    },
+    {
+      "layout": "board",
+      "in": 47.32,
+      "out": 50.11,
+      "hard_out": true,
+      "screen_fit": [
+        700,
+        2500
+      ],
+      "caption": "so every single | *cold lead* | that you get | inside of the business,"
+    },
+    {
+      "layout": "board",
+      "in": 51.7,
+      "out": 62.33,
+      "hard_out": true,
+      "screen_fit": [
+        700,
+        2500
+      ],
+      "caption": "after they watch | *two to seven hours* | of content, | they're gonna get out | as a *ready to buy* lead. | and so *65* | in one sitting | basically completes | this *role* | and makes them break | all of the | *trust layers,* _"
+    },
+    {
+      "layout": "board",
+      "in": 63.96,
+      "out": 65.97,
+      "hard_out": true,
+      "screen_fit": [
+        700,
+        2500
+      ],
+      "caption": "_ and actually want | to buy | from the *creator.* _"
+    }
+  ],
+  "cta": {
+    "text": "comment “board”",
+    "last": 2.0
+  },
+  "sfx": {
+    "riser": {},
+    "transition": null
+  },
+  "song": {
+    "file": "../../brand/music/les-instrumental-slowed.mp3",
+    "start": 0,
+    "gain_db": -2
+  },
+  "cut": {
+    "threshold": -49
+  }
+}
