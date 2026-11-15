@@ -98,3 +98,12 @@ Face lines cut pauses longer than `cut.max_pause_face` (0.3s); the user hides th
 ## After posting
 `python3 reel-kit/compare_posted.py reels/<NN> [posted.mp4]` measures what the user changed in CapCut
 (trims, speed, zoom levels over time, music bed level). Put the posted file in `reels/<NN>/posted/` (git-ignored).
+
+## Long-form clips (one edited source with a webcam bubble)
+`cam.source: "screen"`, `sources.face = sources.screen = raw/clip.mov` (stream-copy the window you need out of the
+long video first), `screen_offset: 0`, `layout` cards, `screen_canvas.mask` to paint out the bubble,
+`cut.threshold` (room tone is louder than phone/laptop recordings), `hook`, `cta.last`.
+`prep` runs `source_cuts.py`: the long-form video already has jump cuts, and a segment starting/ending a few
+frames before one of them shows a sliver of the other shot ("random frame"). The renderer snaps the video
+to those cuts (holds the clean frame) while the audio stays untouched.
+Video is cut by coarse seek + exact `trim` (input seeking alone let stray frames through on these files).

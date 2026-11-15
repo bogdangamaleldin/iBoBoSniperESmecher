@@ -94,3 +94,7 @@ Conclusions:
 - Music bed sits ~9 dB under the voice; final ~-13.5 LUFS.
 - LF #1 clip 1: frame 0 had no caption/hook (they popped in over 4 frames) -> looked like a cut at the very
   start and a bare thumbnail. Elements that start at t=0 are now fully on screen from frame 0.
+- LF clip notes: "random frames" at cuts came from the long-form video's OWN jump cuts sitting a few frames
+  after our segment starts -> source_cuts.py + snapping. Always check the voice-only track at every join:
+  the tail of the previous word ("tha-t", "a-ble") reads as a glitch; start in the dip before the next word.
+  The user prefers short LF clips (~25-30s, one idea, no restatements) - the 50s version was "boring and long".

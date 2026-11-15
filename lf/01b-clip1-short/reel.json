@@ -81,7 +81,7 @@
         1000,
         1823
       ],
-      "caption": "you might be _ thinking, | *65 minutes* long."
+      "caption": "now you might be | thinking, | *65 minutes* long."
     },
     {
       "layout": "board",
@@ -96,14 +96,14 @@
     },
     {
       "layout": "board",
-      "in": 24.47,
+      "in": 24.53,
       "out": 27.15,
       "hard_out": true,
       "screen_fit": [
         1000,
         1823
       ],
-      "caption": "_ before actually buying | your *info product,*"
+      "caption": "before actually buying | your *info product,*"
     },
     {
       "layout": "board",
@@ -140,7 +140,7 @@
     },
     {
       "layout": "board",
-      "in": 63.96,
+      "in": 63.99,
       "out": 65.97,
       "hard_out": true,
       "screen_fit": [

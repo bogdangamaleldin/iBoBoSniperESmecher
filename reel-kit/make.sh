@@ -15,6 +15,11 @@ case "$STEP" in
   prep)
     ffmpeg -v error -y -i "$D/$face" -vn -ac 1 -ar 16000 "$D/work/face_16k.wav"
     python3 "$KIT/transcribe.py" "$D/work/face_16k.wav" "$D/work/face_islands.json" --islands
+    camsrc=$(python3 -c "import json;print(json.load(open('$D/reel.json')).get('cam',{}).get('source',''))")
+    if [ "$camsrc" = "screen" ]; then   # edited long-form source: find its own cuts (renderer snaps to them)
+      crop=$(python3 -c "import json;c=json.load(open('$D/reel.json'))['cam']['crop'];print(f'{c[0]}:{c[1]}:{c[2]}:{c[3]}')")
+      python3 "$KIT/source_cuts.py" "$D/$face" "$crop" "$D/work/source_cuts.json"
+    fi
     if [ -n "$screen" ]; then
       ffmpeg -v error -y -i "$D/$screen" -vn -ac 1 -ar 16000 "$D/work/screen_16k.wav"
       python3 "$KIT/sync.py" "$D/work/face_16k.wav" "$D/work/screen_16k.wav"

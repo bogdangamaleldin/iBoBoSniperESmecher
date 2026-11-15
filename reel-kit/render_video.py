@@ -105,6 +105,37 @@ def loudness(src, start, dur):
     return float(re.findall(r'I:\s+(-?[\d.]+) LUFS', r)[-1])
 
 
+PRE = 2.0
+
+
+def seek(src, start, dur):
+    pre = min(PRE, max(0.0, start))
+    return ['-ss', f'{start - pre:.3f}', '-t', f'{dur + pre + 0.5:.3f}', '-i', src], pre
+
+
+def vtrim(pre, dur, snap=(0.0, 0.0)):
+    a, b = snap      # hold the first/last clean frame instead of showing a sliver of another source shot
+    t = f"trim=start={pre + a:.4f}:duration={dur - a - b:.4f},setpts=PTS-STARTPTS"
+    if a or b:
+        t += f",tpad=start_mode=clone:start_duration={a:.4f}:stop_mode=clone:stop_duration={b + 0.05:.4f}"
+    return t
+
+
+SRC_CUTS = json.load(open(f'{WK}/source_cuts.json')) if os.path.exists(f'{WK}/source_cuts.json') else []
+SNAP = 0.4
+
+
+def snap_for(t0, dur):
+    """source cuts (edited long-form video) within SNAP s of a segment edge -> (head, tail) to hold"""
+    a = max([c - t0 for c in SRC_CUTS if 0 < c - t0 <= SNAP] or [0.0])
+    b = max([t0 + dur - c for c in SRC_CUTS if 0 < t0 + dur - c <= SNAP] or [0.0])
+    return (round(a, 4), round(b, 4)) if a + b < dur - 0.2 else (0.0, 0.0)
+
+
+def atrim(pre, dur):
+    return f"atrim=start={pre:.4f}:duration={dur:.4f},asetpts=PTS-STARTPTS"
+
+
 make_mask()
 segs = edl['segments']
 lines = sorted({s['line'] for s in segs})
@@ -123,14 +154,14 @@ for i, s in enumerate(segs):
     dur = s['out'] - s['in']
     fade = f"afade=t=in:d=0.008,afade=t=out:st={max(0, dur - 0.012):.3f}:d=0.012"
     if s['audio'] == 'screen':
-        a_in = ['-ss', f"{s['audio_in']:.3f}", '-t', f'{dur:.3f}', '-i', SCREEN_SRC]
-        a_chain = f"highpass=f=80,afftdn=nr=8:nf=-50,volume={gain[s['line']]:.2f}dB,{fade}"
+        a_in, apre = seek(SCREEN_SRC, s['audio_in'], dur)
+        a_chain = f"{atrim(apre, dur)},highpass=f=80,afftdn=nr=8:nf=-50,volume={gain[s['line']]:.2f}dB,{fade}"
     else:   # phone mic: LIGHT cleanup only (heavy denoise sounds watery)
-        a_in = ['-ss', f"{s['in']:.3f}", '-t', f'{dur:.3f}', '-i', FACE_SRC]
-        a_chain = (f"highpass=f=90,afftdn=nr=4:nf=-55,equalizer=f=280:t=q:w=1.2:g=-3,"
+        a_in, apre = seek(FACE_SRC, s['in'], dur)
+        a_chain = (f"{atrim(apre, dur)},highpass=f=90,afftdn=nr=4:nf=-55,equalizer=f=280:t=q:w=1.2:g=-3,"
                    f"equalizer=f=3800:t=q:w=1.5:g=2,acompressor=threshold=-24dB:ratio=2.5:attack=8:release=120,"
                    f"volume={gain[s['line']]:.2f}dB,{fade}")
-    v_in = ['-ss', f"{s['in']:.3f}", '-t', f'{dur:.3f}', '-i', FACE_SRC]
+    v_in, vpre = seek(FACE_SRC, s['in'], dur)
     fw, fh, fx, fy = FACE_CROP
     cw, ch, cx, cy = CAM_CROP
     if 'face_x' in s:                              # per-take face tracking (camera not centred / user moved)
@@ -139,7 +170,7 @@ for i, s in enumerate(segs):
             cx = int(min(max(s['face_x'] - cw / 2, 0), FACE_W - cw))
     if s['layout'] == 'face':
         z = zoom_expr(s['t0'], s['t0'] + dur)
-        fc = (f"[0:v]setpts=PTS-STARTPTS,fps={FPS},crop={fw}:{fh}:{fx}:{fy},{TM_FACE},"
+        fc = (f"[0:v]{vtrim(vpre, dur)},fps={FPS},crop={fw}:{fh}:{fx}:{fy},{TM_FACE},"
               f"scale=w='trunc({W}*{z}/2)*2':h='trunc({H}*{z}/2)*2':eval=frame:flags=bicubic,"
               f"crop={W}:{H}:(iw-{W})/2:(ih-{H})*{FACE_ANCHOR_Y},setsar=1[v];[1:a]{a_chain}[au]")
         inputs = v_in + a_in
@@ -154,18 +185,23 @@ for i, s in enumerate(segs):
                      f"crop='min(iw,{sc(bw)})':'min(ih,{sc(bh)})',pad={sc(bw)}:{sc(bh)}:(ow-iw)/2:(oh-ih)/2:color=0x{SCR_BG}")
         else:
             board = f"{mask}crop={SCR_W}:{SCR_H}:{SCR_CX - SCR_W // 2}:{SCR_Y},scale={sc(bw)}:{sc(bh)}:flags=lanczos"
-        cam_in = v_in if CAM_SRC == 'face' else ['-ss', f"{s['screen_in']:.3f}", '-t', f'{dur:.3f}', '-i', SCREEN_SRC]
+        cam_in, cpre = (v_in, vpre) if CAM_SRC == 'face' else seek(SCREEN_SRC, s['screen_in'], dur)
+        snap = snap_for(s['screen_in'], dur) if CAM_SRC == 'screen' and 'screen_freeze' not in s else (0.0, 0.0)
+        if snap != (0.0, 0.0):
+            print(f'  seg {i:02d}: snapping video to source cuts, hold head {snap[0]:.2f}s / tail {snap[1]:.2f}s', flush=True)
+        if 'screen_freeze' in s:
+            scr_in, spre = ['-ss', f"{s['screen_freeze']:.3f}", '-i', SCREEN_SRC], 0.0
+        else:
+            scr_in, spre = seek(SCREEN_SRC, s['screen_in'], dur)
         fc = (f"color=c=0x{BG}:s={W}x{H}:r={FPS}:d={dur:.3f}[bg];"
-              f"[0:v]setpts=PTS-STARTPTS,fps={FPS},crop={cw}:{ch}:{cx}:{cy},{TM_CAM},"
+              f"[0:v]{vtrim(cpre, dur, snap)},fps={FPS},crop={cw}:{ch}:{cx}:{cy},{TM_CAM},"
               f"scale={sc(CAM[2])}:{sc(CAM[3])}:flags=lanczos[cam];"
               + (f"[1:v]trim=end_frame=1,setpts=PTS-STARTPTS,{board},"
                  f"tpad=stop_mode=clone:stop_duration={dur + 0.1:.3f},fps={FPS}[brd];"
-                 if 'screen_freeze' in s else f"[1:v]setpts=PTS-STARTPTS,fps={FPS},{board}[brd];") +
+                 if 'screen_freeze' in s else f"[1:v]{vtrim(spre, dur, snap)},fps={FPS},{board}[brd];") +
               f"[bg][cam]overlay={sc(CAM[0])}:{sc(CAM[1])}:eof_action=repeat[a];"
               f"[a][brd]overlay={sc(bx)}:{sc(by)}:eof_action=repeat[b];[b][3:v]overlay=0:0,setsar=1[v];"
               f"[2:a]{a_chain}[au]")
-        scr_in = (['-ss', f"{s['screen_freeze']:.3f}", '-i', SCREEN_SRC] if 'screen_freeze' in s
-                  else ['-ss', f"{s['screen_in']:.3f}", '-t', f'{dur:.3f}', '-i', SCREEN_SRC])
         inputs = (cam_in + scr_in
                   + a_in + ['-i', f'{WK}/board_mask.png'])
     cmd = [*inputs, '-filter_complex', fc, '-map', '[v]', '-map', '[au]', '-t', f'{dur:.3f}', *ENC]
