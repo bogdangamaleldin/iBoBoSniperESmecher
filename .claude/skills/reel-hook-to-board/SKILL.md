@@ -59,8 +59,9 @@ and what the user approved/changed: `references/reel-03-hook-to-board-final/less
 9. Iterate on the user's notes (edit reel.json, re-run preview). When approved: `make.sh ... final` (4K60).
 10. Deliver: SendUserFile (Drive uploads from here cap at 10MB, so Drive won't take the 4K file).
     Commit `reels/<NN-name>/reel.json` (footage/renders are git-ignored) and push.
-11. Ask for the posted version afterwards; compare with ours (frames, audio, zoom via
-    feature matching) and add what they changed by hand to the lessons file.
+11. Ask for the posted version afterwards; put it in `reels/<NN>/posted/posted.mp4` and run
+    `python3 reel-kit/compare_posted.py reels/<NN>` (trims, speed, zoom levels, music bed), then add what
+    they changed by hand to the lessons file. Check checksums - the user once re-sent an old file.
 
 ## Defaults the user approved (don't regress)
 - Face: captions only on full-screen shots, no other graphics. No black margins on face shots.
@@ -70,4 +71,6 @@ and what the user approved/changed: `references/reel-03-hook-to-board-final/less
 - Pacing: pauses > 0.18s cut, 1.08x speed, tight line joins.
 - Transitions: warm glare + camera-shutter second click at face<->board switches only (user: "i like the transitions").
 - Zooms, riser and song: the user adds these in CapCut after our export - leave them out unless asked.
+  His zooms switch level ON the jump cuts in the hook (1.00 <-> ~1.10), none on the board; so face pauses
+  > 0.3s are cut (he hides the jumps). End hold ~0.3s after the last word (his posts: 0.14-0.24s).
 - Song: user picks it; add via reel.json `song` if they send the file, otherwise they add it at posting.

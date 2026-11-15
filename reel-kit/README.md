@@ -39,7 +39,7 @@ Segments are cached by their exact ffmpeg command, so after a small change only 
 | `face_anchor_y` | vertical anchor for zooms (0.35 = face) |
 | `cam` | `{"source": "face"|"screen", "crop": [w,h,x,y]}` webcam card crop (945:727 aspect) |
 | `screen_canvas` | `{"y","h","center_x","bg"}` board area in the screen recording (exclude browser chrome + dock) |
-| `cut` | optional `{"max_pause":0.18,"keep_pause":0.06,"pad_in":0.03,"pad_out":0.06,"end_hold":0.9}` (end_hold = footage kept after the last word; the user found endings cut too fast) |
+| `cut` | optional `{"max_pause":0.18,"keep_pause":0.06,"pad_in":0.03,"pad_out":0.06,"end_hold":0.3}` (footage kept after the last word; posted reels end ~0.15-0.25s after it) |
 | `audio` | `auto` (screen mic wherever it exists, else phone), `face` or `screen` |
 | `lines[]` | the script, in output order (below) |
 | `pills[]` | `{"text","from_line","to_line"}` numbered pills on the board card (to_line exclusive) |
@@ -93,4 +93,8 @@ Token count must equal the ASR tokens in the take (`10` + `%` and `$12` + `,000`
 Set a reel-level `"face_x": <px>` (median face centre in source pixels from `reel-kit/face_x.py`) to re-centre
 the full-screen crop and the webcam card crop. Keep ONE value for the whole reel so the frame doesn't jump
 at cuts; a per-line `face_x` overrides it only when the user moved a lot.
-Face lines only cut pauses longer than `cut.max_pause_face` (0.7s): every face cut is a visible jump.
+Face lines cut pauses longer than `cut.max_pause_face` (0.3s); the user hides those jump cuts with zoom changes in CapCut.
+
+## After posting
+`python3 reel-kit/compare_posted.py reels/<NN> [posted.mp4]` measures what the user changed in CapCut
+(trims, speed, zoom levels over time, music bed level). Put the posted file in `reels/<NN>/posted/` (git-ignored).

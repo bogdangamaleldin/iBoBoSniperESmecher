@@ -73,3 +73,22 @@ Pipeline + edit list: `pipeline/hook-to-board-01/`.
   don't cut short (<0.4s) pauses on face shots.
 - Reel 04: the last face caption leaked into the board section (held until the board's first word).
   Captions now end exactly on every face<->board cut (overlay.html). Reels 02/03 exports had this too.
+
+## Posted versions of reels 03 + 04 vs our exports (reel-kit/compare_posted.py)
+(The "reel 2" posted link was reel 01's posted file again - same checksum.)
+| | reel 03 | reel 04 |
+|---|---|---|
+| length ours -> posted | 41.9 -> 40.8s | 38.7 -> 35.8s |
+| extra speed-up in CapCut | none | 1.054x (on top of our 1.08) |
+| hook pauses | cut the ~0.4s pause inside line 1 | cut the gap after "post next." |
+| end hold after last word | 0.24s | 0.14s |
+| zooms (hook only) | 1.09 -> 1.10 -> 1.00 ON the cut -> 1.05 -> 1.10 -> 1.00 at the board | 1.08 -> 1.00 -> 1.10 -> 1.13 -> 1.03 -> 1.00 |
+| board zooms | none | none |
+| music bed in our silent gaps | -22 dBFS | -23 dBFS |
+| loudness | -13.1 LUFS | -13.7 LUFS |
+Conclusions:
+- Zoom level changes AT jump cuts (hard switch 1.00 <-> ~1.08-1.10), not slow eases: that's how he hides
+  jump cuts. With that, cutting face pauses is fine again -> face pauses cut above 0.3s (was 0.7).
+- End hold 0.9s was too long: he trims to ~0.15-0.25s -> end_hold default 0.3s.
+- The "square board" he saw on reel 03 was his 1.10 hook zoom still active into the first board frames.
+- Music bed sits ~9 dB under the voice; final ~-13.5 LUFS.
