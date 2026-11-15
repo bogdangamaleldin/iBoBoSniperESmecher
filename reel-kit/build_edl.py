@@ -22,7 +22,7 @@ allwords = [wd for isl in islands for wd in isl['words']]
 w = wave.open(f'{W}/face_16k.wav')
 A = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32768
 RMS = 20 * np.log10(np.sqrt((A[:len(A) // 320 * 320].reshape(-1, 320) ** 2).mean(1)) + 1e-9)  # 20ms
-THR = float(min(max(np.percentile(RMS, 10) + 20, -48), -35))   # ~20 dB over room tone (tuned on reel 01)
+THR = float(CUT['threshold']) if 'threshold' in (CUT := R.get('cut', {})) else float(min(max(np.percentile(RMS, 10) + 20, -48), -35))   # ~20 dB over room tone; cut.threshold overrides (long-form audio)
 
 CUT = R.get('cut', {})
 MAX_GAP = CUT.get('max_pause', 0.18)       # pauses longer than this inside a line get cut ...
@@ -221,11 +221,18 @@ pills = [{'n': i + 1, 'text': p['text'], 't0': lt(p['from_line']), 't1': lt(p['t
 cta = None
 if R.get('cta'):
     c = R['cta']
-    cta = {'text': c['text'], 't0': word_t(c['line'], c['word']) if c.get('word') else lt(c['line']),
-           't1': lt(c['to_line']) if 'to_line' in c else line_end[c['line']]}
+    if 'last' in c:                                  # CTA on screen for the last N seconds of the clip
+        cta = {'text': c['text'], 't0': round(T - c['last'] * R.get('speed', 1.0), 3), 't1': round(T, 3)}
+    else:
+        cta = {'text': c['text'], 't0': word_t(c['line'], c['word']) if c.get('word') else lt(c['line']),
+               't1': lt(c['to_line']) if 'to_line' in c else line_end[c['line']]}
+hook = None
+if R.get('hook'):                                    # hook text overlay for the first N seconds
+    h = R['hook']
+    hook = {'text': h['text'], 't0': 0.0, 't1': round(h.get('dur', 2.0) * R.get('speed', 1.0), 3)}
 
 edl = {'duration': round(T, 3), 'segments': segments, 'captions': captions, 'zooms': zooms,
-       'transitions': transitions, 'pills': pills, 'cta': cta, 'line_t': line_t,
+       'transitions': transitions, 'pills': pills, 'cta': cta, 'hook': hook, 'line_t': line_t,
        'style': R.get('captions', {})}
 json.dump(edl, open(f'{W}/edl.json', 'w'), indent=1)
 print(f'edit: {T:.2f}s before speed-up ({T / R.get("speed", 1.0):.2f}s final), {len(segments)} segments, '

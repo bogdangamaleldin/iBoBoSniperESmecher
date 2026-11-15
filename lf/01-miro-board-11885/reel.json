@@ -1,0 +1,132 @@
+{
+  "name": "lf01-clip1-65-minutes",
+  "format": "lf-clip",
+  "drive": {
+    "source": "https://drive.google.com/file/d/1iOZlY76L5uDRGs3cCXKePkuhiEceYBi7/view"
+  },
+  "source_window": "raw/clip.mov = source 9:00 (540s) to 10:12 (612s), stream-copied",
+  "sources": {
+    "face": "raw/clip.mov",
+    "screen": "raw/clip.mov"
+  },
+  "screen_offset": 0.0,
+  "screen_duration": 72.4,
+  "audio": "screen",
+  "speed": 1.08,
+  "export": {
+    "scale": 2,
+    "fps": 60
+  },
+  "face_crop": [
+    1215,
+    2160,
+    1312,
+    0
+  ],
+  "cam": {
+    "source": "screen",
+    "crop": [
+      1050,
+      591,
+      165,
+      1480
+    ]
+  },
+  "layout": {
+    "board_card": [
+      30,
+      230,
+      1020,
+      850,
+      36
+    ],
+    "cam_card": [
+      30,
+      1200,
+      1020,
+      574,
+      36
+    ]
+  },
+  "screen_canvas": {
+    "y": 300,
+    "h": 1430,
+    "center_x": 2150,
+    "bg": "E5F7FC",
+    "mask": [
+      [
+        0,
+        1400,
+        1300,
+        760
+      ]
+    ]
+  },
+  "captions": {
+    "board_top": 1103,
+    "hook_top": 300,
+    "cta_top": 930
+  },
+  "hook": {
+    "text": "this video was *65 minutes* long. / it booked **56 calls.**",
+    "dur": 2.0
+  },
+  "lines": [
+    {
+      "layout": "board",
+      "in": 11.85,
+      "out": 21.05,
+      "hard_out": true,
+      "screen_fit": [
+        1040,
+        1716
+      ],
+      "caption": "you might be _ thinking, | *65 minutes* long. | that's like | one hour | and five minutes. | why so *long?* | this is exactly | one of the main reasons | why we actually | *cash collected* | this much."
+    },
+    {
+      "layout": "board",
+      "in": 21.08,
+      "out": 28.98,
+      "hard_out": true,
+      "screen_fit": [
+        1040,
+        1716
+      ],
+      "caption": "i'm gonna break down | why the *length* | actually worked | really well. | it's because that | before actually buying | your info product | or whatever _ product, | community, _"
+    },
+    {
+      "layout": "board",
+      "in": 29.45,
+      "out": 47.0,
+      "hard_out": true,
+      "screen_fit": [
+        1040,
+        1716
+      ],
+      "caption": "_ people need to watch | *hours* of your content | in order to | buy from you. | why, | you might ask, | is~because~that | in those hours | of content, | those are the hours | of content | that the _ layers | should be *broken,* | right, | the belief of your | *credibility,* authority, | in order to | make it way easier | and make it for them | to have the *intent* | and actually want | to work with~you, | _"
+    },
+    {
+      "layout": "board",
+      "in": 47.32,
+      "out": 65.95,
+      "hard_out": true,
+      "screen_fit": [
+        700,
+        2500
+      ],
+      "caption": "so every single | *cold lead* | that you get | inside of the business, | like every single | *cold traffic,* | after they watch | *two to seven hours* | of content, | they're gonna get out | as a *ready to buy* lead. | and so *65* | in one sitting | basically completes | this run | and makes them break | all of the | *trust layers* | in order for them | to be able | and actually want | to buy | from the *creator.* _"
+    }
+  ],
+  "cta": {
+    "text": "comment “board”",
+    "last": 2.0
+  },
+  "sfx": {
+    "riser": null,
+    "transition": null
+  },
+  "song": null,
+  "cut": {
+    "threshold": -49
+  }
+}

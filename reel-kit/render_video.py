@@ -145,13 +145,15 @@ for i, s in enumerate(segs):
         inputs = v_in + a_in
     else:
         bx, by, bw, bh, _ = BOARD
+        mask = ''.join(f"drawbox=x={m[0]}:y={m[1]}:w={m[2]}:h={m[3]}:color=0x{SCR_BG}:t=fill,"
+                       for m in SCR.get('mask', []))  # paint out e.g. a webcam bubble inside the screen recording
         if 'screen_fit' in s:                    # zoomed-out board: fit all content, pad with the board colour
             ox, ow = s['screen_fit']
-            board = (f"crop={ow}:{SCR_H}:{ox}:{SCR_Y},"
+            board = (f"{mask}crop={ow}:{SCR_H}:{ox}:{SCR_Y},"
                      f"scale={sc(bw)}:{sc(bh)}:force_original_aspect_ratio=decrease:flags=lanczos,"
                      f"crop='min(iw,{sc(bw)})':'min(ih,{sc(bh)})',pad={sc(bw)}:{sc(bh)}:(ow-iw)/2:(oh-ih)/2:color=0x{SCR_BG}")
         else:
-            board = f"crop={SCR_W}:{SCR_H}:{SCR_CX - SCR_W // 2}:{SCR_Y},scale={sc(bw)}:{sc(bh)}:flags=lanczos"
+            board = f"{mask}crop={SCR_W}:{SCR_H}:{SCR_CX - SCR_W // 2}:{SCR_Y},scale={sc(bw)}:{sc(bh)}:flags=lanczos"
         cam_in = v_in if CAM_SRC == 'face' else ['-ss', f"{s['screen_in']:.3f}", '-t', f'{dur:.3f}', '-i', SCREEN_SRC]
         fc = (f"color=c=0x{BG}:s={W}x{H}:r={FPS}:d={dur:.3f}[bg];"
               f"[0:v]setpts=PTS-STARTPTS,fps={FPS},crop={cw}:{ch}:{cx}:{cy},{TM_CAM},"
