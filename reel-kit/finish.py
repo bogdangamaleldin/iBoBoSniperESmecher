@@ -26,7 +26,7 @@ dur_out = edl['duration'] / SP
 TAIL = 0.35 if R['lines'][-1].get('hard_out') else 0.0
 dur_out += TAIL
 
-sfx = {'riser': {'file': 'riser.mp3', 'at': 0.0, 'gain_db': 4},
+sfx = {'riser': {'file': 'riser.mp3', 'at': 0.0, 'gain_db': 6, 'trim_start': 3.0},   # file is ~silent for its first 3s
        'transition': {'file': 'camera-shutter.mp3', 'trim_start': 0.66, 'hit': 0.03, 'gain_db': -2}}
 for k, v in (R.get('sfx') or {}).items():
     if v is None:
@@ -47,7 +47,8 @@ if 'riser' in sfx:
     r = sfx['riser']
     inputs += ['-i', os.path.join(SFXDIR, r['file'])]
     ms = int(r.get('at', 0) * 1000)
-    fc.append(f"[{idx}:a]aresample=48000,volume={r['gain_db']}dB,adelay={ms}|{ms}[riser]")
+    fc.append(f"[{idx}:a]aresample=48000,atrim=start={r.get('trim_start', 0)},asetpts=PTS-STARTPTS,"
+              f"volume={r['gain_db']}dB,adelay={ms}|{ms}[riser]")
     mix.append('[riser]'); idx += 1
 trans = [t / SP for t in edl.get('transitions', [])]
 if 'transition' in sfx and trans:
