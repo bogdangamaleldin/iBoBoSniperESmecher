@@ -1,0 +1,114 @@
+{
+  "name": "lf01-clip2-bookings-over-time",
+  "format": "lf-clip",
+  "drive": {
+    "source": "https://drive.google.com/file/d/1iOZlY76L5uDRGs3cCXKePkuhiEceYBi7/view"
+  },
+  "source_window": "raw/clip.mov = source 17:50 (1070s) to 19:15 (1155s), stream-copied",
+  "sources": {
+    "face": "raw/clip.mov",
+    "screen": "raw/clip.mov"
+  },
+  "screen_offset": 0.0,
+  "screen_duration": 85.5,
+  "audio": "screen",
+  "speed": 1.12,
+  "export": {
+    "scale": 2,
+    "fps": 60
+  },
+  "face_crop": [
+    1215,
+    2160,
+    1312,
+    0
+  ],
+  "cam": {
+    "source": "screen",
+    "crop": [
+      1050,
+      591,
+      165,
+      1480
+    ]
+  },
+  "layout": {
+    "board_card": [
+      30,
+      230,
+      1020,
+      850,
+      36
+    ],
+    "cam_card": [
+      30,
+      1200,
+      1020,
+      574,
+      36
+    ]
+  },
+  "screen_canvas": {
+    "y": 300,
+    "h": 1600,
+    "center_x": 2080,
+    "bg": "E5F7FC",
+    "mask": [
+      [
+        0,
+        1400,
+        1300,
+        760
+      ]
+    ]
+  },
+  "captions": {
+    "board_top": 1103,
+    "hook_top": 300,
+    "cta_top": 930
+  },
+  "cut": {
+    "threshold": -49
+  },
+  "hook": {
+    "text": "this video kept booking calls / for **3 months**",
+    "dur": 2.0
+  },
+  "lines": [
+    {
+      "layout": "board",
+      "in": 8.3,
+      "out": 68.8,
+      "hard_out": true,
+      "screen_fit": [
+        960,
+        2240
+      ],
+      "caption": "another interesting | thing is~the | *bookings over time,* | so how many | bookings~this video got | over time. | you can see obviously | that in the *first two weeks* | there was a *spike* | in bookings, | but interesting observation | and something that | you'll always have in mind | is that it was | a *steady trickle* | for like *three months* | of constant | booking calls, | not as much as | in the first two weeks | but still constant | over time. | and so i feel like | content is | extremely *important* | and specifically | *organic content* | because | because | i feel like youtube | and not just | youtube content | in general, | i feel like | it's a *garden,* | right? | so, for example, | every single new video, | every single reel, | specifically | every single | youtube video, | because those are the ones | that get more *reach* | over time. | i feel like | they're like *seeds* | that you plant | inside your garden | and then they *grow* | over time, | right? | so, over | a couple months. | you can make | a video today, | take a couple days | to produce, | record, edit, post | and then it goes on | and gets results | for *months* | and months | and months. | this is why | i feel like it's an | extremely optimized | and probably | the *best thing* | you~can do | is post content | and *organic content*"
+    },
+    {
+      "layout": "board",
+      "in": 76.3,
+      "out": 78.75,
+      "hard_out": true,
+      "screen_fit": [
+        960,
+        2240
+      ],
+      "caption": "so yeah, | *one video* | kept booking calls | for *months.*"
+    }
+  ],
+  "cta": {
+    "text": "comment “board”",
+    "last": 2.0
+  },
+  "sfx": {
+    "riser": {},
+    "transition": null
+  },
+  "song": {
+    "file": "../../brand/music/les-instrumental-slowed.mp3",
+    "start": 0,
+    "gain_db": -2
+  }
+}
