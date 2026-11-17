@@ -196,6 +196,8 @@ for li, L in enumerate(R['lines']):
                     seg['screen_fit'] = pb[-1].get('screen_fit', seg.get('screen_fit'))
                     if seg['screen_fit'] is None:
                         seg.pop('screen_fit')
+            elif isinstance(L.get('screen_freeze'), (int, float)):   # hold this screen frame (board still moving)
+                seg['screen_freeze'] = float(L['screen_freeze'])
         segments.append(seg)
         T += y - x
     line_end[li] = round(T, 3)

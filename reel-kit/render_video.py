@@ -194,7 +194,7 @@ for i, s in enumerate(segs):
         else:
             board = f"{mask}crop={SCR_W}:{SCR_H}:{SCR_CX - SCR_W // 2}:{SCR_Y},scale={sc(bw)}:{sc(bh)}:flags=lanczos"
         cam_in, cpre = (v_in, vpre) if CAM_SRC == 'face' else seek(SCREEN_SRC, s['screen_in'], dur)
-        snap = snap_for(s['screen_in'], dur) if CAM_SRC == 'screen' and 'screen_freeze' not in s else (0.0, 0.0)
+        snap = snap_for(s['screen_in'], dur) if CAM_SRC == 'screen' else (0.0, 0.0)   # webcam card stays live (and snapped) under a frozen board
         if snap != (0.0, 0.0):
             print(f'  seg {i:02d}: snapping video to source cuts, hold head {snap[0]:.2f}s / tail {snap[1]:.2f}s', flush=True)
         if 'screen_freeze' in s:
