@@ -78,24 +78,101 @@
     {
       "layout": "board",
       "in": 8.3,
-      "out": 68.8,
+      "out": 13.72,
       "hard_out": true,
       "screen_fit": [
         960,
         2240
       ],
-      "caption": "another interesting | thing is~the | *bookings over time,* | so how many | bookings~this video got | over time. | you can see obviously | that in the *first two weeks* | there was a *spike* | in bookings, | but interesting observation | and something that | you'll always have in mind | is that it was | a *steady trickle* | for like *three months* | of constant | booking calls, | not as much as | in the first two weeks | but still constant | over time. | and so i feel like | content is | extremely *important* | and specifically | *organic content* | because | because | i feel like youtube | and not just | youtube content | in general, | i feel like | it's a *garden,* | right? | so, for example, | every single new video, | every single reel, | specifically | every single | youtube video, | because those are the ones | that get more *reach* | over time. | i feel like | they're like *seeds* | that you plant | inside your garden | and then they *grow* | over time, | right? | so, over | a couple months. | you can make | a video today, | take a couple days | to produce, | record, edit, post | and then it goes on | and gets results | for *months* | and months | and months. | this is why | i feel like it's an | extremely optimized | and probably | the *best thing* | you~can do | is post content | and *organic content*"
+      "caption": "another interesting | thing is~the | *bookings over time,* | so how many | bookings~this video got | over time."
     },
     {
       "layout": "board",
-      "in": 76.3,
-      "out": 78.75,
+      "in": 14.22,
+      "out": 18.37,
       "hard_out": true,
       "screen_fit": [
         960,
         2240
       ],
-      "caption": "so yeah, | *one video* | kept booking calls | for *months.*"
+      "caption": "you~can see obviously | that in the *first two weeks* | there was a *spike* | in bookings, | but _"
+    },
+    {
+      "layout": "board",
+      "in": 21.86,
+      "out": 26.06,
+      "hard_out": true,
+      "screen_fit": [
+        960,
+        2240
+      ],
+      "caption": "it was | a *steady trickle* | for like *three months* | of constant | booking calls. _"
+    },
+    {
+      "layout": "board",
+      "in": 29.38,
+      "out": 30.79,
+      "hard_out": true,
+      "screen_fit": [
+        960,
+        2240
+      ],
+      "caption": "and so i feel like"
+    },
+    {
+      "layout": "board",
+      "in": 38.64,
+      "out": 39.5,
+      "hard_out": true,
+      "screen_fit": [
+        960,
+        2240
+      ],
+      "caption": "it's a *garden,* | right?"
+    },
+    {
+      "layout": "board",
+      "in": 40.19,
+      "out": 40.93,
+      "hard_out": true,
+      "screen_fit": [
+        960,
+        2240
+      ],
+      "caption": "every single | *new video,*"
+    },
+    {
+      "layout": "board",
+      "in": 47.83,
+      "out": 51.71,
+      "hard_out": true,
+      "screen_fit": [
+        960,
+        2240
+      ],
+      "caption": "they're like *seeds* | that you plant | inside your garden | and then they *grow* | over time."
+    },
+    {
+      "layout": "board",
+      "in": 52.78,
+      "out": 53.79,
+      "hard_out": true,
+      "screen_fit": [
+        960,
+        2240
+      ],
+      "caption": "you can make | a video today,"
+    },
+    {
+      "layout": "board",
+      "in": 57.19,
+      "out": 61.02,
+      "hard_out": true,
+      "screen_fit": [
+        960,
+        2240
+      ],
+      "caption": "_ then it goes on | and gets results | for *months* | and months | and *months.*"
     }
   ],
   "cta": {
