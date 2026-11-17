@@ -1,0 +1,100 @@
+{
+  "name": "lf01-clip5-exact-title",
+  "format": "lf-letterbox",
+  "drive": {
+    "source": "https://drive.google.com/file/d/1iOZlY76L5uDRGs3cCXKePkuhiEceYBi7/view"
+  },
+  "source_window": "raw/clip.mov = source 13:51 (831s) to 14:42 (882s), stream-copied",
+  "sources": {
+    "face": "raw/clip.mov",
+    "screen": "raw/clip.mov"
+  },
+  "screen_offset": 0.0,
+  "screen_duration": 51.0,
+  "audio": "screen",
+  "speed": 1.12,
+  "export": {
+    "scale": 2,
+    "fps": 60
+  },
+  "face_crop": [
+    1215,
+    2160,
+    1312,
+    0
+  ],
+  "cam": {
+    "source": "screen",
+    "crop": [
+      1050,
+      591,
+      165,
+      1480
+    ]
+  },
+  "captions": {
+    "cta_top": 1420
+  },
+  "cut": {
+    "threshold": -49
+  },
+  "lines": [
+    {
+      "layout": "wide",
+      "in": 6.25,
+      "out": 11.2,
+      "hard_out": true,
+      "caption": "the *title,* | as you know, | i have~a | certain structure | for it. | this one followed | this structure."
+    },
+    {
+      "layout": "wide",
+      "in": 13.18,
+      "out": 17.85,
+      "hard_out": true,
+      "caption": "*“exact.”* | this is an | *extremely important* | keyword. | so if you're | using *exact,* | it's like | you're not | *gatekeeping* anything."
+    },
+    {
+      "layout": "wide",
+      "in": 19.54,
+      "out": 22.61,
+      "hard_out": true,
+      "caption": "here's everything | that made me | *this result* | this month. | *copy me.*"
+    },
+    {
+      "layout": "wide",
+      "in": 34.28,
+      "out": 38.56,
+      "hard_out": true,
+      "caption": "here's an example | which i got | from the | recommended page. | here's the | *exact* trading strategy _"
+    },
+    {
+      "layout": "wide",
+      "in": 39.27,
+      "out": 41.63,
+      "hard_out": true,
+      "caption": "that made me | **$32,000**+ _ _ | this month,"
+    },
+    {
+      "layout": "wide",
+      "in": 44.38,
+      "out": 46.28,
+      "hard_out": true,
+      "caption": "and then | *copy me* | at the end | as well."
+    }
+  ],
+  "sfx": {
+    "riser": {},
+    "transition": null
+  },
+  "song": {
+    "file": "../../brand/music/les-instrumental-slowed.mp3",
+    "start": 0,
+    "gain_db": -2
+  },
+  "layout": {
+    "wide_y": 656
+  },
+  "title": {
+    "text": "one word in your title / changes *who clicks*"
+  }
+}
