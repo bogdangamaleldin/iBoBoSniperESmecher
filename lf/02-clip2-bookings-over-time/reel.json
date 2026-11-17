@@ -78,7 +78,7 @@
     {
       "layout": "board",
       "in": 8.3,
-      "out": 13.72,
+      "out": 13.98,
       "hard_out": true,
       "screen_fit": [
         960,
@@ -132,8 +132,8 @@
     },
     {
       "layout": "board",
-      "in": 40.19,
-      "out": 40.93,
+      "in": 40.22,
+      "out": 41.37,
       "hard_out": true,
       "screen_fit": [
         960,
@@ -155,13 +155,13 @@
     {
       "layout": "board",
       "in": 52.78,
-      "out": 53.79,
+      "out": 53.62,
       "hard_out": true,
       "screen_fit": [
         960,
         2240
       ],
-      "caption": "you can make | a video today,"
+      "caption": "you can make | a video, _"
     },
     {
       "layout": "board",
