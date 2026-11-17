@@ -1,4 +1,5 @@
 lf/*/raw/
 lf/*/work/
 lf/*/out/
-lf/01c-clip1-letterbox/   # discarded format test (user didn't want it); safe to delete
+# discarded letterbox format test (user didn't want it); safe to delete
+lf/01c-clip1-letterbox/
