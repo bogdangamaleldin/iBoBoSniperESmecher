@@ -168,7 +168,15 @@ for i, s in enumerate(segs):
         fx = int(min(max(s['face_x'] - fw / 2, 0), FACE_W - fw))
         if CAM_SRC == 'face':
             cx = int(min(max(s['face_x'] - cw / 2, 0), FACE_W - cw))
-    if s['layout'] == 'face':
+    if s['layout'] == 'wide':        # letterbox: the whole 16:9 source frame, untouched, centred on black
+        scr_in, spre = seek(SCREEN_SRC, s['screen_in'], dur)
+        snap = snap_for(s['screen_in'], dur)
+        wy = sc(LAY.get('wide_y', 656))
+        fc = (f"color=c=0x{BG}:s={W}x{H}:r={FPS}:d={dur:.3f}[bg];"
+              f"[0:v]{vtrim(spre, dur, snap)},fps={FPS},scale={W}:-2:flags=lanczos[wv];"
+              f"[bg][wv]overlay=0:{wy}:eof_action=repeat,setsar=1[v];[1:a]{a_chain}[au]")
+        inputs = scr_in + a_in
+    elif s['layout'] == 'face':
         z = zoom_expr(s['t0'], s['t0'] + dur)
         fc = (f"[0:v]{vtrim(vpre, dur)},fps={FPS},crop={fw}:{fh}:{fx}:{fy},{TM_FACE},"
               f"scale=w='trunc({W}*{z}/2)*2':h='trunc({H}*{z}/2)*2':eval=frame:flags=bicubic,"

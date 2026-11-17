@@ -182,7 +182,7 @@ for li, L in enumerate(R['lines']):
         seg['audio'] = 'screen' if (audio == 'screen' or (audio == 'auto' and on_screen_rec)) else 'face'
         if off is not None:
             seg['audio_in'] = round(x - off, 3)
-        if layout == 'board':
+        if layout in ('board', 'wide'):
             if 'screen_in' in L:                       # board footage from elsewhere (e.g. screen showed another app)
                 seg['screen_in'] = round(L['screen_in'] + (x - subs[0][0]), 3)
             else:
@@ -226,13 +226,14 @@ if R.get('cta'):
     else:
         cta = {'text': c['text'], 't0': word_t(c['line'], c['word']) if c.get('word') else lt(c['line']),
                't1': lt(c['to_line']) if 'to_line' in c else line_end[c['line']]}
+title = R.get('title')                              # persistent title (letterbox format), plain text
 hook = None
 if R.get('hook'):                                    # hook text overlay for the first N seconds
     h = R['hook']
     hook = {'text': h['text'], 't0': 0.0, 't1': round(h.get('dur', 2.0) * R.get('speed', 1.0), 3)}
 
 edl = {'duration': round(T, 3), 'segments': segments, 'captions': captions, 'zooms': zooms,
-       'transitions': transitions, 'pills': pills, 'cta': cta, 'hook': hook, 'line_t': line_t,
+       'transitions': transitions, 'pills': pills, 'cta': cta, 'hook': hook, 'title': title, 'line_t': line_t,
        'style': R.get('captions', {})}
 json.dump(edl, open(f'{W}/edl.json', 'w'), indent=1)
 print(f'edit: {T:.2f}s before speed-up ({T / R.get("speed", 1.0):.2f}s final), {len(segments)} segments, '

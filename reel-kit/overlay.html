@@ -29,6 +29,12 @@ body{font-family:Geist;font-feature-settings:"cv11","ss01";-webkit-font-smoothin
 .cta{left:0;right:0;top:1500px;display:flex;justify-content:center}
 .cta span{background:var(--blue);color:#fff;font-weight:600;font-size:40px;letter-spacing:.1em;text-transform:uppercase;
   padding:24px 48px;border-radius:999px;box-shadow:0 0 50px rgba(61,139,255,.6)}
+/* letterbox format: captions in the black band under the video, plain title above it */
+.cap.wide{top:1300px;font-size:52px}
+.title-top{left:60px;right:60px;top:500px;text-align:center;color:#fff;font-weight:600;font-size:54px;line-height:1.18;
+  letter-spacing:-.02em;text-shadow:0 2px 18px rgba(0,0,0,.7)}
+.title-top .k{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-size:1.25em;color:var(--blue)}
+.title-top .m{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-size:1.25em;color:var(--green)}
 /* hook text panel (first seconds of a clip) */
 .hook{left:60px;right:60px;top:260px;display:flex;justify-content:center}
 .hook div{background:rgba(14,15,17,.94);border:1px solid #1F2125;border-radius:24px;padding:26px 36px 30px;
@@ -83,6 +89,12 @@ function build(edl){
   const add=(html,t0,t1,anim)=>{const el=h(html);el.classList.add('abs');root.appendChild(el);EL.push({el,t0,t1,anim})};
   for(const p of edl.pills||[])
     add(`<div class="pill"><div class="c">${p.n}</div><div class="t">${esc(p.text)}</div></div>`,p.t0,p.t1,'slide');
+  if(edl.title){  // persistent title (letterbox format): '/' = line break, *accent*, **money**
+    const mk=edl.title.text.split('/').map(l=>esc(l.trim()).replace(/\*\*(.+?)\*\*/g,'<span class="m">$1</span>')
+      .replace(/\*(.+?)\*/g,'<span class="k">$1</span>')).join('<br>');
+    const el=h(`<div class="title-top">${mk}</div>`); if(edl.title.top) el.style.top=edl.title.top+'px';
+    el.classList.add('abs'); root.appendChild(el); EL.push({el,t0:0,t1:edl.duration+1,anim:'pop'});
+  }
   if(edl.hook){   // *accent* / **money** markup, '/' = line break
     const mk=edl.hook.text.split('/').map(l=>esc(l.trim()).replace(/\*\*(.+?)\*\*/g,'<span class="m">$1</span>')
       .replace(/\*(.+?)\*/g,'<span class="k">$1</span>')).join('<br>');

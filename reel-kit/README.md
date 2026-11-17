@@ -107,3 +107,8 @@ long video first), `screen_offset: 0`, `layout` cards, `screen_canvas.mask` to p
 frames before one of them shows a sliver of the other shot ("random frame"). The renderer snaps the video
 to those cuts (holds the clean frame) while the audio stays untouched.
 Video is cut by coarse seek + exact `trim` (input seeking alone let stray frames through on these files).
+
+## Letterbox format (references/lf-format-02)
+Lines with `"layout": "wide"`: the untouched 16:9 frame, full width, centred (`layout.wide_y`, default 656).
+`"title": {"text": "line one / *accent* line two"}` sits above the video for the whole clip; captions go in the
+black band under the video (`.cap.wide`). No cards, no crop, no masks.
