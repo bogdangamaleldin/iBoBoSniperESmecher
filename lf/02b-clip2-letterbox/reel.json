@@ -1,0 +1,125 @@
+{
+  "name": "lf01-clip2-letterbox",
+  "format": "lf-letterbox",
+  "drive": {
+    "source": "https://drive.google.com/file/d/1iOZlY76L5uDRGs3cCXKePkuhiEceYBi7/view"
+  },
+  "source_window": "raw/clip.mov = source 17:50 (1070s) to 19:15 (1155s), stream-copied",
+  "sources": {
+    "face": "raw/clip.mov",
+    "screen": "raw/clip.mov"
+  },
+  "screen_offset": 0.0,
+  "screen_duration": 85.5,
+  "audio": "screen",
+  "speed": 1.12,
+  "export": {
+    "scale": 2,
+    "fps": 60
+  },
+  "face_crop": [
+    1215,
+    2160,
+    1312,
+    0
+  ],
+  "cam": {
+    "source": "screen",
+    "crop": [
+      1050,
+      591,
+      165,
+      1480
+    ]
+  },
+  "captions": {
+    "cta_top": 1420
+  },
+  "cut": {
+    "threshold": -49
+  },
+  "lines": [
+    {
+      "layout": "wide",
+      "in": 8.3,
+      "out": 13.98,
+      "hard_out": true,
+      "caption": "another interesting | thing is~the | *bookings over time,* | so how many | bookings~this video got | over time."
+    },
+    {
+      "layout": "wide",
+      "in": 14.22,
+      "out": 18.37,
+      "hard_out": true,
+      "caption": "you~can see obviously | that in the *first two weeks* | there was a *spike* | in bookings, | but _"
+    },
+    {
+      "layout": "wide",
+      "in": 21.86,
+      "out": 26.06,
+      "hard_out": true,
+      "caption": "it was | a *steady trickle* | for like *three months* | of constant | booking calls. _"
+    },
+    {
+      "layout": "wide",
+      "in": 29.38,
+      "out": 30.79,
+      "hard_out": true,
+      "caption": "and so i feel like"
+    },
+    {
+      "layout": "wide",
+      "in": 38.64,
+      "out": 39.5,
+      "hard_out": true,
+      "caption": "it's a *garden,* | right?"
+    },
+    {
+      "layout": "wide",
+      "in": 40.22,
+      "out": 41.16,
+      "hard_out": true,
+      "caption": "every single | *new video,*"
+    },
+    {
+      "layout": "wide",
+      "in": 47.83,
+      "out": 51.71,
+      "hard_out": true,
+      "caption": "they're like *seeds* | that you plant | inside your garden | and then they *grow* | over time."
+    },
+    {
+      "layout": "wide",
+      "in": 52.78,
+      "out": 53.62,
+      "hard_out": true,
+      "caption": "you can make | a video, _"
+    },
+    {
+      "layout": "wide",
+      "in": 57.19,
+      "out": 61.02,
+      "hard_out": true,
+      "caption": "_ then it goes on | and gets results | for *months* | and months | and *months.*"
+    }
+  ],
+  "cta": {
+    "text": "comment “board”",
+    "last": 2.0
+  },
+  "sfx": {
+    "riser": {},
+    "transition": null
+  },
+  "song": {
+    "file": "../../brand/music/les-instrumental-slowed.mp3",
+    "start": 0,
+    "gain_db": -2
+  },
+  "layout": {
+    "wide_y": 656
+  },
+  "title": {
+    "text": "this video kept booking calls / for *3 months*"
+  }
+}
