@@ -42,44 +42,16 @@
     {
       "layout": "wide",
       "in": 6.25,
-      "out": 11.2,
-      "hard_out": true,
-      "caption": "the *title,* | as you know, | i have~a | certain structure | for it. | this one followed | this structure."
-    },
-    {
-      "layout": "wide",
-      "in": 13.18,
-      "out": 17.85,
-      "hard_out": true,
-      "caption": "*“exact.”* | this is an | *extremely important* | keyword. | so if you're | using *exact,* | it's like | you're not | *gatekeeping* anything."
-    },
-    {
-      "layout": "wide",
-      "in": 19.54,
       "out": 22.61,
       "hard_out": true,
-      "caption": "here's everything | that made me | *this result* | this month. | *copy me.*"
+      "caption": "the *title,* | as you know, | i have~a | certain structure | for it. | this one followed | this structure, | right? | of the | *specific dollar result,* | *“exact.”* | this is an | *extremely important* | keyword. | so if you're | using *exact,* | it's like | you're not | *gatekeeping* anything. | it's like | here's everything | that i know, | here's everything | that made me | *this result* | this month. | *copy me.*"
     },
     {
       "layout": "wide",
       "in": 34.28,
-      "out": 38.56,
-      "hard_out": true,
-      "caption": "here's an example | which i got | from the | recommended page. | here's the | *exact* trading strategy _"
-    },
-    {
-      "layout": "wide",
-      "in": 39.27,
-      "out": 41.63,
-      "hard_out": true,
-      "caption": "that made me | **$32,000**+ _ _ | this month,"
-    },
-    {
-      "layout": "wide",
-      "in": 44.38,
       "out": 46.28,
       "hard_out": true,
-      "caption": "and then | *copy me* | at the end | as well."
+      "caption": "here's an example | which i got | from the | recommended page. | here's the | *exact* trading strategy, | right? | *exact,* | that made me | **$32,000**+ _ _ | this month, | right? | so they have | a *specific+ result,* | **32k**+ | this month, | and then | *copy me* | at the end | as well."
     }
   ],
   "sfx": {
